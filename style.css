@@ -2243,17 +2243,17 @@ button {
     }
 }
 
-/* Center divider line */
+/* Center divider line — top half only, does not cross text */
 .mod-split-divider {
     position: absolute;
     top: 0;
-    bottom: 0;
+    height: 58%;
     left: 50%;
     width: 2px;
-    background: rgba(255,107,0,0.8);
+    background: linear-gradient(180deg, rgba(255,107,0,0.9) 0%, rgba(255,107,0,0.2) 100%);
     z-index: 3;
     transform: translateX(-50%);
-    box-shadow: 0 0 10px rgba(255,107,0,0.6);
+    box-shadow: 0 0 10px rgba(255,107,0,0.5);
     pointer-events: none;
 }
 
@@ -2327,26 +2327,28 @@ button {
 /* ── PRODUCT IMAGE ───────────────────────────────────────────── */
 .product-img-wrap {
     width: 100%;
-    height: 140px;
+    height: 160px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 1rem;
     overflow: hidden;
-    background: rgba(0,0,0,0.3);
+    background: transparent;
 }
 
 .product-img {
-    width: 100%;
-    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
     object-fit: contain;
     object-position: center;
     transition: transform 0.4s ease;
-    padding: 0.5rem;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.6));
 }
 
 .product-card:hover .product-img {
-    transform: scale(1.06);
+    transform: scale(1.08);
 }
 
 /* Tambor 200L icon placeholder */
