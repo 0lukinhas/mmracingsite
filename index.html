@@ -4,14 +4,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MM Racing Fuel — Química de Alta Performance</title>
+  <title>MM Racing Fuel — Vá Mais Rápido com a MM Racing Fuel</title>
   <meta name="description"
-    content="Do barro do Off-Road aos 400 metros do Drag Racing. A MM Racing Fuel distribui a química exata da vitória. Metanol, Nitrometano, Cold Power e linhas preparadas para competição." />
+    content="Vá mais rápido com a MM Racing Fuel. Do barro do Off-Road aos 201 metros do Drag Racing. Metanol, Nitrometano e linhas preparadas para competição. Recorde: Honda Civic 4,93s nos 201 metros." />
   <meta name="keywords"
-    content="combustível de corrida, metanol, nitrometano, drag racing, off-road, motocross, street performance, MM Racing Fuel" />
-  <meta property="og:title" content="MM Racing Fuel — Química de Alta Performance" />
+    content="combustível de corrida, metanol, nitrometano, drag racing, off-road, motocross, MM Racing Fuel, M100, M5, M10, M20, Nitro100" />
+  <meta property="og:title" content="MM Racing Fuel — Vá Mais Rápido com a MM Racing Fuel" />
   <meta property="og:description"
-    content="Do barro do Off-Road aos 400 metros do Drag Racing. Nós distribuímos a química exata da vitória." />
+    content="Do barro do Off-Road aos 201 metros do Drag Racing. Nós distribuímos a química exata da vitória." />
   <meta property="og:type" content="website" />
   <link rel="icon" href="src/app/favicon.ico" type="image/x-icon" />
   <meta name="referrer" content="no-referrer" />
@@ -38,13 +38,15 @@
           <a href="#inicio" class="nav-link active" id="nav-inicio">INÍCIO</a>
           <a href="#combustiveis" class="nav-link" id="nav-combustiveis">COMBUSTÍVEIS</a>
           <a href="#modalidades" class="nav-link" id="nav-modalidades">MODALIDADES</a>
+          <a href="#merch" class="nav-link" id="nav-merch">VESTUÁRIO</a>
           <a href="#dna" class="nav-link" id="nav-dna">NOSSO DNA</a>
-          <a href="#pilotos" class="nav-link" id="nav-pilotos">PILOTOS MM</a>
+          <a href="#revendedor" class="nav-link" id="nav-revendedor">REVENDEDOR</a>
         </div>
 
         <!-- CTA Button -->
         <div class="nav-cta-wrap">
-          <a href="#contato" class="btn-primary nav-cta" id="nav-cta-btn">
+          <a href="https://wa.me/5511922880177?text=Ol%C3%A1!+Gostaria+de+falar+com+um+representante+MM+Racing+Fuel."
+            class="btn-primary nav-cta" id="nav-cta-btn" target="_blank" rel="noopener noreferrer">
             Fale com um representante
           </a>
         </div>
@@ -65,12 +67,56 @@
         <a href="#inicio" class="mobile-link" data-mobile-link>INÍCIO</a>
         <a href="#combustiveis" class="mobile-link" data-mobile-link>COMBUSTÍVEIS</a>
         <a href="#modalidades" class="mobile-link" data-mobile-link>MODALIDADES</a>
+        <a href="#merch" class="mobile-link" data-mobile-link>VESTUÁRIO</a>
         <a href="#dna" class="mobile-link" data-mobile-link>NOSSO DNA</a>
-        <a href="#pilotos" class="mobile-link" data-mobile-link>PILOTOS MM</a>
-        <a href="#contato" class="btn-primary mobile-cta" data-mobile-link>Falar com Representante</a>
+        <a href="#revendedor" class="mobile-link" data-mobile-link>REVENDEDOR</a>
+        <a href="https://wa.me/5511922880177?text=Ol%C3%A1!+Gostaria+de+falar+com+um+representante+MM+Racing+Fuel."
+          class="btn-primary mobile-cta" data-mobile-link target="_blank" rel="noopener noreferrer">Falar com
+          Representante</a>
       </div>
     </div>
   </nav>
+
+  <!-- ===== FLOATING CART BUTTON ===== -->
+  <button class="cart-fab" id="cart-fab-btn" aria-label="Abrir carrinho de cotação" aria-expanded="false">
+    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+    </svg>
+    <span class="cart-fab-count" id="cart-count" aria-live="polite">0</span>
+  </button>
+
+  <!-- ===== CART DRAWER ===== -->
+  <div class="cart-overlay" id="cart-overlay" aria-hidden="true"></div>
+  <aside class="cart-drawer" id="cart-drawer" aria-hidden="true" aria-label="Carrinho de cotação">
+    <div class="cart-drawer-header">
+      <h2 class="cart-drawer-title">CARRINHO DE COTAÇÃO</h2>
+      <button class="cart-close-btn" id="cart-close-btn" aria-label="Fechar carrinho">
+        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+    <div class="cart-items-list" id="cart-items-list" role="list" aria-label="Itens no carrinho">
+      <div class="cart-empty" id="cart-empty">
+        <svg width="48" height="48" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" style="color:var(--muted);margin-bottom:1rem">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+        </svg>
+        <p>Nenhum produto adicionado.</p>
+        <p style="font-size:0.75rem;margin-top:0.5rem">Adicione produtos para cotar.</p>
+      </div>
+    </div>
+    <div class="cart-drawer-footer">
+      <button class="btn-primary btn-whatsapp-cart" id="btn-quote-whatsapp" disabled aria-label="Cotar produtos no WhatsApp">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+          <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.85L0 24l6.335-1.648A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.787 9.787 0 01-5.025-1.383l-.36-.214-3.732.97.998-3.636-.235-.374A9.78 9.78 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z" />
+        </svg>
+        COTAR MEUS PRODUTOS
+      </button>
+    </div>
+  </aside>
 
   <main>
 
@@ -78,47 +124,34 @@
     <section id="inicio" class="hero">
       <!-- Background Image -->
       <div class="hero-bg" aria-hidden="true">
-        <img src="https://images.unsplash.com/photo-1580971271618-b21703ab3dcd?w=2560&q=80&auto=format&fit=crop" alt=""
-          class="hero-bg-img" loading="eager" referrerpolicy="no-referrer" />
+        <img src="public/hero-bg.webp" alt=""
+          class="hero-bg-img" loading="eager" />
         <div class="hero-bg-gradient-lr"></div>
         <div class="hero-bg-gradient-tb"></div>
       </div>
 
       <div class="container hero-content reveal-hero">
-        <!-- Badge -->
-        <div class="badge">
-          <span>TELEMETRIA ATIVADA // SYNC OK</span>
-        </div>
-
         <!-- Heading -->
         <h1 class="hero-title">
-          Seja rápido em <br />
-          <span class="gradient-text">qualquer terreno!</span><br />
+          Vá mais rápido<br />
+          <span class="gradient-text">com a MM Racing Fuel.</span><br />
           <span class="hero-subtitle">Combustível de quem respira velocidade.</span>
         </h1>
 
         <!-- Description -->
         <p class="hero-desc">
-          Do barro do Off-Road aos 400 metros do Drag Racing. Nós distribuímos a química exata da vitória. Você tem o
+          Do barro do Off-Road aos 201 metros do Drag Racing. Nós distribuímos a química exata da vitória. Você tem o
           fogo para competir? <strong>Nós temos o combustível.</strong>
         </p>
 
         <!-- CTA -->
-        <a href="#contato" class="btn-primary btn-hero" id="hero-cta">
+        <a href="https://wa.me/5511922880177?text=Ol%C3%A1!+Gostaria+de+falar+com+um+representante+MM+Racing+Fuel."
+          class="btn-primary btn-hero" id="hero-cta" target="_blank" rel="noopener noreferrer">
           FALE COM UM DE NOSSOS REPRESENTANTES
           <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg>
         </a>
-      </div>
-
-      <!-- Telemetry Decoration (desktop only) -->
-      <div class="telemetry-bar" aria-hidden="true">
-        <span>AFR: 12.8</span>
-        <span>BOOST: 2.1 BAR</span>
-        <span>EGT: 850 C</span>
-        <span>RPM: 9200</span>
-        <div class="telemetry-line"></div>
       </div>
     </section>
 
@@ -130,44 +163,45 @@
           <div class="section-divider" aria-hidden="true"></div>
         </div>
 
-        <div class="modalities-grid" role="list">
+        <div class="modalities-grid modalities-grid-2" role="list">
 
-          <!-- Card 1: Drag Racing -->
-          <article class="mod-card reveal" role="listitem">
-            <div class="mod-card-bg"
-              style="background-image:url('https://images.unsplash.com/photo-1541443131876-44b03de101c5?w=800&q=80&auto=format&fit=crop')"
+          <!-- Card 1: Drag Racing & ProMod (split image) -->
+          <article class="mod-card mod-card-split reveal" role="listitem" id="mod-drag-racing">
+            <!-- Left image: Blue Shark -->
+            <div class="mod-split-img mod-split-left"
+              style="background-image:url('public/img-blue-shark.webp')"
               aria-hidden="true"></div>
+            <!-- Right image: ProMod -->
+            <div class="mod-split-img mod-split-right"
+              style="background-image:url('public/img-promod.webp')"
+              aria-hidden="true"></div>
+            <!-- Divider line -->
+            <div class="mod-split-divider" aria-hidden="true"></div>
             <div class="mod-card-overlay" aria-hidden="true"></div>
             <div class="mod-card-content">
               <span class="mod-index">[1]</span>
               <h3 class="mod-title">DRAG RACING &amp; PRO MOD</h3>
-              <p class="mod-desc">Combustível de alta octanagem para recordes em 400m.</p>
+              <p class="mod-desc">Combustível de alta octanagem para recordes em 201m.</p>
             </div>
           </article>
 
-          <!-- Card 2: Off-Road -->
-          <article class="mod-card reveal" role="listitem">
-            <div class="mod-card-bg"
-              style="background-image:url('https://images.unsplash.com/photo-1518105779142-d975f22f1b0a?w=800&q=80&auto=format&fit=crop')"
+          <!-- Card 2: Off-Road & Motocross (split image) -->
+          <article class="mod-card mod-card-split reveal" role="listitem" id="mod-offroad">
+            <!-- Left image: Gaiola -->
+            <div class="mod-split-img mod-split-left"
+              style="background-image:url('public/img-gaiola.webp')"
               aria-hidden="true"></div>
+            <!-- Right image: Motocross -->
+            <div class="mod-split-img mod-split-right"
+              style="background-image:url('public/img-motocross.webp')"
+              aria-hidden="true"></div>
+            <!-- Divider line -->
+            <div class="mod-split-divider" aria-hidden="true"></div>
             <div class="mod-card-overlay" aria-hidden="true"></div>
             <div class="mod-card-content">
               <span class="mod-index">[2]</span>
               <h3 class="mod-title">OFF-ROAD &amp; MOTOCROSS</h3>
               <p class="mod-desc">Desempenho extremo no barro e na terra.</p>
-            </div>
-          </article>
-
-          <!-- Card 3: Street Performance (Track Day REMOVIDO) -->
-          <article class="mod-card reveal" role="listitem">
-            <div class="mod-card-bg"
-              style="background-image:url('https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=800&q=80&auto=format&fit=crop')"
-              aria-hidden="true"></div>
-            <div class="mod-card-overlay" aria-hidden="true"></div>
-            <div class="mod-card-content">
-              <span class="mod-index">[3]</span>
-              <h3 class="mod-title">STREET PERFORMANCE</h3>
-              <p class="mod-desc">Consistência laboratorial para seu street de rua.</p>
             </div>
           </article>
 
@@ -181,71 +215,224 @@
       <div class="container">
         <div class="products-header">
           <span class="section-label">LABORATÓRIO MM</span>
-          <h2 class="section-title">Química de Alta Performance</h2>
+          <h2 class="section-title">Nossos Combustíveis</h2>
+          <p class="products-sub">Selecione os produtos e cote diretamente pelo WhatsApp.</p>
         </div>
 
         <div class="products-grid" role="list">
 
-          <!-- Product 1 -->
-          <article class="product-card reveal" role="listitem" id="produto-metanol">
+          <!-- Produto 1: M100 18L -->
+          <article class="product-card reveal" role="listitem" id="produto-m100-18l">
             <div class="corner-accent" aria-hidden="true"></div>
-            <h3 class="product-name">METANOL</h3>
-            <p class="product-desc">Pureza máxima para resfriamento extremo.</p>
+            <div class="product-tag">METANOL</div>
+            <div class="product-img-wrap">
+              <img src="public/img-m100-18l.webp" alt="M100 18L" loading="lazy" class="product-img" />
+            </div>
+            <h3 class="product-name">M100 18L</h3>
+            <p class="product-desc">Metanol 100% puro em galão de 18 litros. Pureza máxima para resfriamento extremo e máxima performance.</p>
             <div class="product-footer">
               <p class="product-price">Consulte</p>
-              <button class="btn-outline-sm" aria-label="Ver ficha técnica do Metanol">
-                <span>Ver Ficha Técnica</span>
+              <button class="btn-add-cart" data-product="M100 18L" aria-label="Adicionar M100 18L ao carrinho">
                 <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M7 7h10v10" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
+                <span>Adicionar</span>
               </button>
             </div>
           </article>
 
-          <!-- Product 2 -->
-          <article class="product-card reveal" role="listitem" id="produto-linha-preparada">
+          <!-- Produto 2: M100 5L -->
+          <article class="product-card reveal" role="listitem" id="produto-m100-5l">
             <div class="corner-accent" aria-hidden="true"></div>
-            <h3 class="product-name">LINHA PREPARADA (M5 / M20)</h3>
-            <p class="product-desc">Misturas prontas e certificadas. Consistência laboratorial.</p>
+            <div class="product-tag">METANOL</div>
+            <div class="product-img-wrap">
+              <img src="public/img-m100-5l.webp" alt="M100 5L" loading="lazy" class="product-img" />
+            </div>
+            <h3 class="product-name">M100 5L</h3>
+            <p class="product-desc">Metanol 100% puro em galão de 5 litros. Ideal para testes de setup e competições de menor duração.</p>
             <div class="product-footer">
               <p class="product-price">Consulte</p>
-              <button class="btn-outline-sm" aria-label="Ver ficha técnica da Linha Preparada">
-                <span>Ver Ficha Técnica</span>
+              <button class="btn-add-cart" data-product="M100 5L" aria-label="Adicionar M100 5L ao carrinho">
                 <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M7 7h10v10" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
+                <span>Adicionar</span>
               </button>
             </div>
           </article>
 
-          <!-- Product 3 -->
-          <article class="product-card reveal" role="listitem" id="produto-nitrometano">
+          <!-- Produto 3: M5 20L -->
+          <article class="product-card reveal" role="listitem" id="produto-m5-20l">
             <div class="corner-accent" aria-hidden="true"></div>
-            <h3 class="product-name">NITROMETANO</h3>
-            <p class="product-desc">O ápice da energia química para categorias de elite.</p>
+            <div class="product-tag">LINHA PREPARADA</div>
+            <div class="product-img-wrap">
+              <img src="public/img-m5.webp" alt="M5 20L" loading="lazy" class="product-img" />
+            </div>
+            <h3 class="product-name">M5 20L</h3>
+            <p class="product-desc">Mistura M5 certificada em galão de 20 litros. Consistência laboratorial para cada corrida.</p>
             <div class="product-footer">
               <p class="product-price">Consulte</p>
-              <button class="btn-outline-sm" aria-label="Ver ficha técnica do Nitrometano">
-                <span>Ver Ficha Técnica</span>
+              <button class="btn-add-cart" data-product="M5 20L" aria-label="Adicionar M5 20L ao carrinho">
                 <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M7 7h10v10" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
+                <span>Adicionar</span>
               </button>
             </div>
           </article>
 
-          <!-- Product 4 -->
+          <!-- Produto 4: M10 20L -->
+          <article class="product-card reveal" role="listitem" id="produto-m10-20l">
+            <div class="corner-accent" aria-hidden="true"></div>
+            <div class="product-tag">LINHA PREPARADA</div>
+            <div class="product-img-wrap">
+              <img src="public/img-m10.webp" alt="M10 20L" loading="lazy" class="product-img" />
+            </div>
+            <h3 class="product-name">M10 20L</h3>
+            <p class="product-desc">Mistura M10 certificada em galão de 20 litros. Equilíbrio perfeito entre potência e consistência.</p>
+            <div class="product-footer">
+              <p class="product-price">Consulte</p>
+              <button class="btn-add-cart" data-product="M10 20L" aria-label="Adicionar M10 20L ao carrinho">
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                <span>Adicionar</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Produto 5: M15 20L -->
+          <article class="product-card reveal" role="listitem" id="produto-m15-20l">
+            <div class="corner-accent" aria-hidden="true"></div>
+            <div class="product-tag">LINHA PREPARADA</div>
+            <div class="product-img-wrap">
+              <img src="public/img-m15.webp" alt="M15 20L" loading="lazy" class="product-img" />
+            </div>
+            <h3 class="product-name">M15 20L</h3>
+            <p class="product-desc">Mistura M15 certificada em galão de 20 litros. Performance intermediária para motores preparados.</p>
+            <div class="product-footer">
+              <p class="product-price">Consulte</p>
+              <button class="btn-add-cart" data-product="M15 20L" aria-label="Adicionar M15 20L ao carrinho">
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                <span>Adicionar</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Produto 6: M20 20L -->
+          <article class="product-card reveal" role="listitem" id="produto-m20-20l">
+            <div class="corner-accent" aria-hidden="true"></div>
+            <div class="product-tag">LINHA PREPARADA</div>
+            <div class="product-img-wrap">
+              <img src="public/img-m20.webp" alt="M20 20L" loading="lazy" class="product-img" />
+            </div>
+            <h3 class="product-name">M20 20L</h3>
+            <p class="product-desc">Mistura M20 certificada em galão de 20 litros. Alta concentração para motores preparados.</p>
+            <div class="product-footer">
+              <p class="product-price">Consulte</p>
+              <button class="btn-add-cart" data-product="M20 20L" aria-label="Adicionar M20 20L ao carrinho">
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                <span>Adicionar</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Produto 7: Nitro100 1L -->
+          <article class="product-card reveal" role="listitem" id="produto-nitro100-1l">
+            <div class="corner-accent" aria-hidden="true"></div>
+            <div class="product-tag product-tag--nitro">NITROMETANO</div>
+            <div class="product-img-wrap">
+              <img src="public/img-m100-5l.webp" alt="Nitro100 1L" loading="lazy" class="product-img" />
+            </div>
+            <h3 class="product-name">NITRO100 1L</h3>
+            <p class="product-desc">Nitrometano 100% puro em frasco de 1 litro. O ápice da energia química para categorias de elite.</p>
+            <div class="product-footer">
+              <p class="product-price">Consulte</p>
+              <button class="btn-add-cart" data-product="Nitro100 1L" aria-label="Adicionar Nitro100 1L ao carrinho">
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                <span>Adicionar</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Produto 8: Nitro100 5L -->
+          <article class="product-card reveal" role="listitem" id="produto-nitro100-5l">
+            <div class="corner-accent" aria-hidden="true"></div>
+            <div class="product-tag product-tag--nitro">NITROMETANO</div>
+            <div class="product-img-wrap">
+              <img src="public/img-nitro100-5l.webp" alt="Nitro100 5L" loading="lazy" class="product-img" />
+            </div>
+            <h3 class="product-name">NITRO100 5L</h3>
+            <p class="product-desc">Nitrometano 100% puro em galão de 5 litros. Para equipes que exigem o máximo da química de corrida.</p>
+            <div class="product-footer">
+              <p class="product-price">Consulte</p>
+              <button class="btn-add-cart" data-product="Nitro100 5L" aria-label="Adicionar Nitro100 5L ao carrinho">
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                <span>Adicionar</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Produto 9: Cold Power -->
           <article class="product-card reveal" role="listitem" id="produto-cold-power">
             <div class="corner-accent" aria-hidden="true"></div>
+            <div class="product-tag">ADITIVO</div>
+            <div class="product-img-wrap">
+              <img src="public/img-cold-power.webp" alt="Cold Power" loading="lazy" class="product-img" />
+            </div>
             <h3 class="product-name">COLD POWER</h3>
-            <p class="product-desc">Aditivo de resfriamento de ponta para câmara de combustão.</p>
+            <p class="product-desc">Aditivo de resfriamento de ponta para câmara de combustão. Reduz temperatura e maximiza a performance.</p>
             <div class="product-footer">
               <p class="product-price">Consulte</p>
-              <button class="btn-outline-sm" aria-label="Ver ficha técnica do Cold Power">
-                <span>Ver Ficha Técnica</span>
+              <button class="btn-add-cart" data-product="Cold Power" aria-label="Adicionar Cold Power ao carrinho">
                 <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M7 7h10v10" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
+                <span>Adicionar</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- Produto 10: Tambor M100 200L -->
+          <article class="product-card reveal product-card--highlight" role="listitem" id="produto-tambor-m100-200l">
+            <div class="corner-accent" aria-hidden="true"></div>
+            <div class="product-tag">METANOL — VOLUME</div>
+            <div class="product-img-wrap product-img-wrap--tambor">
+              <div class="product-tambor-icon" aria-hidden="true">
+                <svg width="48" height="48" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                    d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+                </svg>
+                <span>200L</span>
+              </div>
+            </div>
+            <h3 class="product-name">TAMBOR M100 200L</h3>
+            <p class="product-desc">Metanol 100% puro em tambor de 200 litros. Para equipes profissionais e revendedores que exigem escala e qualidade.</p>
+            <div class="product-footer">
+              <p class="product-price">Consulte</p>
+              <button class="btn-add-cart" data-product="Tambor M100 200L" aria-label="Adicionar Tambor M100 200L ao carrinho">
+                <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                <span>Adicionar</span>
               </button>
             </div>
           </article>
@@ -253,9 +440,147 @@
         </div>
 
         <div class="products-cta-wrap">
-          <a href="#contato" class="btn-outline" id="products-cta">
+          <a href="https://wa.me/5511922880177?text=Ol%C3%A1!+Gostaria+de+cotar+os+combustíveis+MM+Racing+Fuel."
+            class="btn-outline" id="products-cta" target="_blank" rel="noopener noreferrer">
             Solicitar Orçamento com Representante
           </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MERCH / VESTUÁRIO ===== -->
+    <section id="merch" class="merch section-border-top">
+      <div class="container">
+
+        <!-- Cabeçalho da Seção -->
+        <div class="merch-header">
+          <span>LIFESTYLE // MM RACING</span>
+          <h2>Equipamento <span>Oficial</span></h2>
+          <p>Vista a química da vitória. Camisetas, moletons e acessórios exclusivos.</p>
+        </div>
+
+        <!-- Navegação / Filtros de Categoria -->
+        <div role="navigation" aria-label="Categorias de produtos" class="merch-filters">
+          <button class="merch-filter-btn active" data-filter="todos" id="filter-todos">Todos</button>
+          <button class="merch-filter-btn" data-filter="vestuario" id="filter-vestuario">Vestuário</button>
+          <button class="merch-filter-btn" data-filter="bones" id="filter-bones">Bonés</button>
+          <button class="merch-filter-btn" data-filter="acessorios" id="filter-acessorios">Acessórios</button>
+        </div>
+
+        <!-- Grade de Produtos -->
+        <div role="list" class="merch-grid">
+
+          <!-- Produto 1: Moletom -->
+          <article role="listitem" class="merch-card reveal" data-category="vestuario" id="merch-moletom">
+            <div class="merch-badge">Edição Limitada</div>
+            <div aria-hidden="true" class="merch-img-bg">
+              <img src="public/merch-moletom.png" alt="Moletom Built For Speed MM Racing" loading="lazy">
+            </div>
+            <div class="merch-info">
+              <h3>Moletom Built For Speed</h3>
+              <p class="sizes">P | M | G | GG</p>
+              <p class="price">R$ 00,00</p>
+              <div class="merch-actions">
+                <button class="btn-add-cart btn-add-cart--merch" data-product="Moletom Built For Speed" data-ml-link="#" aria-label="Adicionar Moletom ao carrinho">
+                  <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                  <span>Cotar</span>
+                </button>
+                <a href="#" class="btn-ml" target="_blank" rel="noopener noreferrer" aria-label="Comprar Moletom no Mercado Livre">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>
+                  </svg>
+                  Loja Oficial ML
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Produto 2: Camiseta -->
+          <article role="listitem" class="merch-card reveal" data-category="vestuario" id="merch-camiseta">
+            <div class="merch-badge badge-alt">100% Algodão</div>
+            <div aria-hidden="true" class="merch-img-bg">
+              <img src="public/merch-camiseta.png" alt="Camiseta MM Racing Logo" loading="lazy">
+            </div>
+            <div class="merch-info">
+              <h3>Camiseta MM Racing Logo</h3>
+              <p class="sizes">P | M | G | GG</p>
+              <p class="price">R$ 00,00</p>
+              <div class="merch-actions">
+                <button class="btn-add-cart btn-add-cart--merch" data-product="Camiseta MM Racing Logo" data-ml-link="#" aria-label="Adicionar Camiseta ao carrinho">
+                  <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                  <span>Cotar</span>
+                </button>
+                <a href="#" class="btn-ml" target="_blank" rel="noopener noreferrer" aria-label="Comprar Camiseta no Mercado Livre">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>
+                  </svg>
+                  Loja Oficial ML
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Produto 3: Boné -->
+          <article role="listitem" class="merch-card reveal" data-category="bones" id="merch-bone">
+            <div aria-hidden="true" class="merch-img-bg">
+              <img src="public/merch-bone.png" alt="Boné Snapback Flex-Fit MM Racing" loading="lazy">
+            </div>
+            <div class="merch-info">
+              <h3>Boné Snapback Flex-Fit</h3>
+              <p class="sizes">Ajustável</p>
+              <p class="price">R$ 00,00</p>
+              <div class="merch-actions">
+                <button class="btn-add-cart btn-add-cart--merch" data-product="Boné Snapback Flex-Fit" data-ml-link="#" aria-label="Adicionar Boné ao carrinho">
+                  <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                  <span>Cotar</span>
+                </button>
+                <a href="#" class="btn-ml" target="_blank" rel="noopener noreferrer" aria-label="Comprar Boné no Mercado Livre">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>
+                  </svg>
+                  Loja Oficial ML
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Produto 4: Corta Vento MM Racing -->
+          <article role="listitem" class="merch-card reveal" data-category="acessorios" id="merch-corta-vento">
+            <div class="merch-badge badge-alt">Novo</div>
+            <div aria-hidden="true" class="merch-img-bg">
+              <img src="public/corta-vento-mm.webp" alt="Corta Vento MM Racing" loading="lazy">
+            </div>
+            <div class="merch-info">
+              <h3>Corta Vento MM Racing</h3>
+              <p class="sizes">P | M | G | GG</p>
+              <p class="price">R$ 00,00</p>
+              <div class="merch-actions">
+                <button class="btn-add-cart btn-add-cart--merch" data-product="Corta Vento MM Racing" data-ml-link="#" aria-label="Adicionar Corta Vento ao carrinho">
+                  <svg width="15" height="15" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                  <span>Cotar</span>
+                </button>
+                <a href="#" class="btn-ml" target="_blank" rel="noopener noreferrer" aria-label="Comprar Corta Vento no Mercado Livre">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>
+                  </svg>
+                  Loja Oficial ML
+                </a>
+              </div>
+            </div>
+          </article>
+
         </div>
       </div>
     </section>
@@ -268,7 +593,7 @@
         <div class="authority-text reveal-left">
           <div class="authority-eyebrow">
             <div class="eyebrow-line" aria-hidden="true"></div>
-            <span>PROVA SOCIAL // 400M</span>
+            <span>PROVA SOCIAL // 201M</span>
           </div>
 
           <h2 class="authority-title">
@@ -277,10 +602,16 @@
           </h2>
 
           <p class="authority-body">
-            Nós somos a nossa prova de conceito. O Civic mais rápido da América não é apenas um troféu, é o nosso
-            laboratório de testes. Com preparação própria, levamos nossos combustíveis ao extremo antes de
-            distribuí-los.
+            Nós somos a nossa prova de conceito. O Honda Civic dianteira aspirado mais rápido do mundo não é apenas um troféu — é o nosso laboratório de testes em ação. Com preparação própria e combustível MM Racing Fuel, quebrou o recorde nos 201 metros.
           </p>
+
+          <div class="authority-record-badge">
+            <span class="record-time">4,93s</span>
+            <div class="record-details">
+              <span class="record-title">RECORDE MUNDIAL</span>
+              <span class="record-sub">Honda Civic Dianteira Aspirado · 201 metros</span>
+            </div>
+          </div>
 
           <div class="authority-stats">
             <div class="stat">
@@ -297,78 +628,103 @@
         <!-- Image Side -->
         <div class="authority-image-wrap reveal-right">
           <div class="authority-image"
-            style="background-image:url('https://images.unsplash.com/photo-1611821064430-0d40291d0f0b?w=1500&q=80&auto=format&fit=crop')"
-            role="img" aria-label="Honda Civic MM Racing em pista"></div>
+            style="background-image:url('public/honda-civic.webp')"
+            role="img" aria-label="Honda Civic MM Racing — Recorde nos 201 metros"></div>
           <div class="authority-image-overlay" aria-hidden="true"></div>
-          <div class="authority-rec-badge">REC ● HONDA CIVIC MM RACING</div>
+          <div class="authority-rec-badge">REC ● 4,93s // 201M</div>
         </div>
 
       </div>
     </section>
 
-    <!-- ===== MURAL ===== -->
+    <!-- ===== MURAL / INSTAGRAM ===== -->
     <section id="pilotos" class="mural section-border-top">
       <div class="container">
         <div class="mural-header">
           <div>
             <h2 class="section-title">Mural MM Racing</h2>
-            <p class="mural-sub">Fique conectado. Nossos parceiros e clientes em ação.</p>
+            <p class="mural-sub">Fique conectado. Siga <strong>@mmracingfuel</strong> no Instagram.</p>
           </div>
-          <a href="#" class="mural-ver-link" aria-label="Ver telemetria">VER TELEMETRIA</a>
+          <a href="https://www.instagram.com/mmracingfuel/" class="mural-ver-link" aria-label="Ver Instagram MM Racing Fuel"
+            target="_blank" rel="noopener noreferrer">VER INSTAGRAM ↗</a>
         </div>
 
-        <!-- Gallery Grid -->
-        <div class="mural-grid" aria-label="Galeria de fotos MM Racing" role="region">
-          <div class="mural-cell mural-cell-large reveal">
-            <div class="mural-img" style="background-image:url('https://picsum.photos/id/111/800/600')" role="img"
-              aria-label="Foto MM Racing 1"></div>
-            <div class="mural-overlay" aria-hidden="true"></div>
-            <div class="mural-tag">@MMRACINGFUEL</div>
-          </div>
-          <div class="mural-cell reveal">
-            <div class="mural-img"
-              style="background-image:url('https://images.unsplash.com/photo-1502877338535-766e1452684a?w=800&q=80&auto=format&fit=crop')"
-              role="img" aria-label="Foto MM Racing 2"></div>
-          </div>
-          <div class="mural-cell reveal">
-            <div class="mural-img"
-              style="background-image:url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=800&q=80&auto=format&fit=crop')"
-              role="img" aria-label="Foto MM Racing 3"></div>
-          </div>
-          <div class="mural-cell reveal">
-            <div class="mural-img"
-              style="background-image:url('https://images.unsplash.com/photo-1567808291548-fc3ee04dbcf0?w=800&q=80&auto=format&fit=crop')"
-              role="img" aria-label="Foto MM Racing 4"></div>
-          </div>
-          <div class="mural-cell reveal">
-            <div class="mural-img"
-              style="background-image:url('https://images.unsplash.com/photo-1606152421802-db97b9c7a11b?w=800&q=80&auto=format&fit=crop')"
-              role="img" aria-label="Foto MM Racing 5"></div>
-          </div>
-        </div>
-
-        <!-- Contact / Newsletter -->
-        <div id="contato" class="contact-box">
-          <div class="contact-glow" aria-hidden="true"></div>
-
-          <div class="contact-text">
-            <h3 class="contact-title">ASSINE A<br />TELEMETRIA.</h3>
-            <p class="contact-sub">Receba atualizações do laboratório, lançamentos e resultados das pistas.</p>
+        <!-- Instagram Embed -->
+        <div class="instagram-embed-container" aria-label="Feed do Instagram MM Racing Fuel" role="region">
+          <div class="instagram-embed-wrapper">
+            <blockquote class="instagram-media"
+              data-instgrm-permalink="https://www.instagram.com/mmracingfuel/"
+              data-instgrm-version="14"
+              data-instgrm-captioned
+              style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px auto; max-width:540px; min-width:326px; padding:0; width:100%;">
+            </blockquote>
           </div>
 
-          <form class="contact-form" id="newsletter-form" novalidate aria-label="Formulário de inscrição na newsletter">
-            <div class="form-row">
-              <input type="text" id="field-nome" name="nome" placeholder="NOME" class="form-input" required
-                autocomplete="given-name" aria-label="Seu nome" />
-              <input type="text" id="field-sobrenome" name="sobrenome" placeholder="SOBRENOME" class="form-input"
-                required autocomplete="family-name" aria-label="Seu sobrenome" />
+          <!-- Fallback CTA sempre visível no desktop file:// e mobile -->
+          <div class="instagram-fallback" id="instagram-fallback">
+            <div class="ig-fallback-inner">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" style="color:var(--orange)">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke-width="1.5" />
+                <circle cx="12" cy="12" r="4" stroke-width="1.5" />
+                <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+              </svg>
+              <h3 class="ig-fallback-title">@mmracingfuel</h3>
+              <p class="ig-fallback-desc">Siga a MM Racing Fuel no Instagram e acompanhe nossos recordes, bastidores e lançamentos em tempo real.</p>
+              <a href="https://www.instagram.com/mmracingfuel/" class="btn-primary" target="_blank" rel="noopener noreferrer" id="btn-ver-instagram">
+                VER NOSSO INSTAGRAM
+                <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
             </div>
-            <input type="email" id="field-email" name="email" placeholder="SEU@EMAIL.COM" class="form-input" required
-              autocomplete="email" aria-label="Seu e-mail" />
-            <button type="submit" class="btn-primary" id="form-submit-btn">Acelerar</button>
-          </form>
+          </div>
         </div>
 
+      </div>
+    </section>
+
+    <!-- ===== SEJA NOSSO REVENDEDOR ===== -->
+    <section id="revendedor" class="reseller section-border-top">
+      <div class="reseller-bg" aria-hidden="true"></div>
+      <div class="container">
+        <div class="reseller-inner">
+          <div class="reseller-text reveal-left">
+            <span class="section-label">PARCERIA // MM RACING</span>
+            <h2 class="reseller-title">
+              Seja Nosso<br />
+              <span class="gradient-text">Revendedor.</span>
+            </h2>
+            <p class="reseller-desc">
+              Faça parte da rede oficial de distribuição MM Racing Fuel. Tenha acesso aos melhores combustíveis de competição com preço de parceiro, suporte técnico e material de divulgação.
+            </p>
+            <ul class="reseller-benefits" role="list">
+              <li><span class="benefit-check">✓</span> Preços exclusivos para revendedores</li>
+              <li><span class="benefit-check">✓</span> Suporte técnico especializado</li>
+              <li><span class="benefit-check">✓</span> Material de divulgação MM Racing</li>
+              <li><span class="benefit-check">✓</span> Linha completa disponível</li>
+            </ul>
+          </div>
+          <div class="reseller-cta-wrap reveal-right">
+            <div class="reseller-cta-card">
+              <div class="reseller-cta-icon" aria-hidden="true">
+                <svg width="40" height="40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </div>
+              <h3 class="reseller-cta-title">QUERO SER REVENDEDOR</h3>
+              <p class="reseller-cta-sub">Envie uma mensagem e nossa equipe comercial entrará em contato.</p>
+              <a href="https://wa.me/5511922880177?text=Ol%C3%A1!+Tenho+interesse+em+me+tornar+um+revendedor+oficial+da+MM+Racing+Fuel.+Poderia+me+passar+mais+informa%C3%A7%C3%B5es%3F"
+                class="btn-primary btn-reseller" id="btn-reseller-whatsapp" target="_blank" rel="noopener noreferrer">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                  <path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.85L0 24l6.335-1.648A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.787 9.787 0 01-5.025-1.383l-.36-.214-3.732.97.998-3.636-.235-.374A9.78 9.78 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182c5.43 0 9.818 4.388 9.818 9.818 0 5.43-4.388 9.818-9.818 9.818z" />
+                </svg>
+                FALAR COM A EQUIPE COMERCIAL
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -380,10 +736,11 @@
       <div class="footer-top">
         <div class="footer-brand">
           <span class="footer-logo">MM RACING<span class="orange">.</span>FUEL</span>
-          <p class="footer-slogan">MM Racing, apaixonados por força.</p>
+          <p class="footer-slogan">Vá mais rápido com a MM Racing Fuel.</p>
         </div>
         <div class="footer-socials" aria-label="Redes sociais">
-          <a href="#" class="social-link" aria-label="Instagram MM Racing Fuel">
+          <a href="https://www.instagram.com/mmracingfuel/" class="social-link" aria-label="Instagram MM Racing Fuel"
+            target="_blank" rel="noopener noreferrer">
             <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke-width="2" />
               <circle cx="12" cy="12" r="4" stroke-width="2" />
@@ -423,6 +780,8 @@
     </div>
   </footer>
 
+  <!-- Instagram embed script -->
+  <script async src="//www.instagram.com/embed.js"></script>
   <script src="main.js"></script>
 </body>
 
