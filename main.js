@@ -120,7 +120,7 @@
                 }
             });
         },
-        { threshold: 0.12 }
+        { threshold: 0.02, rootMargin: '0px 0px 60px 0px' }
     );
 
     const heroContent = document.querySelector('.reveal-hero');
