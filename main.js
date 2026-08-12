@@ -135,7 +135,7 @@
     });
 
     /* ─────────────────────────────────────────────────────────
-       6. SMOOTH SCROLL FOR ALL ANCHOR LINKS
+       6. SMOOTH SCROLL & DEEP LINKING FOR ALL ANCHOR LINKS
     ───────────────────────────────────────────────────────── */
     document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
         anchor.addEventListener('click', function (e) {
@@ -151,6 +151,18 @@
             window.scrollTo({ top: targetTop, behavior: 'smooth' });
         });
     });
+
+    // Deep linking support on page load (e.g. site.com/#combustiveis or #revendedor)
+    if (window.location.hash) {
+        setTimeout(function () {
+            var target = document.querySelector(window.location.hash);
+            if (target) {
+                var navHeight = navbar ? navbar.offsetHeight : 0;
+                var targetTop = target.getBoundingClientRect().top + window.scrollY - navHeight;
+                window.scrollTo({ top: targetTop, behavior: 'smooth' });
+            }
+        }, 300);
+    }
 
     /* ─────────────────────────────────────────────────────────
        7. SPLIT-IMAGE CARDS — MOBILE TOUCH COLOR REVEAL
