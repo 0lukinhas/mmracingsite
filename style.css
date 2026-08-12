@@ -2175,6 +2175,7 @@ button {
 .mod-card-split {
     overflow: hidden;
     position: relative;
+    height: 380px;
 }
 
 .mod-split-img {
@@ -2182,8 +2183,8 @@ button {
     top: 0;
     bottom: 0;
     width: 50%;
-    background-size: 200% auto;
-    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
     filter: grayscale(1);
     transition: filter 0.7s ease, transform 0.7s ease;
 }
@@ -2191,13 +2192,11 @@ button {
 .mod-split-left {
     left: 0;
     transform-origin: left center;
-    background-position: left center;
 }
 
 .mod-split-right {
     right: 0;
     transform-origin: right center;
-    background-position: right center;
 }
 
 /* Hover — desktop */
@@ -2205,25 +2204,18 @@ button {
     filter: grayscale(0);
 }
 
-.mod-card-split:hover .mod-split-left {
-    transform: scale(1.05);
-}
-
+.mod-card-split:hover .mod-split-left,
 .mod-card-split:hover .mod-split-right {
     transform: scale(1.05);
 }
 
-/* Touch / mobile — JS adds .touched class on tap */
-.mod-card-split.touched .mod-split-img {
-    filter: grayscale(0);
-}
-
-.mod-card-split.touched .mod-split-left {
-    transform: scale(1.05);
-}
-
-.mod-card-split.touched .mod-split-right {
-    transform: scale(1.05);
+/* Auto-color on mobile or touch devices */
+@media (max-width: 768px), (hover: none) {
+    .mod-split-img,
+    .mod-card-bg,
+    .product-img {
+        filter: grayscale(0) !important;
+    }
 }
 
 /* Center divider line */
@@ -2233,11 +2225,58 @@ button {
     bottom: 0;
     left: 50%;
     width: 2px;
-    background: rgba(255,107,0,0.5);
+    background: rgba(255,107,0,0.8);
     z-index: 3;
     transform: translateX(-50%);
-    box-shadow: 0 0 8px rgba(255,107,0,0.4);
+    box-shadow: 0 0 10px rgba(255,107,0,0.6);
     pointer-events: none;
+}
+
+/* ── INSTAGRAM PREVIEW GRID ──────────────────────────────────── */
+.ig-feed-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+.ig-preview-item {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border: 1px solid #222;
+    display: block;
+}
+
+.ig-preview-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.ig-preview-item:hover img {
+    transform: scale(1.08);
+}
+
+.ig-overlay-icon {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.ig-preview-item:hover .ig-overlay-icon {
+    opacity: 1;
 }
 
 /* ── PRODUCT IMAGE ───────────────────────────────────────────── */
