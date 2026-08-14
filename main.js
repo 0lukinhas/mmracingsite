@@ -152,7 +152,7 @@
         });
     });
 
-    // Deep linking support on page load (e.g. site.com/#combustiveis or #revendedor)
+    // Deep linking support on page load (e.g. site.com/#combustiveis)
     if (window.location.hash) {
         setTimeout(function () {
             var target = document.querySelector(window.location.hash);
