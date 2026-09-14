@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>Malton Coimbra 177 | USA Tour 2027 - World Record All Motor Nitro</title>
+  <meta name="description" content="Apoie a USA Tour 2027 de Malton Coimbra 177, piloto e preparador do Honda mais rápido do mundo com +90% de Nitrometano. Garanta a camiseta oficial com renda 100% revertida para a tour." />
+  
+  <!-- OpenGraph -->
+  <meta property="og:title" content="Malton Coimbra 177 | USA Tour 2027" />
+  <meta property="og:description" content="O Honda mais rápido do mundo rumo às pistas dos EUA. Camiseta oficial com 100% da renda revertida para a tour." />
+  <meta property="og:image" content="../public/malton/camiseta-costas.jpg" />
+  <meta property="og:type" content="website" />
+
+  <link rel="icon" type="image/x-icon" href="src/app/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-black: #000000;
+      --bg-card: #0c0c0c;
+      --border-color: #222222;
+      --orange: #FF6B00;
+      --orange-hover: #E66000;
+      --text-muted: #9CA3AF;
+      --text-white: #FFFFFF;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+
+    body {
+      background-color: var(--bg-black);
+      color: #E5E7EB;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Container */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Top Nav */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background-color: rgba(0, 0, 0, 0.92);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 14px 20px;
+    }
+    .navbar-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-brand-title {
+      font-size: 15px;
+      font-weight: 900;
+      color: #FFF;
+      letter-spacing: -0.02em;
+    }
+    .nav-brand-title span {
+      color: var(--orange);
+    }
+    .nav-brand-sub {
+      font-size: 9px;
+      color: var(--text-muted);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      display: block;
+    }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn-ig {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid #333;
+      padding: 6px 12px;
+      font-size: 11px;
+      color: #DDD;
+      text-transform: uppercase;
+      transition: all 0.2s;
+    }
+    .btn-ig:hover {
+      border-color: var(--orange);
+      color: var(--orange);
+    }
+    .btn-nav-support {
+      background-color: var(--orange);
+      color: #000;
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 8px 16px;
+      transition: all 0.2s;
+    }
+    .btn-nav-support:hover {
+      background-color: var(--orange-hover);
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      min-height: 88vh;
+      display: flex;
+      align-items: flex-end;
+      border-bottom: 1px solid var(--border-color);
+      overflow: hidden;
+      padding: 60px 0 80px 0;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+    .hero-gradient {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.85) 60%, rgba(0,0,0,1) 100%);
+    }
+    @media (min-width: 768px) {
+      .hero-gradient {
+        background: linear-gradient(90deg, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0.2) 100%),
+                    linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.95) 100%);
+      }
+    }
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      max-width: 680px;
+    }
+    .tag-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #FFF;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
+    }
+    .hero-title {
+      font-size: 38px;
+      line-height: 1.05;
+      font-weight: 900;
+      color: #FFF;
+      text-transform: uppercase;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+    }
+    .hero-title span {
+      background: linear-gradient(90deg, #FF6B00, #FFA800);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .world-record-pill {
+      display: inline-block;
+      background: rgba(0, 0, 0, 0.7);
+      border-left: 4px solid var(--orange);
+      padding: 6px 12px;
+      font-size: 16px;
+      font-weight: 700;
+      color: #FFF;
+      margin-bottom: 20px;
+    }
+    .hero-lead {
+      font-size: 15px;
+      color: #D1D5DB;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .hero-lead strong {
+      color: #FFF;
+    }
+    .support-callout {
+      background: rgba(10, 10, 10, 0.85);
+      border: 1px solid #2e2e2e;
+      padding: 16px;
+      margin-bottom: 24px;
+    }
+    .support-callout p {
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .support-callout strong {
+      color: var(--orange);
+    }
+    .support-callout .subtext {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .hero-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    @media (min-width: 640px) {
+      .hero-title { font-size: 62px; }
+      .hero-buttons { flex-direction: row; }
+      .world-record-pill { font-size: 20px; }
+    }
+    .btn-main {
+      background-color: var(--orange);
+      color: #000;
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 16px 24px;
+      text-align: center;
+      transition: all 0.2s;
+      box-shadow: 0 0 20px rgba(255, 107, 0, 0.35);
+    }
+    .btn-main:hover {
+      background-color: var(--orange-hover);
+      box-shadow: 0 0 30px rgba(255, 107, 0, 0.5);
+    }
+    .btn-secondary {
+      border: 1px solid #333;
+      color: #FFF;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 16px 20px;
+      text-align: center;
+      transition: all 0.2s;
+    }
+    .btn-secondary:hover {
+      border-color: #FFF;
+    }
+
+    /* Section Styles */
+    .section {
+      padding: 70px 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .section-tag {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--orange);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .section-title {
+      font-size: 28px;
+      font-weight: 900;
+      color: #FFF;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+    @media (min-width: 640px) {
+      .section-title { font-size: 42px; }
+    }
+    .section-title span {
+      color: var(--orange);
+    }
+
+    /* Grid 2 Cols */
+    .grid-story {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 36px;
+      align-items: center;
+    }
+    @media (min-width: 900px) {
+      .grid-story {
+        grid-template-columns: 1.2fr 1fr;
+      }
+    }
+    .story-text p {
+      margin-bottom: 16px;
+      font-size: 14px;
+      color: #D1D5DB;
+      line-height: 1.7;
+    }
+    .story-text strong {
+      color: #FFF;
+    }
+    .car-card {
+      position: relative;
+      border: 1px solid #2b2b2b;
+      background-color: #050505;
+      overflow: hidden;
+    }
+    .car-card-footer {
+      padding: 12px 16px;
+      background: #0a0a0a;
+      border-top: 1px solid #1c1c1c;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .car-badge {
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--orange);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* 3 Fast Stats */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 12px;
+      text-align: center;
+    }
+    .stat-box {
+      background: #0d0d0d;
+      border: 1px solid #222;
+      padding: 12px 8px;
+    }
+    .stat-number {
+      font-size: 18px;
+      font-weight: 900;
+      color: #FFF;
+      display: block;
+    }
+    .stat-number.highlight {
+      color: var(--orange);
+    }
+    .stat-label {
+      font-size: 9px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* Product Section */
+    .product-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 36px;
+      align-items: center;
+    }
+    @media (min-width: 900px) {
+      .product-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    .product-preview {
+      background: #0a0a0a;
+      border: 1px solid #2b2b2b;
+      padding: 12px;
+      text-align: center;
+    }
+    .tab-buttons {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 12px;
+      justify-content: center;
+    }
+    .tab-btn {
+      background: #111;
+      border: 1px solid #2e2e2e;
+      color: #999;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 6px 12px;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: all 0.2s;
+    }
+    .tab-btn.active {
+      background: var(--orange);
+      color: #000;
+      border-color: var(--orange);
+    }
+    .product-img-wrap {
+      background: #000;
+      border: 1px solid #1a1a1a;
+      position: relative;
+      min-height: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .product-img-wrap img {
+      width: 100%;
+      height: auto;
+      transition: transform 0.3s ease;
+    }
+    .product-checkout-box {
+      background: #0d0d0d;
+      border: 1px solid #262626;
+      padding: 24px;
+    }
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #222;
+      padding-bottom: 16px;
+      margin-bottom: 20px;
+    }
+    .price-val {
+      font-size: 34px;
+      font-weight: 900;
+      color: #FFF;
+    }
+    .dest-badge {
+      background: rgba(255, 107, 0, 0.1);
+      border: 1px solid rgba(255, 107, 0, 0.3);
+      padding: 4px 10px;
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--orange);
+      text-transform: uppercase;
+    }
+    .size-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: #FFF;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .sizes-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+    .size-btn {
+      background: #000;
+      border: 1px solid #333;
+      color: #FFF;
+      padding: 10px 0;
+      font-size: 12px;
+      font-weight: 900;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .size-btn.active {
+      background: var(--orange);
+      color: #000;
+      border-color: var(--orange);
+    }
+    .feature-list {
+      list-style: none;
+      font-size: 12px;
+      color: #D1D5DB;
+      margin-bottom: 24px;
+    }
+    .feature-list li {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .feature-list li::before {
+      content: "✓";
+      color: var(--orange);
+      font-weight: 900;
+    }
+    .btn-buy-ml {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      background: var(--orange);
+      color: #000;
+      font-size: 14px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 16px;
+      transition: all 0.2s;
+      box-shadow: 0 0 20px rgba(255, 107, 0, 0.4);
+    }
+    .btn-buy-ml:hover {
+      background-color: var(--orange-hover);
+    }
+    .btn-wa-link {
+      display: block;
+      text-align: center;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 14px;
+      transition: color 0.2s;
+    }
+    .btn-wa-link:hover {
+      color: #FFF;
+    }
+
+    /* Instagram Box */
+    .ig-section {
+      text-align: center;
+      padding: 80px 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .ig-icon-wrap {
+      width: 54px;
+      height: 54px;
+      background: #111;
+      border: 1px solid #2e2e2e;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px auto;
+      color: var(--orange);
+    }
+    .btn-ig-large {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 2px solid var(--orange);
+      color: #FFF;
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 14px 28px;
+      transition: all 0.2s;
+    }
+    .btn-ig-large:hover {
+      background: var(--orange);
+      color: #000;
+    }
+
+    /* Footer */
+    footer {
+      padding: 30px 20px;
+      font-size: 11px;
+      color: #666;
+      border-top: 1px solid #1c1c1c;
+      text-align: center;
+    }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+      justify-content: space-between;
+    }
+    @media (min-width: 640px) {
+      .footer-inner {
+        flex-direction: row;
+        text-align: left;
+      }
+    }
+    .footer-links {
+      display: flex;
+      gap: 16px;
+      text-transform: uppercase;
+      font-size: 11px;
+    }
+    .footer-links a:hover {
+      color: #FFF;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <div>
+        <span class="nav-brand-title">MALTON COIMBRA <span>177</span></span>
+        <span class="nav-brand-sub">USA TOUR 2027 // WORLD RECORD</span>
+      </div>
+      <div class="nav-actions">
+        <a href="https://www.instagram.com/maltoncoimbra/" target="_blank" rel="noopener noreferrer" class="btn-ig">
+          <span>@maltoncoimbra</span>
+        </a>
+        <a href="#camiseta" class="btn-nav-support">
+          APOIAR COM A CAMISETA
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-bg">
+      <img src="../public/malton/hero.jpg" alt="Malton Coimbra 177 com seu Civic All Motor" />
+    </div>
+    <div class="hero-gradient"></div>
+
+    <div class="container">
+      <div class="hero-content">
+        <div class="tag-badge">
+          🏁 USA TOUR 2027 // CARRO 177
+        </div>
+
+        <h1 class="hero-title">
+          MALTON <br />
+          <span>COIMBRA 177</span>
+        </h1>
+
+        <div class="world-record-pill">
+          World Record All motor Nitro!
+        </div>
+
+        <p class="hero-lead">
+          O corredor do Honda mais rápido do mundo e o único piloto do planeta que desenvolveu e acertou um motor All Motor para andar com <strong>+ de 90% de Nitrometano</strong>.
+        </p>
+
+        <div class="support-callout">
+          <p>
+            🏁 <strong>Me apoie comprando a camiseta oficial da USA TOUR.</strong>
+          </p>
+          <p class="subtext">
+            Toda a verba arrecadada com a venda das camisetas será revertida totalmente para a tour de levar o Honda para acelerar nos Estados Unidos.
+          </p>
+        </div>
+
+        <div class="hero-buttons">
+          <a href="#camiseta" class="btn-main">
+            VER CAMISETA OFICIAL (R$ 99,90) ➔
+          </a>
+          <a href="#historia" class="btn-secondary">
+            CONHECER A HISTÓRIA ↓
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- História de Malton Coimbra -->
+  <section id="historia" class="section">
+    <div class="container">
+      <div class="grid-story">
+        <div class="story-text">
+          <span class="section-tag">A TRAJETÓRIA DO PILOTO E PREPARADOR</span>
+          <h2 class="section-title">
+            QUEM É MALTON COIMBRA <br />
+            <span>& O CIVIC 177</span>
+          </h2>
+
+          <p>
+            Construir um carro recordista mundial não é fruto da sorte. É resultado de anos de trabalho incansável de <strong>Malton Coimbra</strong> na oficina, desenvolvendo cada detalhe do motor, cabeçote, chassi e calibração de injeção.
+          </p>
+          <p>
+            Enquanto a maioria dizia que era impossível um motor Honda 4 cilindros aspirado suportar o impacto violento do Nitrometano quase puro, Malton estudou a fundo a mecânica, quebrou paradigmas e colocou o carro para andar com <strong>+ de 90% de Nitrometano</strong>.
+          </p>
+          <p>
+            O resultado? O <strong>Honda All Motor mais rápido do mundo</strong> e a conquista do Recorde Mundial na categoria, provando a força e a inteligência da preparação brasileira nas pistas de arrancada.
+          </p>
+          <p style="font-size: 12px; color: #888; border-left: 2px solid #333; padding-left: 10px; margin-top: 14px;">
+            ⛽ <em>Combustível oficial utilizado nos recordes: MM Racing Fuel (Nitro 100).</em>
+          </p>
+        </div>
+
+        <div>
+          <div class="car-card">
+            <img src="../public/honda-civic.webp" alt="Honda Civic 177 na pista de arrancada" />
+            <div class="car-card-footer">
+              <div>
+                <span class="car-badge">HONDA CIVIC 177 // FLD</span>
+                <span style="font-size: 11px; font-weight: bold; color: #FFF; display: block;">Recorde Mundial Aspirado Nitro</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="stats-row">
+            <div class="stat-box">
+              <span class="stat-number highlight">+90%</span>
+              <span class="stat-label">Nitro Puro</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-number">177</span>
+              <span class="stat-label">Número</span>
+            </div>
+            <div class="stat-box">
+              <span class="stat-number">USA</span>
+              <span class="stat-label">Tour 2027</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- O Desafio USA Tour -->
+  <section class="section" style="text-align: center;">
+    <div class="container" style="max-width: 760px;">
+      <span class="section-tag">O PRÓXIMO PASSO</span>
+      <h2 class="section-title">
+        LEVAR O HONDA BRASILEIRO <br />
+        <span>PARA AS PISTAS DOS ESTADOS UNIDOS</span>
+      </h2>
+      <p style="font-size: 15px; color: #D1D5DB; margin-bottom: 16px;">
+        Os Estados Unidos são a capital global do Drag Racing. A meta de Malton Coimbra é embarcar o Civic 177 em um contêiner, cruzar o continente e disputar de igual para igual contra os maiores nomes da arrancada mundial em solo americano.
+      </p>
+      <p style="font-size: 14px; color: #9CA3AF;">
+        Para viabilizar os custos de transporte internacional, logística, inscrições e equipe, criamos a <strong style="color: #FFF;">Camiseta Oficial USA Tour</strong>. Comprando a sua, você ajuda diretamente a colocar esse carro na pista.
+      </p>
+    </div>
+  </section>
+
+  <!-- Showcase da Camiseta Oficial -->
+  <section id="camiseta" class="section">
+    <div class="container">
+      <div style="text-align: center; max-width: 650px; margin: 0 auto 40px auto;">
+        <span class="section-tag">EDIÇÃO OFICIAL DA CAMPANHA</span>
+        <h2 class="section-title">
+          CAMISETA OFICIAL <br />
+          <span>USA TOUR MALTON COIMBRA 2027</span>
+        </h2>
+        <p style="font-size: 14px; color: #BBB;">
+          Me apoie comprando uma camiseta oficial da USA TOUR. A verba será revertida totalmente para a tour.
+        </p>
+      </div>
+
+      <div class="product-grid">
+        <!-- Showcase com alternador de imagens -->
+        <div class="product-preview">
+          <div class="tab-buttons">
+            <button type="button" class="tab-btn active" id="btn-costas" onclick="switchView('costas')">
+              👕 MOCKUP OFICIAL
+            </button>
+            <button type="button" class="tab-btn" id="btn-arte" onclick="switchView('arte')">
+              🔍 ARTE VETORIAL
+            </button>
+          </div>
+
+          <div class="product-img-wrap">
+            <img id="shirt-img" src="../public/malton/camiseta-costas.jpg" alt="Camiseta oficial Malton Coimbra 177 USA Tour" />
+          </div>
+
+          <p id="shirt-caption" style="font-size: 11px; color: #777; margin-top: 10px; text-transform: uppercase;">
+            Estampa oficial das costas com corte streetwear premium
+          </p>
+        </div>
+
+        <!-- Bloco de Compra e Detalhes -->
+        <div class="product-checkout-box">
+          <div class="price-row">
+            <div>
+              <span style="font-size: 11px; color: #888; text-transform: uppercase; display: block;">Valor da Camiseta</span>
+              <div class="price-val">R$ 99,90</div>
+            </div>
+            <div style="text-align: right;">
+              <span class="dest-badge">★ 100% REVERTIDO</span>
+              <span style="font-size: 10px; color: #888; display: block; margin-top: 4px;">Direto para a tour nos EUA</span>
+            </div>
+          </div>
+
+          <!-- Tamanhos -->
+          <span class="size-title">Tamanhos Disponíveis:</span>
+          <div class="sizes-grid">
+            <div class="size-btn" onclick="selectSize(this)">P</div>
+            <div class="size-btn" onclick="selectSize(this)">M</div>
+            <div class="size-btn active" onclick="selectSize(this)">G</div>
+            <div class="size-btn" onclick="selectSize(this)">GG</div>
+            <div class="size-btn" onclick="selectSize(this)">XGG</div>
+          </div>
+          <p style="font-size: 10px; color: #666; margin-bottom: 20px;">
+            *Você poderá selecionar o tamanho definitivo no Mercado Livre.
+          </p>
+
+          <!-- Características -->
+          <ul class="feature-list">
+            <li>Camiseta 100% algodão de alta gramatura e conforto</li>
+            <li>Estampa durável em serigrafia de alta resolução</li>
+            <li>Envio para todo o Brasil com segurança pelo Mercado Livre</li>
+            <li>100% do valor ajuda o projeto de levar o Civic aos EUA</li>
+          </ul>
+
+          <!-- Botão Mercado Livre -->
+          <a href="https://lista.mercadolivre.com.br/camiseta-malton-coimbra-0177" target="_blank" rel="noopener noreferrer" class="btn-buy-ml">
+            COMPRAR NO MERCADO LIVRE ↗
+          </a>
+
+          <!-- Dúvidas WhatsApp -->
+          <a href="https://wa.me/5511922880177?text=Ol%C3%A1%20Malton!%20Vi%20a%20p%C3%A1gina%20da%20USA%20Tour%202027%20e%20gostaria%20de%20tirar%20uma%20d%C3%BAvida%20sobre%20a%20camiseta%20do%20Civic%20177!" target="_blank" rel="noopener noreferrer" class="btn-wa-link">
+            💬 Dúvidas sobre envio ou falar com a equipe? Clique aqui
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Instagram Malton Coimbra -->
+  <section class="ig-section">
+    <div class="container" style="max-width: 600px;">
+      <div class="ig-icon-wrap">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+          <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+        </svg>
+      </div>
+
+      <span class="section-tag">ACOMPANHE DE PERTO</span>
+      <h2 class="section-title">SIGA O MALTON NO INSTAGRAM</h2>
+      <p style="font-size: 14px; color: #AAA; margin-bottom: 24px;">
+        Acompanhe os bastidores da oficina, acertos no dinamômetro, passagens na pista e todos os passos da preparação para a viagem aos Estados Unidos.
+      </p>
+
+      <a href="https://www.instagram.com/maltoncoimbra/" target="_blank" rel="noopener noreferrer" class="btn-ig-large">
+        SEGUIR @MALTONCOIMBRA ↗
+      </a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <strong style="color: #FFF; text-transform: uppercase;">MALTON COIMBRA 177 // USA TOUR 2027</strong>
+        <p style="color: #777; font-size: 10px; margin-top: 2px;">Combustível oficial do Honda: MM Racing Fuel</p>
+      </div>
+      <div class="footer-links">
+        <a href="https://www.instagram.com/maltoncoimbra/" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href="https://lista.mercadolivre.com.br/camiseta-malton-coimbra-0177" target="_blank" rel="noopener noreferrer">Mercado Livre</a>
+        <a href="../index.html">MM Racing Fuel</a>
+      </div>
+    </div>
+    <p style="margin-top: 16px; font-size: 10px; color: #444;">
+      &copy; 2026 Malton Coimbra 177. Todos os direitos reservados.
+    </p>
+  </footer>
+
+  <script>
+    function switchView(view) {
+      var img = document.getElementById('shirt-img');
+      var cap = document.getElementById('shirt-caption');
+      var btnCostas = document.getElementById('btn-costas');
+      var btnArte = document.getElementById('btn-arte');
+
+      if (view === 'costas') {
+        img.src = '../public/malton/camiseta-costas.jpg';
+        cap.textContent = 'Estampa oficial das costas com corte streetwear premium';
+        btnCostas.classList.add('active');
+        btnArte.classList.remove('active');
+      } else {
+        img.src = '../public/malton/camiseta-arte.jpg';
+        cap.textContent = 'Arte vetorial detalhada do Honda Civic 177 USA Tour';
+        btnArte.classList.add('active');
+        btnCostas.classList.remove('active');
+      }
+    }
+
+    function selectSize(btn) {
+      var buttons = document.querySelectorAll('.size-btn');
+      buttons.forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
