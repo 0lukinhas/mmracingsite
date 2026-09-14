@@ -27,12 +27,15 @@ export default function Navigation() {
                         </span>
                     </div>
 
-                    <div className="hidden md:flex items-center space-x-8 text-sm tracking-widest text-mm-muted">
+                    <div className="hidden md:flex items-center space-x-6 text-sm tracking-widest text-mm-muted">
                         <a href="#inicio" className="text-white hover:text-mm-orange transition-colors">INÍCIO</a>
                         <a href="#combustiveis" className="hover:text-mm-orange transition-colors">COMBUSTÍVEIS</a>
                         <a href="#modalidades" className="hover:text-mm-orange transition-colors">MODALIDADES</a>
                         <a href="#dna" className="hover:text-mm-orange transition-colors">NOSSO DNA</a>
                         <a href="#pilotos" className="hover:text-mm-orange transition-colors">PILOTOS MM</a>
+                        <a href="/mc0177usa" className="text-mm-orange hover:text-white font-bold transition-colors flex items-center gap-1 border border-mm-orange/50 px-2.5 py-1 bg-mm-orange/10 hover:bg-mm-orange/20">
+                            ★ USA TOUR #0177
+                        </a>
                     </div>
 
                     <div className="hidden md:flex">
@@ -63,7 +66,10 @@ export default function Navigation() {
                         <a href="#modalidades" className="text-mm-muted hover:text-white block px-3 py-2 text-base tracking-widest uppercase" onClick={() => setIsMobileMenuOpen(false)}>Modalidades</a>
                         <a href="#dna" className="text-mm-muted hover:text-white block px-3 py-2 text-base tracking-widest uppercase" onClick={() => setIsMobileMenuOpen(false)}>Nosso DNA</a>
                         <a href="#pilotos" className="text-mm-muted hover:text-white block px-3 py-2 text-base tracking-widest uppercase" onClick={() => setIsMobileMenuOpen(false)}>Pilotos MM</a>
-                        <a href="#contato" className="bg-mm-orange text-black font-bold px-6 py-3 w-[90%] text-center uppercase tracking-wider mt-4" onClick={() => setIsMobileMenuOpen(false)}>
+                        <a href="/mc0177usa" className="text-black bg-mm-orange font-bold block px-4 py-2 text-base tracking-widest uppercase w-[90%] text-center" onClick={() => setIsMobileMenuOpen(false)}>
+                            ★ USA TOUR #0177 (CAMISETA)
+                        </a>
+                        <a href="#contato" className="border border-mm-orange text-mm-orange hover:bg-mm-orange hover:text-black font-bold px-6 py-3 w-[90%] text-center uppercase tracking-wider mt-2 transition-colors" onClick={() => setIsMobileMenuOpen(false)}>
                             Fale com a nossa equipe
                         </a>
                     </div>
