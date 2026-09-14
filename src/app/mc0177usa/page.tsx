@@ -458,6 +458,16 @@ export default function MaltonUsaPage() {
                                 <span>🏁 Apoio Oficial Piloto 177</span>
                             </div>
 
+                            {/* Dúvidas Gerais no WhatsApp */}
+                            <a
+                                href={WHATSAPP_DUVIDAS_URL}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block text-center text-xs text-gray-400 hover:text-white mt-4 py-1 transition-colors"
+                            >
+                                Dúvidas sobre envio ou falar com a equipe? Clique aqui
+                            </a>
+
                         </div>
                     </div>
 
