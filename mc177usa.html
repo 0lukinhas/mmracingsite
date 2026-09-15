@@ -65,67 +65,37 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      background-color: rgba(0, 0, 0, 0.92);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border-color);
-      padding: 14px 20px;
+      background-color: rgba(0, 0, 0, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 12px 20px;
     }
     .navbar-inner {
       max-width: 1100px;
       margin: 0 auto;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-end;
     }
-    .nav-brand-title {
-      font-size: 15px;
-      font-weight: 900;
-      color: #FFF;
-      letter-spacing: -0.02em;
-    }
-    .nav-brand-title span {
-      color: var(--orange);
-    }
-    .nav-brand-sub {
-      font-size: 9px;
-      color: var(--text-muted);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      display: block;
-    }
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .btn-ig {
+    .btn-nav-support {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      border: 1px solid #333;
-      padding: 6px 12px;
-      font-size: 11px;
-      color: #DDD;
-      text-transform: uppercase;
-      transition: all 0.2s;
-    }
-    .btn-ig:hover {
-      border-color: var(--orange);
-      color: var(--orange);
-    }
-    .btn-nav-support {
       background-color: var(--orange);
       color: #000;
       font-size: 11px;
       font-weight: 900;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      padding: 8px 16px;
+      letter-spacing: 0.06em;
+      padding: 10px 18px;
       transition: all 0.2s;
+      white-space: nowrap;
+      box-shadow: 0 0 15px rgba(255, 107, 0, 0.3);
     }
     .btn-nav-support:hover {
       background-color: var(--orange-hover);
+      box-shadow: 0 0 25px rgba(255, 107, 0, 0.5);
     }
 
     /* Hero Section */
@@ -345,34 +315,7 @@
       text-transform: uppercase;
     }
 
-    /* 3 Fast Stats */
-    .stats-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin-top: 12px;
-      text-align: center;
-    }
-    .stat-box {
-      background: #0d0d0d;
-      border: 1px solid #222;
-      padding: 12px 8px;
-    }
-    .stat-number {
-      font-size: 18px;
-      font-weight: 900;
-      color: #FFF;
-      display: block;
-    }
-    .stat-number.highlight {
-      color: var(--orange);
-    }
-    .stat-label {
-      font-size: 9px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
+
 
     /* Product Section */
     .product-grid {
@@ -522,16 +465,26 @@
     .btn-buy-ml:hover {
       background-color: var(--orange-hover);
     }
-    .btn-wa-link {
-      display: block;
-      text-align: center;
-      font-size: 11px;
-      color: var(--text-muted);
-      margin-top: 14px;
-      transition: color 0.2s;
+    .btn-buy-wa {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      background: #25D366;
+      color: #000;
+      font-size: 14px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 16px;
+      margin-top: 12px;
+      transition: all 0.2s;
+      box-shadow: 0 0 20px rgba(37, 211, 102, 0.35);
     }
-    .btn-wa-link:hover {
-      color: #FFF;
+    .btn-buy-wa:hover {
+      background-color: #20ba59;
+      box-shadow: 0 0 30px rgba(37, 211, 102, 0.55);
     }
 
     /* Instagram Box */
@@ -571,35 +524,11 @@
 
     /* Footer */
     footer {
-      padding: 30px 20px;
+      padding: 40px 20px;
       font-size: 11px;
       color: #666;
       border-top: 1px solid #1c1c1c;
       text-align: center;
-    }
-    .footer-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      align-items: center;
-      justify-content: space-between;
-    }
-    @media (min-width: 640px) {
-      .footer-inner {
-        flex-direction: row;
-        text-align: left;
-      }
-    }
-    .footer-links {
-      display: flex;
-      gap: 16px;
-      text-transform: uppercase;
-      font-size: 11px;
-    }
-    .footer-links a:hover {
-      color: #FFF;
     }
   </style>
 </head>
@@ -608,18 +537,9 @@
   <!-- Top Navigation -->
   <nav class="navbar">
     <div class="navbar-inner">
-      <div>
-        <span class="nav-brand-title">MALTON COIMBRA <span>177</span></span>
-        <span class="nav-brand-sub">USA TOUR 2027 // WORLD RECORD</span>
-      </div>
-      <div class="nav-actions">
-        <a href="https://www.instagram.com/maltoncoimbra/" target="_blank" rel="noopener noreferrer" class="btn-ig">
-          <span>@maltoncoimbra</span>
-        </a>
-        <a href="#camiseta" class="btn-nav-support">
-          APOIAR COM A CAMISETA
-        </a>
-      </div>
+      <a href="#camiseta" class="btn-nav-support">
+        APOIAR COM A CAMISETA ➔
+      </a>
     </div>
   </nav>
 
@@ -690,9 +610,6 @@
           <p>
             O resultado? O <strong>Honda All Motor mais rápido do mundo</strong> e a conquista do Recorde Mundial na categoria, provando a força e a inteligência da preparação brasileira nas pistas de arrancada.
           </p>
-          <p style="font-size: 12px; color: #888; border-left: 2px solid #333; padding-left: 10px; margin-top: 14px;">
-            ⛽ <em>Combustível oficial utilizado nos recordes: MM Racing Fuel (Nitro 100).</em>
-          </p>
         </div>
 
         <div>
@@ -703,21 +620,6 @@
                 <span class="car-badge">HONDA CIVIC 177 // FLD</span>
                 <span style="font-size: 11px; font-weight: bold; color: #FFF; display: block;">Recorde Mundial Aspirado Nitro</span>
               </div>
-            </div>
-          </div>
-
-          <div class="stats-row">
-            <div class="stat-box">
-              <span class="stat-number highlight">+90%</span>
-              <span class="stat-label">Nitro Puro</span>
-            </div>
-            <div class="stat-box">
-              <span class="stat-number">177</span>
-              <span class="stat-label">Número</span>
-            </div>
-            <div class="stat-box">
-              <span class="stat-number">USA</span>
-              <span class="stat-label">Tour 2027</span>
             </div>
           </div>
         </div>
@@ -816,9 +718,12 @@
             COMPRAR NO MERCADO LIVRE ↗
           </a>
 
-          <!-- Dúvidas WhatsApp -->
-          <a href="https://wa.me/5511922880177?text=Ol%C3%A1%20Malton!%20Vi%20a%20p%C3%A1gina%20da%20USA%20Tour%202027%20e%20gostaria%20de%20tirar%20uma%20d%C3%BAvida%20sobre%20a%20camiseta%20do%20Civic%20177!" target="_blank" rel="noopener noreferrer" class="btn-wa-link">
-            💬 Dúvidas sobre envio ou falar com a equipe? Clique aqui
+          <!-- Botão WhatsApp -->
+          <a id="btn-buy-wa" href="https://wa.me/5511922880177?text=Ol%C3%A1%20Malton!%20Quero%20garantir%20minha%20camiseta%20da%20USA%20Tour%202027%20(Tamanho%20G)%20pelo%20WhatsApp!" target="_blank" rel="noopener noreferrer" class="btn-buy-wa">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.699c.97.54 1.83.82 2.796.82 3.183 0 5.768-2.587 5.769-5.766.001-3.182-2.585-5.77-5.769-5.772zm3.39 8.19c-.145.408-.847.784-1.183.834-.336.05-.77.07-2.227-.53-1.865-.769-3.055-2.673-3.149-2.798-.093-.125-.758-1.009-.758-1.926 0-.916.48-1.367.652-1.554.172-.187.375-.234.5-.234.125 0 .25.002.359.007.116.005.27-.044.423.323.156.376.536 1.309.584 1.405.048.096.08.209.016.335-.064.126-.096.205-.192.316-.096.112-.202.25-.289.336-.096.096-.197.201-.085.393.112.193.498.823 1.069 1.332.736.655 1.357.859 1.55.955.192.096.305.08.417-.048.112-.128.48-.56.608-.752.128-.193.256-.16.432-.096.176.064 1.119.528 1.311.624.192.096.32.144.368.224.048.08.048.464-.097.872z"/>
+            </svg>
+            COMPRAR PELO WHATSAPP ➔
           </a>
         </div>
       </div>
@@ -836,37 +741,36 @@
         </svg>
       </div>
 
-      <span class="section-tag">ACOMPANHE DE PERTO</span>
-      <h2 class="section-title">SIGA O MALTON NO INSTAGRAM</h2>
+      <span class="section-tag">ACOMPANHE O MEU DIA A DIA</span>
+      <h2 class="section-title">ME SIGA NO INSTAGRAM</h2>
       <p style="font-size: 14px; color: #AAA; margin-bottom: 24px;">
-        Acompanhe os bastidores da oficina, acertos no dinamômetro, passagens na pista e todos os passos da preparação para a viagem aos Estados Unidos.
+        Acompanhe de perto a minha rotina na oficina, os acertos no dinamômetro, passagens na pista e cada etapa da preparação do meu Civic 177 rumo aos Estados Unidos.
       </p>
 
       <a href="https://www.instagram.com/maltoncoimbra/" target="_blank" rel="noopener noreferrer" class="btn-ig-large">
-        SEGUIR @MALTONCOIMBRA ↗
+        ME SEGUIR NO INSTAGRAM @MALTONCOIMBRA ↗
       </a>
     </div>
   </section>
 
   <!-- Footer -->
   <footer>
-    <div class="footer-inner">
-      <div>
-        <strong style="color: #FFF; text-transform: uppercase;">MALTON COIMBRA 177 // USA TOUR 2027</strong>
-        <p style="color: #777; font-size: 10px; margin-top: 2px;">Combustível oficial do Honda: MM Racing Fuel</p>
-      </div>
-      <div class="footer-links">
-        <a href="https://www.instagram.com/maltoncoimbra/" target="_blank" rel="noopener noreferrer">Instagram</a>
-        <a href="https://lista.mercadolivre.com.br/camiseta-malton-coimbra-0177" target="_blank" rel="noopener noreferrer">Mercado Livre</a>
-        <a href="index.html">MM Racing Fuel</a>
-      </div>
+    <div class="container" style="max-width: 600px; text-align: center;">
+      <p style="color: #FFF; font-weight: 900; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;">
+        MALTON COIMBRA 177 // USA TOUR 2027
+      </p>
+      <p style="color: #777; font-size: 11px; margin-top: 6px; line-height: 1.5;">
+        Site oficial da campanha para levar o Honda Civic recordista mundial aos Estados Unidos.
+      </p>
+      <p style="margin-top: 18px; font-size: 10px; color: #444; letter-spacing: 0.05em;">
+        &copy; 2026 Malton Coimbra. Todos os direitos reservados.
+      </p>
     </div>
-    <p style="margin-top: 16px; font-size: 10px; color: #444;">
-      &copy; 2026 Malton Coimbra 177. Todos os direitos reservados.
-    </p>
   </footer>
 
   <script>
+    var currentSize = 'G';
+
     function switchView(view) {
       var img = document.getElementById('shirt-img');
       var cap = document.getElementById('shirt-caption');
@@ -890,6 +794,16 @@
       var buttons = document.querySelectorAll('.size-btn');
       buttons.forEach(function(b) { b.classList.remove('active'); });
       btn.classList.add('active');
+      currentSize = btn.textContent.trim();
+      updateWhatsAppLink();
+    }
+
+    function updateWhatsAppLink() {
+      var btnWa = document.getElementById('btn-buy-wa');
+      if (btnWa) {
+        var text = "Olá Malton! Quero garantir minha camiseta oficial da USA Tour 2027 (Tamanho " + currentSize + ") diretamente pelo WhatsApp!";
+        btnWa.href = "https://wa.me/5511922880177?text=" + encodeURIComponent(text);
+      }
     }
   </script>
 

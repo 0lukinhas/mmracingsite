@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import { motion } from 'framer-motion';
 import {
     Instagram,
@@ -34,38 +33,16 @@ export default function MaltonUsaPage() {
         <div className="min-h-screen bg-black text-mm-text font-mono selection:bg-mm-orange selection:text-black overflow-x-hidden">
 
             {/* ========================================================= */}
-            {/* 1. CABEÇALHO LIMPO E ELEGANTE                             */}
+            {/* 1. CABEÇALHO LIMPO (APENAS O BOTÃO)                       */}
             {/* ========================================================= */}
-            <nav className="sticky top-0 z-40 w-full bg-black/90 backdrop-blur-md border-b border-[#1c1c1c] px-4 sm:px-8 py-4">
-                <div className="max-w-6xl mx-auto flex items-center justify-between">
-                    <div>
-                        <span className="text-base sm:text-lg font-black tracking-tight uppercase text-white block">
-                            MALTON COIMBRA <span className="text-mm-orange">177</span>
-                        </span>
-                        <span className="text-[10px] text-gray-400 tracking-widest block uppercase">
-                            USA TOUR 2027 // WORLD RECORD
-                        </span>
-                    </div>
-
-                    <div className="flex items-center gap-3">
-                        <a
-                            href={INSTAGRAM_URL}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-1.5 text-xs text-gray-300 hover:text-mm-orange transition-colors px-2.5 py-1.5 border border-[#262626] hover:border-mm-orange"
-                            aria-label="Instagram de Malton Coimbra"
-                        >
-                            <Instagram size={15} />
-                            <span className="hidden sm:inline">@maltoncoimbra</span>
-                        </a>
-
-                        <a
-                            href="#camiseta"
-                            className="bg-mm-orange text-black font-black text-xs uppercase tracking-wider px-4 py-2 hover:bg-mm-orange-hover transition-colors shadow-[0_0_15px_rgba(255,107,0,0.3)]"
-                        >
-                            APOIAR COM A CAMISETA
-                        </a>
-                    </div>
+            <nav className="sticky top-0 z-40 w-full bg-black/90 backdrop-blur-md border-b border-[#1c1c1c] px-4 sm:px-8 py-3">
+                <div className="max-w-6xl mx-auto flex items-center justify-end">
+                    <a
+                        href="#camiseta"
+                        className="bg-mm-orange text-black font-black text-xs uppercase tracking-wider px-4 py-2.5 hover:bg-mm-orange-hover transition-colors shadow-[0_0_15px_rgba(255,107,0,0.3)]"
+                    >
+                        APOIAR COM A CAMISETA ➔
+                    </a>
                 </div>
             </nav>
 
@@ -192,9 +169,6 @@ export default function MaltonUsaPage() {
                             <p>
                                 O resultado? O <strong className="text-mm-orange">Honda All Motor mais rápido do mundo</strong> e a conquista do Recorde Mundial na categoria, provando a força e a inteligência da preparação brasileira nas pistas de arrancada.
                             </p>
-                            <p className="text-xs text-gray-400 border-l-2 border-[#333] pl-3">
-                                ⛽ <em>Combustível oficial utilizado nos recordes: MM Racing Fuel (Nitro 100).</em>
-                            </p>
                         </div>
                     </div>
 
@@ -215,22 +189,6 @@ export default function MaltonUsaPage() {
                                 <span className="text-sm font-bold text-white uppercase">
                                     World Record All Motor Nitro
                                 </span>
-                            </div>
-                        </div>
-
-                        {/* 3 destaques simples */}
-                        <div className="grid grid-cols-3 gap-2 mt-3 text-center">
-                            <div className="bg-[#0f0f0f] border border-[#222] p-3">
-                                <span className="text-xl font-black text-mm-orange block">+90%</span>
-                                <span className="text-[10px] text-gray-400 uppercase block">Nitro Puro</span>
-                            </div>
-                            <div className="bg-[#0f0f0f] border border-[#222] p-3">
-                                <span className="text-xl font-black text-white block">177</span>
-                                <span className="text-[10px] text-gray-400 uppercase block">Número</span>
-                            </div>
-                            <div className="bg-[#0f0f0f] border border-[#222] p-3">
-                                <span className="text-xl font-black text-white block">USA</span>
-                                <span className="text-[10px] text-gray-400 uppercase block">Tour 2027</span>
                             </div>
                         </div>
                     </div>
@@ -485,15 +443,15 @@ export default function MaltonUsaPage() {
                 </div>
 
                 <span className="text-xs uppercase tracking-widest text-mm-orange font-bold block mb-2">
-                    ACOMPANHE DE PERTO
+                    ACOMPANHE O MEU DIA A DIA
                 </span>
 
                 <h2 className="text-2xl sm:text-4xl font-black text-white uppercase tracking-tight mb-4">
-                    SIGA O MALTON NO INSTAGRAM
+                    ME SIGA NO INSTAGRAM
                 </h2>
 
                 <p className="text-sm text-gray-300 max-w-xl mx-auto mb-8 leading-relaxed">
-                    Acompanhe os bastidores da oficina, acertos no dinamômetro, passagens na pista e todos os passos da preparação para a viagem aos Estados Unidos.
+                    Acompanhe de perto a minha rotina na oficina, os acertos no dinamômetro, passagens na pista e cada etapa da preparação do meu Civic 177 rumo aos Estados Unidos.
                 </p>
 
                 <a
@@ -503,40 +461,26 @@ export default function MaltonUsaPage() {
                     className="inline-flex items-center gap-2 border-2 border-mm-orange text-white hover:bg-mm-orange hover:text-black font-bold uppercase text-xs sm:text-sm tracking-widest px-8 py-4 transition-colors"
                 >
                     <Instagram size={18} />
-                    <span>SEGUIR @MALTONCOIMBRA</span>
+                    <span>ME SEGUIR NO INSTAGRAM @MALTONCOIMBRA</span>
                     <ArrowUpRight size={16} />
                 </a>
             </section>
 
             {/* ========================================================= */}
-            {/* 7. RODAPÉ DISCRETO                                        */}
+            {/* 7. RODAPÉ LIMPO E INDEPENDENTE                            */}
             {/* ========================================================= */}
-            <footer className="bg-[#070707] border-t border-[#1c1c1c] py-8 px-4 text-center text-xs text-gray-500">
-                <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-                    <div className="text-center sm:text-left">
-                        <span className="font-bold text-white uppercase tracking-wider block">
-                            MALTON COIMBRA 177 // USA TOUR 2027
-                        </span>
-                        <span className="text-[11px] text-gray-400 block">
-                            Combustível oficial do Honda: MM Racing Fuel
-                        </span>
-                    </div>
-
-                    <div className="flex items-center gap-6 text-[11px] uppercase tracking-wider">
-                        <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-                            Instagram
-                        </a>
-                        <a href={MERCADO_LIVRE_URL} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-                            Mercado Livre
-                        </a>
-                        <Link href="/" className="hover:text-white transition-colors">
-                            MM Racing Fuel
-                        </Link>
-                    </div>
+            <footer className="bg-[#070707] border-t border-[#1c1c1c] py-10 px-4 text-center text-xs text-gray-500">
+                <div className="max-w-xl mx-auto text-center">
+                    <span className="font-bold text-white uppercase tracking-wider block text-sm mb-1.5">
+                        MALTON COIMBRA 177 // USA TOUR 2027
+                    </span>
+                    <p className="text-[11px] text-gray-400 leading-relaxed">
+                        Site oficial da campanha para levar o Honda Civic recordista mundial aos Estados Unidos.
+                    </p>
                 </div>
 
                 <p className="mt-6 text-[10px] text-gray-600">
-                    &copy; {new Date().getFullYear()} Malton Coimbra 177. Todos os direitos reservados.
+                    &copy; {new Date().getFullYear()} Malton Coimbra. Todos os direitos reservados.
                 </p>
             </footer>
 
