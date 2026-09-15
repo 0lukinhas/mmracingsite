@@ -32,19 +32,6 @@ export default function MaltonUsaPage() {
     return (
         <div className="min-h-screen bg-black text-mm-text font-mono selection:bg-mm-orange selection:text-black overflow-x-hidden">
 
-            {/* ========================================================= */}
-            {/* 1. CABEÇALHO LIMPO (APENAS O BOTÃO)                       */}
-            {/* ========================================================= */}
-            <nav className="sticky top-0 z-40 w-full bg-black/90 backdrop-blur-md border-b border-[#1c1c1c] px-4 sm:px-8 py-3">
-                <div className="max-w-6xl mx-auto flex items-center justify-end">
-                    <a
-                        href="#camiseta"
-                        className="bg-mm-orange text-black font-black text-xs uppercase tracking-wider px-4 py-2.5 hover:bg-mm-orange-hover transition-colors shadow-[0_0_15px_rgba(255,107,0,0.3)]"
-                    >
-                        APOIAR COM A CAMISETA ➔
-                    </a>
-                </div>
-            </nav>
 
             {/* ========================================================= */}
             {/* 2. HERO: FOCO NO MALTON, NO CARRO E NA MISSÃO             */}
@@ -458,11 +445,11 @@ export default function MaltonUsaPage() {
                     href={INSTAGRAM_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 border-2 border-mm-orange text-white hover:bg-mm-orange hover:text-black font-bold uppercase text-xs sm:text-sm tracking-widest px-8 py-4 transition-colors"
+                    className="inline-flex items-center justify-center gap-2.5 bg-mm-orange hover:bg-mm-orange-hover text-black font-black uppercase text-xs sm:text-sm tracking-widest px-8 py-4 transition-all duration-200 shadow-[0_0_25px_rgba(255,107,0,0.4)] hover:shadow-[0_0_35px_rgba(255,107,0,0.6)] hover:-translate-y-0.5"
                 >
-                    <Instagram size={18} />
-                    <span>ME SEGUIR NO INSTAGRAM @MALTONCOIMBRA</span>
-                    <ArrowUpRight size={16} />
+                    <Instagram size={20} className="text-black stroke-[2.3]" />
+                    <span>@MALTONCOIMBRA</span>
+                    <ArrowUpRight size={16} className="text-black stroke-[2.5]" />
                 </a>
             </section>
 
