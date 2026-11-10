@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import {
@@ -11,14 +11,74 @@ import {
     MessageCircle,
     ChevronDown,
     Flame,
-    ArrowUpRight
+    ArrowUpRight,
+    Truck,
+    Copy,
+    X,
+    Clock,
+    Loader2
 } from 'lucide-react';
 
 const MERCADO_LIVRE_URL = "https://lista.mercadolivre.com.br/camiseta-malton-coimbra-0177";
 const INSTAGRAM_URL = "https://www.instagram.com/maltoncoimbra/";
 const WHATSAPP_DUVIDAS_URL = "https://wa.me/5511922880177?text=" + encodeURIComponent("Olá Malton! Vi a página da USA Tour 2027 e gostaria de saber mais sobre a camiseta oficial do Civic 177!");
 
-const SIZES = ["P", "M", "G", "GG", "XGG"];
+const SIZES = ["P", "M", "G", "GG", "G1", "G2", "G3"];
+const PIX_CHAVE = "5511922880177";
+
+interface ShippingQuote {
+    id: number;
+    name: string;
+    company: string;
+    price: number;
+    formatted_price: string;
+    delivery_days: number;
+    delivery_range?: { min: number; max: number };
+}
+
+function generatePixPayload(opts: { key: string; name: string; city: string; amount: number; txid?: string }) {
+    function formatField(id: string, val: string) {
+        const len = ('00' + val.length).slice(-2);
+        return id + len + val;
+    }
+    const gui = formatField('00', 'br.gov.bcb.pix');
+    const key = formatField('01', opts.key);
+    const merchantAccount = formatField('26', gui + key);
+    const merchantCat = formatField('52', '0000');
+    const currency = formatField('53', '986');
+    const amount = formatField('54', Number(opts.amount).toFixed(2));
+    const country = formatField('58', 'BR');
+    const name = formatField('59', (opts.name || 'MALTON 177').substring(0, 25));
+    const city = formatField('60', (opts.city || 'SAO PAULO').substring(0, 15));
+    const txid = formatField('05', opts.txid || 'MALTON177');
+    const addData = formatField('62', txid);
+
+    const payload = formatField('00', '01') +
+                    formatField('01', '12') +
+                    merchantAccount +
+                    merchantCat +
+                    currency +
+                    amount +
+                    country +
+                    name +
+                    city +
+                    addData +
+                    '6304';
+
+    let crc = 0xFFFF;
+    for (let i = 0; i < payload.length; i++) {
+        crc ^= (payload.charCodeAt(i) << 8);
+        for (let j = 0; j < 8; j++) {
+            if ((crc & 0x8000) !== 0) {
+                crc = ((crc << 1) ^ 0x1021) & 0xFFFF;
+            } else {
+                crc = (crc << 1) & 0xFFFF;
+            }
+        }
+    }
+    const crcHex = ('0000' + crc.toString(16).toUpperCase()).slice(-4);
+    return payload + crcHex;
+}
 
 const getWhatsAppBuyUrl = (size: string) => {
     const text = `Olá Malton! Gostaria de pedir a Camiseta Oficial USA Tour 2027 (Carro 177) no tamanho [${size}]. Como faço para confirmar meu pedido e envio?`;
@@ -28,6 +88,178 @@ const getWhatsAppBuyUrl = (size: string) => {
 export default function MaltonUsaPage() {
     const [selectedSize, setSelectedSize] = useState<string>("G");
     const [activeView, setActiveView] = useState<'costas' | 'arte'>('costas');
+
+    // Shipping Calculator States
+    const [cep, setCep] = useState("");
+    const [isCalculating, setIsCalculating] = useState(false);
+    const [calcError, setCalcError] = useState("");
+    const [locationInfo, setLocationInfo] = useState<{ localidade: string; uf: string; logradouro?: string; bairro?: string } | null>(null);
+    const [quotes, setQuotes] = useState<ShippingQuote[]>([]);
+    const [selectedQuote, setSelectedQuote] = useState<ShippingQuote | null>(null);
+
+    // Pix Modal States
+    const [isPixModalOpen, setIsPixModalOpen] = useState(false);
+    const [copiedPix, setCopiedPix] = useState(false);
+    const [pixTimeLeft, setPixTimeLeft] = useState(15 * 60);
+    const [customerData, setCustomerData] = useState({
+        name: "",
+        cpf: "",
+        phone: "",
+        street: "",
+        number: "",
+        complement: "",
+        neighborhood: "",
+        city: "",
+        cep: ""
+    });
+
+    // Pix timer countdown
+    useEffect(() => {
+        if (!isPixModalOpen) return;
+        const interval = setInterval(() => {
+            setPixTimeLeft((prev) => (prev > 0 ? prev - 1 : 0));
+        }, 1000);
+        return () => clearInterval(interval);
+    }, [isPixModalOpen]);
+
+    const handleCepInput = (val: string) => {
+        const raw = val.replace(/\D/g, '').substring(0, 8);
+        let masked = raw;
+        if (raw.length > 5) {
+            masked = raw.substring(0, 5) + '-' + raw.substring(5, 8);
+        }
+        setCep(masked);
+    };
+
+    const handleCalculateShipping = async () => {
+        const cleanCep = cep.replace(/\D/g, '');
+        setCalcError("");
+        if (cleanCep.length !== 8) {
+            setCalcError("Digite um CEP válido com 8 números.");
+            return;
+        }
+
+        setIsCalculating(true);
+        setQuotes([]);
+        setSelectedQuote(null);
+
+        try {
+            // 1. ViaCEP
+            try {
+                const viaRes = await fetch(`https://viacep.com.br/ws/${cleanCep}/json/`);
+                if (viaRes.ok) {
+                    const viaData = await viaRes.json();
+                    if (!viaData.erro) {
+                        setLocationInfo(viaData);
+                        setCustomerData((prev) => ({
+                            ...prev,
+                            street: viaData.logradouro || prev.street,
+                            neighborhood: viaData.bairro || prev.neighborhood,
+                            city: `${viaData.localidade} / ${viaData.uf}`,
+                            cep: cep
+                        }));
+                    }
+                }
+            } catch (err) {
+                console.warn("ViaCEP lookup error", err);
+            }
+
+            // 2. Local Next.js API /api/frete
+            const res = await fetch('/api/frete', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ postal_code: cleanCep, quantity: 1 })
+            });
+
+            if (!res.ok) {
+                throw new Error("Erro na cotação");
+            }
+
+            const data = await res.json();
+            if (data.quotes && data.quotes.length > 0) {
+                setQuotes(data.quotes);
+                setSelectedQuote(data.quotes[0]);
+            } else {
+                setCalcError("Nenhuma transportadora disponível para esse CEP no momento.");
+            }
+        } catch {
+            setCalcError("Não foi possível calcular o frete agora. Tente novamente.");
+        } finally {
+            setIsCalculating(false);
+        }
+    };
+
+    const shirtPrice = 99.90;
+    const totalOrder = shirtPrice + (selectedQuote ? selectedQuote.price : 0);
+
+    const handleOpenPixModal = () => {
+        if (!selectedQuote) {
+            alert("Por favor, digite seu CEP e clique em CALCULAR FRETE antes de prosseguir com o pagamento Pix.");
+            return;
+        }
+        setPixTimeLeft(15 * 60);
+        setIsPixModalOpen(true);
+    };
+
+    const pixPayload = generatePixPayload({
+        key: PIX_CHAVE,
+        name: "MALTON COIMBRA 177",
+        city: "SAO PAULO",
+        amount: totalOrder,
+        txid: "USA" + Math.floor(1000 + Math.random() * 9000)
+    });
+
+    const handleCopyPix = () => {
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(pixPayload);
+            setCopiedPix(true);
+            setTimeout(() => setCopiedPix(false), 2500);
+        }
+    };
+
+    const formatCpf = (v: string) => {
+        const raw = v.replace(/\D/g, '').substring(0, 11);
+        if (raw.length > 9) return raw.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+        if (raw.length > 6) return raw.replace(/(\d{3})(\d{3})(\d{1,3})/, '$1.$2.$3');
+        if (raw.length > 3) return raw.replace(/(\d{3})(\d{1,3})/, '$1.$2');
+        return raw;
+    };
+
+    const formatPhone = (v: string) => {
+        const raw = v.replace(/\D/g, '').substring(0, 11);
+        if (raw.length > 10) return raw.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+        if (raw.length > 6) return raw.replace(/(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3');
+        if (raw.length > 2) return raw.replace(/(\d{2})(\d{0,5})/, '($1) $2');
+        return raw;
+    };
+
+    const handleSendWhatsAppProof = () => {
+        if (!customerData.name || !customerData.cpf || !customerData.street || !customerData.number) {
+            alert("Preencha os dados de envio (Nome, CPF, Rua e Número) para a etiqueta do Melhor Envio!");
+            return;
+        }
+
+        let msg = "🏁 *PEDIDO CONFIRMADO // CAMISETA USA TOUR 2027*\n\n";
+        msg += `👤 *Cliente:* ${customerData.name}\n`;
+        msg += `📄 *CPF:* ${customerData.cpf}\n`;
+        msg += `📱 *WhatsApp:* ${customerData.phone || 'Mesmo do contato'}\n`;
+        msg += `👕 *Tamanho:* ${selectedSize}\n\n`;
+        msg += `📦 *ENDEREÇO DE ENTREGA:*\n`;
+        msg += `${customerData.street}, ${customerData.number} ${customerData.complement ? `(${customerData.complement})` : ''}\n`;
+        msg += `Bairro: ${customerData.neighborhood}\n`;
+        msg += `Cidade/UF: ${customerData.city} - CEP: ${customerData.cep || cep}\n\n`;
+        msg += `🚚 *Frete Escolhido:* ${selectedQuote ? `${selectedQuote.company} ${selectedQuote.name} (${selectedQuote.formatted_price})` : 'A combinar'}\n`;
+        msg += `💵 *VALOR TOTAL PAGO VIA PIX:* R$ ${totalOrder.toFixed(2).replace('.', ',')}\n\n`;
+        msg += "Segue o comprovante do Pix em anexo para emissão do envio!";
+
+        window.open(`https://wa.me/5511922880177?text=${encodeURIComponent(msg)}`, '_blank');
+    };
+
+    const formatTime = (seconds: number) => {
+        const m = Math.floor(seconds / 60);
+        const s = seconds % 60;
+        return `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
+    };
 
     return (
         <div className="min-h-screen bg-black text-mm-text font-mono selection:bg-mm-orange selection:text-black overflow-x-hidden">
@@ -309,7 +541,7 @@ export default function MaltonUsaPage() {
                                 <span className="text-xs uppercase tracking-wider text-white font-bold block mb-3">
                                     Escolha seu Tamanho:
                                 </span>
-                                <div className="grid grid-cols-5 gap-2">
+                                <div className="grid grid-cols-4 sm:grid-cols-7 gap-2">
                                     {SIZES.map((size) => (
                                         <button
                                             key={size}
@@ -331,68 +563,183 @@ export default function MaltonUsaPage() {
                                 </div>
                             </div>
 
-                            {/* Especificações de Qualidade */}
-                            <div className="space-y-2 mb-8 text-xs text-gray-300">
-                                <div className="flex items-center gap-2">
-                                    <Check size={16} className="text-mm-orange flex-shrink-0" />
-                                    <span>Camiseta 100% algodão de alta gramatura e corte confortável</span>
+                            {/* Calculadora de Frete Melhor Envio */}
+                            <div className="bg-[#080808] border border-[#222] p-4 mb-5">
+                                <div className="flex items-center justify-between mb-3">
+                                    <span className="text-[11px] font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                                        <Truck size={15} className="text-mm-orange" />
+                                        Calcular Frete e Prazo
+                                    </span>
+                                    <span className="text-[9px] font-black text-mm-orange bg-mm-orange/10 border border-mm-orange/30 px-2 py-0.5 tracking-wider">
+                                        MELHOR ENVIO API
+                                    </span>
                                 </div>
-                                <div className="flex items-center gap-2">
-                                    <Check size={16} className="text-mm-orange flex-shrink-0" />
-                                    <span>Estampa durável em serigrafia de alta resolução nas costas</span>
+
+                                <div className="flex gap-2">
+                                    <input
+                                        type="text"
+                                        value={cep}
+                                        onChange={(e) => handleCepInput(e.target.value)}
+                                        onKeyDown={(e) => e.key === 'Enter' && handleCalculateShipping()}
+                                        placeholder="00000-000"
+                                        maxLength={9}
+                                        className="flex-1 bg-black border border-[#333] text-white px-3.5 py-2.5 text-sm font-bold tracking-wider focus:outline-none focus:border-mm-orange"
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={handleCalculateShipping}
+                                        disabled={isCalculating}
+                                        className="bg-[#1c1c1c] hover:bg-mm-orange hover:text-black text-white border border-[#333] hover:border-mm-orange px-4 text-xs font-black tracking-wider transition-colors disabled:opacity-50 flex items-center gap-1.5"
+                                    >
+                                        {isCalculating ? (
+                                            <>
+                                                <Loader2 size={13} className="animate-spin" />
+                                                <span>COTANDO...</span>
+                                            </>
+                                        ) : (
+                                            <span>CALCULAR</span>
+                                        )}
+                                    </button>
                                 </div>
-                                <div className="flex items-center gap-2">
-                                    <Check size={16} className="text-mm-orange flex-shrink-0" />
-                                    <span>Envio para todo o Brasil com rastreamento completo</span>
+
+                                <div className="flex items-center justify-between mt-1.5 text-[10px]">
+                                    {locationInfo ? (
+                                        <span className="text-mm-orange font-bold">
+                                            📍 {locationInfo.localidade} - {locationInfo.uf}
+                                        </span>
+                                    ) : (
+                                        <span></span>
+                                    )}
+                                    <a
+                                        href="https://buscacepinter.correios.com.br/app/endereco/index.php"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-gray-500 hover:text-gray-300 underline ml-auto"
+                                    >
+                                        Não sei meu CEP ↗
+                                    </a>
+                                </div>
+
+                                {calcError && (
+                                    <div className="mt-2.5 p-2.5 bg-red-950/40 border border-red-900/60 text-red-400 text-[11px] leading-tight">
+                                        {calcError}
+                                    </div>
+                                )}
+
+                                {/* Lista de Opções de Frete */}
+                                {quotes.length > 0 && (
+                                    <div className="mt-3 space-y-2 max-h-48 overflow-y-auto pr-1">
+                                        {quotes.map((q, idx) => {
+                                            const isSelected = selectedQuote?.id === q.id && selectedQuote?.name === q.name;
+                                            return (
+                                                <div
+                                                    key={`${q.id}-${idx}`}
+                                                    onClick={() => setSelectedQuote(q)}
+                                                    className={`p-2.5 bg-black border transition-all cursor-pointer flex items-center justify-between ${
+                                                        isSelected
+                                                            ? 'border-mm-orange bg-mm-orange/5'
+                                                            : 'border-[#222] hover:border-[#444]'
+                                                    }`}
+                                                >
+                                                    <div className="flex items-center gap-2.5">
+                                                        <input
+                                                            type="radio"
+                                                            checked={isSelected}
+                                                            onChange={() => setSelectedQuote(q)}
+                                                            className="accent-mm-orange w-3.5 h-3.5"
+                                                        />
+                                                        <div>
+                                                            <div className="flex items-center gap-1.5">
+                                                                <span className="text-xs font-bold text-white uppercase">
+                                                                    {q.company} ({q.name})
+                                                                </span>
+                                                                {idx === 0 && (
+                                                                    <span className="text-[8px] font-black bg-emerald-950 text-emerald-400 border border-emerald-800/80 px-1 py-0.5 uppercase">
+                                                                        ECONÔMICO
+                                                                    </span>
+                                                                )}
+                                                            </div>
+                                                            <span className="text-[10px] text-gray-400 block">
+                                                                Chega em até {q.delivery_days} dias úteis
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <span className="text-xs font-black text-white">
+                                                        {q.formatted_price}
+                                                    </span>
+                                                </div>
+                                            );
+                                        })}
+                                    </div>
+                                )}
+                            </div>
+
+                            {/* Resumo Financeiro */}
+                            <div className="bg-[#0a0a0a] border border-[#222] p-3.5 mb-5 space-y-1.5 text-xs">
+                                <div className="flex justify-between text-gray-400 text-[11px]">
+                                    <span>Camiseta Oficial 177:</span>
+                                    <span>R$ 99,90</span>
+                                </div>
+                                <div className="flex justify-between text-gray-400 text-[11px]">
+                                    <span>Frete ({selectedQuote ? `${selectedQuote.company} ${selectedQuote.name}` : 'Calcule acima'}):</span>
+                                    <span className="text-white font-bold">{selectedQuote ? selectedQuote.formatted_price : '--'}</span>
+                                </div>
+                                <div className="pt-2 border-t border-[#222] flex justify-between items-center text-sm font-black text-white">
+                                    <span>TOTAL:</span>
+                                    <span className="text-mm-orange text-base font-black">
+                                        R$ {totalOrder.toFixed(2).replace('.', ',')}
+                                    </span>
                                 </div>
                             </div>
 
-                            {/* Os 2 Botões Principais de Compra */}
-                            <div className="space-y-3">
-                                {/* Botão 1: Pedir direto no App do Mercado Livre */}
-                                <a
-                                    href={MERCADO_LIVRE_URL}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="w-full bg-[#FFE600] hover:bg-[#F2DA00] text-black font-black uppercase text-xs sm:text-sm tracking-wider py-4 px-5 flex items-center justify-between gap-3 transition-all duration-200 shadow-[0_0_25px_rgba(255,230,0,0.25)] hover:shadow-[0_0_35px_rgba(255,230,0,0.45)] border border-[#FFE600] group"
+                            {/* Especificações de Qualidade */}
+                            <div className="space-y-1.5 mb-6 text-xs text-gray-300">
+                                <div className="flex items-center gap-2">
+                                    <Check size={15} className="text-mm-orange flex-shrink-0" />
+                                    <span>Camiseta 100% algodão de alta gramatura e corte confortável</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <Check size={15} className="text-mm-orange flex-shrink-0" />
+                                    <span>Envio para todo o Brasil via Melhor Envio (com rastreio)</span>
+                                </div>
+                                <div className="flex items-center gap-2">
+                                    <Check size={15} className="text-mm-orange flex-shrink-0" />
+                                    <span>100% da verba revertida para a USA Tour 2027</span>
+                                </div>
+                            </div>
+
+                            {/* Botões de Ação */}
+                            <div className="space-y-2.5">
+                                {/* Botão 1: Pagar com Pix */}
+                                <button
+                                    type="button"
+                                    onClick={handleOpenPixModal}
+                                    className="w-full bg-mm-orange hover:bg-mm-orange-hover text-black font-black uppercase text-xs sm:text-sm tracking-wider py-4 px-5 flex items-center justify-center gap-3 transition-all duration-200 shadow-[0_0_25px_rgba(255,107,0,0.35)] hover:shadow-[0_0_35px_rgba(255,107,0,0.55)] cursor-pointer"
                                 >
-                                    <div className="flex items-center gap-3 text-left">
-                                        <div className="w-9 h-9 bg-black/10 flex items-center justify-center flex-shrink-0">
-                                            <ShoppingBag size={19} className="text-black" />
-                                        </div>
-                                        <div>
-                                            <span className="block font-black text-xs sm:text-sm text-black leading-tight">
-                                                PEDIR DIRETO NO APP DO MERCADO LIVRE
-                                            </span>
-                                            <span className="block text-[10px] font-bold text-black/75 tracking-normal normal-case">
-                                                Compra 100% protegida • Frete rápido Mercado Envios
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <ArrowUpRight size={18} className="text-black group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform flex-shrink-0" />
-                                </a>
+                                    <span className="font-black">
+                                        PAGAR COM PIX (R$ {totalOrder.toFixed(2).replace('.', ',')}) ➔
+                                    </span>
+                                </button>
 
                                 {/* Botão 2: Pedir via WhatsApp com Tamanho Vinculado */}
                                 <a
                                     href={getWhatsAppBuyUrl(selectedSize)}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="w-full bg-[#25D366] hover:bg-[#1EBE5D] text-black font-black uppercase text-xs sm:text-sm tracking-wider py-4 px-5 flex items-center justify-between gap-3 transition-all duration-200 shadow-[0_0_25px_rgba(37,211,102,0.25)] hover:shadow-[0_0_35px_rgba(37,211,102,0.45)] border border-[#25D366] group"
+                                    className="w-full bg-[#25D366] hover:bg-[#1EBE5D] text-black font-black uppercase text-xs tracking-wider py-3 px-5 flex items-center justify-center gap-2 transition-all duration-200 shadow-[0_0_20px_rgba(37,211,102,0.2)]"
                                 >
-                                    <div className="flex items-center gap-3 text-left">
-                                        <div className="w-9 h-9 bg-black/15 flex items-center justify-center flex-shrink-0">
-                                            <MessageCircle size={19} className="text-black" />
-                                        </div>
-                                        <div>
-                                            <span className="block font-black text-xs sm:text-sm text-black leading-tight">
-                                                PEDIR VIA WHATSAPP (TAMANHO {selectedSize})
-                                            </span>
-                                            <span className="block text-[10px] font-bold text-black/80 tracking-normal normal-case">
-                                                Atendimento direto com a equipe • Pix & envio imediato
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <ArrowUpRight size={18} className="text-black group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform flex-shrink-0" />
+                                    <MessageCircle size={17} className="text-black" />
+                                    <span>PEDIR PELO WHATSAPP ➔</span>
+                                </a>
+
+                                {/* Botão 3: Mercado Livre */}
+                                <a
+                                    href={MERCADO_LIVRE_URL}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="block text-center w-full py-2.5 text-[11px] font-bold text-gray-400 hover:text-white uppercase tracking-wider border border-dashed border-[#262626] hover:border-[#555] transition-colors"
+                                >
+                                    OU COMPRAR NO MERCADO LIVRE ↗
                                 </a>
                             </div>
 
@@ -470,6 +817,228 @@ export default function MaltonUsaPage() {
                     &copy; {new Date().getFullYear()} Malton Coimbra. Todos os direitos reservados.
                 </p>
             </footer>
+
+            {/* Modal de Checkout Pix Transparente */}
+            {isPixModalOpen && (
+                <div 
+                    className="fixed inset-0 bg-black/85 backdrop-blur-md z-[9999] flex items-center justify-center p-4 overflow-y-auto"
+                    onClick={(e) => {
+                        if (e.target === e.currentTarget) setIsPixModalOpen(false);
+                    }}
+                >
+                    <div className="bg-[#0b0b0b] border border-[#2e2e2e] w-full max-w-lg p-6 sm:p-8 text-gray-200 shadow-2xl relative my-auto">
+                        <button
+                            type="button"
+                            onClick={() => setIsPixModalOpen(false)}
+                            className="absolute top-4 right-4 bg-[#161616] hover:bg-mm-orange hover:text-black border border-[#333] text-gray-400 w-8 h-8 flex items-center justify-center transition-colors"
+                        >
+                            <X size={16} />
+                        </button>
+
+                        <div className="flex items-center gap-2 mb-1">
+                            <span className="text-mm-orange font-black">⚡</span>
+                            <h3 className="text-sm font-black text-white uppercase tracking-wider">
+                                Pagamento Pix // Camiseta USA Tour
+                            </h3>
+                        </div>
+                        <p className="text-xs text-gray-400 mb-5">
+                            Camiseta Oficial Malton Coimbra 177 • Tamanho: <strong className="text-mm-orange">{selectedSize}</strong>
+                        </p>
+
+                        {/* Formulário de Entrega */}
+                        <div className="border border-[#1f1f1f] bg-[#050505] p-4 mb-4 space-y-3">
+                            <span className="text-[10px] font-black text-mm-orange uppercase tracking-wider block">
+                                1. DADOS PARA ENVIO DA CAMISETA (MELHOR ENVIO)
+                            </span>
+
+                            <div>
+                                <label className="text-[10px] text-gray-400 uppercase font-bold block mb-1">
+                                    Nome Completo *
+                                </label>
+                                <input
+                                    type="text"
+                                    value={customerData.name}
+                                    onChange={(e) => setCustomerData({ ...customerData, name: e.target.value })}
+                                    placeholder="Seu nome completo"
+                                    className="w-full bg-black border border-[#2e2e2e] text-white p-2.5 text-xs focus:outline-none focus:border-mm-orange"
+                                />
+                            </div>
+
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                                <div>
+                                    <label className="text-[10px] text-gray-400 uppercase font-bold block mb-1">
+                                        CPF (Exigido pelo Melhor Envio) *
+                                    </label>
+                                    <input
+                                        type="text"
+                                        value={customerData.cpf}
+                                        onChange={(e) => setCustomerData({ ...customerData, cpf: formatCpf(e.target.value) })}
+                                        placeholder="000.000.000-00"
+                                        maxLength={14}
+                                        className="w-full bg-black border border-[#2e2e2e] text-white p-2.5 text-xs focus:outline-none focus:border-mm-orange"
+                                    />
+                                </div>
+                                <div>
+                                    <label className="text-[10px] text-gray-400 uppercase font-bold block mb-1">
+                                        WhatsApp para Rastreio *
+                                    </label>
+                                    <input
+                                        type="text"
+                                        value={customerData.phone}
+                                        onChange={(e) => setCustomerData({ ...customerData, phone: formatPhone(e.target.value) })}
+                                        placeholder="(11) 90000-0000"
+                                        maxLength={15}
+                                        className="w-full bg-black border border-[#2e2e2e] text-white p-2.5 text-xs focus:outline-none focus:border-mm-orange"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-3 gap-2.5">
+                                <div className="col-span-2">
+                                    <label className="text-[10px] text-gray-400 uppercase font-bold block mb-1">
+                                        Rua / Logradouro *
+                                    </label>
+                                    <input
+                                        type="text"
+                                        value={customerData.street}
+                                        onChange={(e) => setCustomerData({ ...customerData, street: e.target.value })}
+                                        placeholder="Rua, Avenida..."
+                                        className="w-full bg-black border border-[#2e2e2e] text-white p-2.5 text-xs focus:outline-none focus:border-mm-orange"
+                                    />
+                                </div>
+                                <div>
+                                    <label className="text-[10px] text-gray-400 uppercase font-bold block mb-1">
+                                        Número *
+                                    </label>
+                                    <input
+                                        type="text"
+                                        value={customerData.number}
+                                        onChange={(e) => setCustomerData({ ...customerData, number: e.target.value })}
+                                        placeholder="123"
+                                        className="w-full bg-black border border-[#2e2e2e] text-white p-2.5 text-xs focus:outline-none focus:border-mm-orange"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-2 gap-2.5">
+                                <div>
+                                    <label className="text-[10px] text-gray-400 uppercase font-bold block mb-1">
+                                        Complemento
+                                    </label>
+                                    <input
+                                        type="text"
+                                        value={customerData.complement}
+                                        onChange={(e) => setCustomerData({ ...customerData, complement: e.target.value })}
+                                        placeholder="Apto, Bloco..."
+                                        className="w-full bg-black border border-[#2e2e2e] text-white p-2.5 text-xs focus:outline-none focus:border-mm-orange"
+                                    />
+                                </div>
+                                <div>
+                                    <label className="text-[10px] text-gray-400 uppercase font-bold block mb-1">
+                                        Bairro *
+                                    </label>
+                                    <input
+                                        type="text"
+                                        value={customerData.neighborhood}
+                                        onChange={(e) => setCustomerData({ ...customerData, neighborhood: e.target.value })}
+                                        placeholder="Bairro"
+                                        className="w-full bg-black border border-[#2e2e2e] text-white p-2.5 text-xs focus:outline-none focus:border-mm-orange"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="grid grid-cols-2 gap-2.5">
+                                <div>
+                                    <label className="text-[10px] text-gray-400 uppercase font-bold block mb-1">
+                                        Cidade / UF
+                                    </label>
+                                    <input
+                                        type="text"
+                                        value={customerData.city}
+                                        readOnly
+                                        className="w-full bg-black/60 border border-[#222] text-gray-400 p-2.5 text-xs"
+                                    />
+                                </div>
+                                <div>
+                                    <label className="text-[10px] text-gray-400 uppercase font-bold block mb-1">
+                                        CEP
+                                    </label>
+                                    <input
+                                        type="text"
+                                        value={customerData.cep || cep}
+                                        readOnly
+                                        className="w-full bg-black/60 border border-[#222] text-gray-400 p-2.5 text-xs"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Pagamento Pix */}
+                        <div className="border border-[#1f1f1f] bg-black p-4 text-center">
+                            <span className="text-[10px] font-black text-mm-orange uppercase tracking-wider block mb-3">
+                                2. QR CODE PIX (COPIA E COLA)
+                            </span>
+
+                            {/* QR Code Img */}
+                            <div className="w-48 h-48 bg-white p-2 mx-auto mb-3 border-2 border-mm-orange">
+                                <img
+                                    src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(pixPayload)}`}
+                                    alt="QR Code Pix"
+                                    className="w-full h-full object-contain"
+                                />
+                            </div>
+
+                            <div className="text-sm font-black text-white mb-1">
+                                TOTAL: <span className="text-mm-orange">R$ {totalOrder.toFixed(2).replace('.', ',')}</span>
+                            </div>
+                            <span className="text-[10px] text-gray-400 block mb-3">
+                                (Camiseta R$ 99,90 + Frete {selectedQuote ? selectedQuote.formatted_price : ''})
+                            </span>
+
+                            <div className="flex gap-1.5 mb-3">
+                                <input
+                                    type="text"
+                                    readOnly
+                                    value={pixPayload}
+                                    className="flex-1 bg-[#0a0a0a] border border-[#333] text-gray-400 text-[10px] px-2.5 py-2 font-mono truncate"
+                                />
+                                <button
+                                    type="button"
+                                    onClick={handleCopyPix}
+                                    className={`px-3 py-2 text-xs font-black uppercase tracking-wider transition-colors flex items-center gap-1.5 ${
+                                        copiedPix
+                                            ? 'bg-emerald-500 text-black'
+                                            : 'bg-[#1a1a1a] hover:bg-mm-orange hover:text-black text-white border border-[#333]'
+                                    }`}
+                                >
+                                    {copiedPix ? <Check size={14} /> : <Copy size={14} />}
+                                    <span>{copiedPix ? 'Copiado!' : 'Copiar'}</span>
+                                </button>
+                            </div>
+
+                            <div className="flex items-center justify-between text-xs text-gray-400 pt-2 border-t border-[#1f1f1f]">
+                                <span className="flex items-center gap-1 text-[11px]">
+                                    <Clock size={12} className="text-mm-orange" />
+                                    Expira em:
+                                </span>
+                                <span className="text-mm-orange font-black text-xs font-mono">
+                                    {formatTime(pixTimeLeft)}
+                                </span>
+                            </div>
+                        </div>
+
+                        {/* Botão Enviar Comprovante */}
+                        <button
+                            type="button"
+                            onClick={handleSendWhatsAppProof}
+                            className="w-full mt-4 bg-[#25D366] hover:bg-[#1EBE5D] text-black font-black uppercase text-xs sm:text-sm tracking-wider py-3.5 px-4 flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(37,211,102,0.3)] transition-all cursor-pointer"
+                        >
+                            <MessageCircle size={18} className="text-black" />
+                            <span>ENVIAR COMPROVANTE NO WHATSAPP ➔</span>
+                        </button>
+                    </div>
+                </div>
+            )}
 
         </div>
     );

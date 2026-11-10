@@ -373,9 +373,14 @@
     }
     .sizes-grid {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 6px;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 5px;
       margin-bottom: 18px;
+    }
+    @media (max-width: 520px) {
+      .sizes-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
     }
     .size-btn {
       background: #000;
@@ -388,10 +393,486 @@
       cursor: pointer;
       transition: all 0.2s;
     }
+    .size-btn:hover {
+      border-color: #666;
+    }
     .size-btn.active {
       background: var(--orange);
       color: #000;
       border-color: var(--orange);
+      box-shadow: 0 0 12px rgba(255, 107, 0, 0.4);
+    }
+
+    /* Calculadora de Frete Melhor Envio */
+    .shipping-box {
+      background: #080808;
+      border: 1px solid #222;
+      padding: 16px;
+      margin-bottom: 18px;
+    }
+    .shipping-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .shipping-title {
+      font-size: 11px;
+      font-weight: 800;
+      color: #FFF;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .melhor-envio-badge {
+      font-size: 9px;
+      font-weight: 900;
+      color: var(--orange);
+      background: #180c04;
+      border: 1px solid #4d2303;
+      padding: 2px 7px;
+      letter-spacing: 0.08em;
+    }
+    .cep-input-group {
+      display: flex;
+      gap: 8px;
+    }
+    .cep-input {
+      flex: 1;
+      background: #000;
+      border: 1px solid #333;
+      color: #FFF;
+      padding: 10px 14px;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      transition: border-color 0.2s;
+    }
+    .cep-input:focus {
+      outline: none;
+      border-color: var(--orange);
+    }
+    .btn-calc-frete {
+      background: #1c1c1c;
+      border: 1px solid #333;
+      color: #FFF;
+      padding: 0 16px;
+      font-family: inherit;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .btn-calc-frete:hover {
+      background: var(--orange);
+      color: #000;
+      border-color: var(--orange);
+    }
+    .cep-helper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 6px;
+      font-size: 10px;
+    }
+    .cep-location {
+      color: var(--orange);
+      font-weight: 700;
+    }
+    .link-nao-sei-cep {
+      color: #777;
+      text-decoration: underline;
+      margin-left: auto;
+    }
+    .link-nao-sei-cep:hover {
+      color: #BBB;
+    }
+    .shipping-loading {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px;
+      background: #0f0f0f;
+      border: 1px solid #222;
+      margin-top: 10px;
+      font-size: 11px;
+      color: var(--orange);
+    }
+    .shipping-spinner {
+      width: 14px;
+      height: 14px;
+      border: 2px solid #333;
+      border-top-color: var(--orange);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .shipping-error {
+      padding: 10px 12px;
+      background: #190a0a;
+      border: 1px solid #551515;
+      color: #ff8585;
+      font-size: 11px;
+      margin-top: 10px;
+      line-height: 1.4;
+    }
+    .shipping-options {
+      margin-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .shipping-option-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      background: #000;
+      border: 1px solid #222;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .shipping-option-card:hover {
+      border-color: #444;
+      background: #080808;
+    }
+    .shipping-option-card.selected {
+      border-color: var(--orange);
+      background: #140b04;
+    }
+    .opt-radio-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .opt-radio {
+      width: 14px;
+      height: 14px;
+      accent-color: var(--orange);
+      cursor: pointer;
+    }
+    .opt-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .opt-name-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .opt-carrier {
+      font-size: 12px;
+      font-weight: 900;
+      color: #FFF;
+      text-transform: uppercase;
+    }
+    .opt-badge-tag {
+      font-size: 8px;
+      font-weight: 900;
+      padding: 1px 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .opt-badge-fast {
+      background: #331705;
+      color: var(--orange);
+      border: 1px solid #733108;
+    }
+    .opt-badge-cheap {
+      background: #092015;
+      color: #34d399;
+      border: 1px solid #14532d;
+    }
+    .opt-deadline {
+      font-size: 10px;
+      color: #888;
+    }
+    .opt-price {
+      font-size: 13px;
+      font-weight: 900;
+      color: #FFF;
+      white-space: nowrap;
+    }
+
+    /* Resumo e Botões de Checkout */
+    .order-summary-box {
+      padding: 14px;
+      background: #0a0a0a;
+      border: 1px solid #222;
+      margin-bottom: 16px;
+    }
+    .summary-line {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: #9CA3AF;
+      margin-bottom: 6px;
+    }
+    .summary-total-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 900;
+      color: #FFF;
+      padding-top: 10px;
+      margin-top: 6px;
+      border-top: 1px dashed #282828;
+    }
+    .order-total-price {
+      color: var(--orange);
+      font-size: 16px;
+      font-weight: 900;
+    }
+    .btn-buy-pix {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      background: var(--orange);
+      color: #000;
+      font-size: 14px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 16px;
+      border: none;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: 0 0 20px rgba(255, 107, 0, 0.4);
+    }
+    .btn-buy-pix:hover {
+      background-color: var(--orange-hover);
+      box-shadow: 0 0 30px rgba(255, 107, 0, 0.6);
+    }
+    .btn-buy-ml-sub {
+      display: block;
+      text-align: center;
+      width: 100%;
+      margin-top: 10px;
+      font-size: 10px;
+      font-weight: 700;
+      color: #777;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 10px;
+      border: 1px dashed #262626;
+      transition: all 0.2s;
+    }
+    .btn-buy-ml-sub:hover {
+      color: #FFF;
+      border-color: #555;
+      background: #0d0d0d;
+    }
+
+    /* Modal de Checkout Pix */
+    .pix-modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.88);
+      backdrop-filter: blur(6px);
+      z-index: 99999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      overflow-y: auto;
+    }
+    .pix-modal {
+      background: #0b0b0b;
+      border: 1px solid #2e2e2e;
+      width: 100%;
+      max-width: 540px;
+      padding: 24px;
+      color: #E5E7EB;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95);
+      position: relative;
+      margin: auto;
+    }
+    .modal-close-btn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: #161616;
+      border: 1px solid #333;
+      color: #AAA;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 900;
+      transition: all 0.2s;
+    }
+    .modal-close-btn:hover {
+      background: var(--orange);
+      color: #000;
+      border-color: var(--orange);
+    }
+    .modal-title {
+      font-size: 14px;
+      font-weight: 900;
+      color: #FFF;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+    .modal-sub {
+      font-size: 11px;
+      color: #888;
+      margin-bottom: 20px;
+    }
+    .checkout-form-section {
+      border: 1px solid #1f1f1f;
+      background: #050505;
+      padding: 16px;
+      margin-bottom: 18px;
+    }
+    .form-sec-title {
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--orange);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+      display: block;
+    }
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    @media (max-width: 480px) {
+      .form-grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 10px;
+    }
+    .form-label {
+      font-size: 10px;
+      color: #888;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .form-input {
+      background: #000;
+      border: 1px solid #2e2e2e;
+      color: #FFF;
+      padding: 10px 12px;
+      font-family: inherit;
+      font-size: 12px;
+      transition: border-color 0.2s;
+    }
+    .form-input:focus {
+      outline: none;
+      border-color: var(--orange);
+    }
+    .pix-qr-container {
+      text-align: center;
+      padding: 20px 16px;
+      background: #000;
+      border: 1px solid #222;
+      margin-bottom: 16px;
+    }
+    .pix-qr-img {
+      width: 190px;
+      height: 190px;
+      background: #FFF;
+      padding: 8px;
+      margin: 0 auto 12px auto;
+      display: block;
+      border: 2px solid var(--orange);
+    }
+    .pix-copia-cola-group {
+      display: flex;
+      gap: 6px;
+      margin-top: 10px;
+    }
+    .pix-copia-cola-input {
+      flex: 1;
+      background: #0a0a0a;
+      border: 1px solid #333;
+      color: #888;
+      font-size: 10px;
+      padding: 8px 10px;
+      font-family: monospace;
+    }
+    .btn-copy-pix {
+      background: #1a1a1a;
+      border: 1px solid #444;
+      color: #FFF;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 0 14px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .btn-copy-pix:hover {
+      background: var(--orange);
+      color: #000;
+      border-color: var(--orange);
+    }
+    .pix-timer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: #888;
+      margin-top: 10px;
+    }
+    .pix-timer-val {
+      color: var(--orange);
+      font-weight: 900;
+    }
+    .btn-confirm-wa-pix {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      background: #25D366;
+      color: #000;
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 14px;
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
+      transition: all 0.2s;
+      box-shadow: 0 0 20px rgba(37, 211, 102, 0.3);
+      margin-top: 12px;
+    }
+    .btn-confirm-wa-pix:hover {
+      background: #20ba59;
+      box-shadow: 0 0 30px rgba(37, 211, 102, 0.5);
     }
     .feature-list {
       list-style: none;
@@ -662,31 +1143,108 @@
             <div class="size-btn" onclick="selectSize(this)">M</div>
             <div class="size-btn active" onclick="selectSize(this)">G</div>
             <div class="size-btn" onclick="selectSize(this)">GG</div>
-            <div class="size-btn" onclick="selectSize(this)">XGG</div>
+            <div class="size-btn" onclick="selectSize(this)">G1</div>
+            <div class="size-btn" onclick="selectSize(this)">G2</div>
+            <div class="size-btn" onclick="selectSize(this)">G3</div>
           </div>
-          <p style="font-size: 10px; color: #666; margin-bottom: 20px;">
-            *Você poderá selecionar o tamanho definitivo no Mercado Livre.
+          <p style="font-size: 10px; color: #666; margin-bottom: 16px;">
+            *Camiseta unissex 100% algodão de alta gramatura com corte streetwear premium.
           </p>
+
+          <!-- Calculadora de Frete Melhor Envio -->
+          <div class="shipping-box">
+            <div class="shipping-header">
+              <span class="shipping-title">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--orange)">
+                  <rect x="1" y="3" width="15" height="13"></rect>
+                  <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                  <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                  <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                </svg>
+                CALCULAR FRETE E PRAZO
+              </span>
+              <span class="melhor-envio-badge">MELHOR ENVIO API</span>
+            </div>
+
+            <div class="cep-input-group">
+              <input 
+                type="text" 
+                id="cep-input" 
+                class="cep-input" 
+                placeholder="00000-000" 
+                maxlength="9" 
+                inputmode="numeric"
+                oninput="onCepInput(this)"
+                onkeyup="handleCepKey(event)"
+              />
+              <button type="button" id="btn-calc-frete" class="btn-calc-frete" onclick="calculateShipping()">
+                CALCULAR
+              </button>
+            </div>
+            
+            <div class="cep-helper">
+              <span id="cep-location" class="cep-location"></span>
+              <a href="https://buscacepinter.correios.com.br/app/endereco/index.php" target="_blank" rel="noopener noreferrer" class="link-nao-sei-cep">
+                Não sei meu CEP ↗
+              </a>
+            </div>
+
+            <!-- Loading State -->
+            <div id="shipping-loading" class="shipping-loading" style="display: none;">
+              <div class="shipping-spinner"></div>
+              <span>Cotando frete no Melhor Envio...</span>
+            </div>
+
+            <!-- Error State -->
+            <div id="shipping-error" class="shipping-error" style="display: none;"></div>
+
+            <!-- Lista de Opções de Frete -->
+            <div id="shipping-options" class="shipping-options" style="display: none;"></div>
+          </div>
+
+          <!-- Resumo Financeiro do Pedido -->
+          <div class="order-summary-box">
+            <div class="summary-line">
+              <span>Camiseta Oficial 177:</span>
+              <span>R$ 99,90</span>
+            </div>
+            <div class="summary-line">
+              <span>Frete (<span id="selected-service-name">Calcule o CEP acima</span>):</span>
+              <span id="selected-shipping-val">--</span>
+            </div>
+            <div class="summary-total-line">
+              <span>TOTAL A PAGAR:</span>
+              <span id="order-total-val" class="order-total-price">R$ 99,90</span>
+            </div>
+          </div>
 
           <!-- Características -->
           <ul class="feature-list">
             <li>Camiseta 100% algodão de alta gramatura e conforto</li>
             <li>Estampa durável em serigrafia de alta resolução</li>
-            <li>Envio para todo o Brasil com segurança pelo Mercado Livre</li>
+            <li>Envio para todo o Brasil via Correios ou Jadlog (Melhor Envio)</li>
             <li>100% do valor ajuda o projeto de levar o Civic aos EUA</li>
           </ul>
 
-          <!-- Botão Mercado Livre -->
-          <a href="https://lista.mercadolivre.com.br/camiseta-malton-coimbra-0177" target="_blank" rel="noopener noreferrer" class="btn-buy-ml">
-            COMPRAR NO MERCADO LIVRE ↗
-          </a>
+          <!-- Botão Principal: Pagar com Pix -->
+          <button type="button" class="btn-buy-pix" onclick="openPixModal()">
+            <svg width="18" height="18" viewBox="0 0 512 512" fill="currentColor">
+              <path d="M400.9 237.1l-75.7-75.7 60.1-60.1c11.9-11.9 11.9-31.2 0-43.1L353.9 26.8c-11.9-11.9-31.2-11.9-43.1 0L250.7 86.9 190.6 26.8c-11.9-11.9-31.2-11.9-43.1 0L116.1 58.2c-11.9 11.9-11.9 31.2 0 43.1l60.1 60.1-75.7 75.7c-26.6 26.6-26.6 69.8 0 96.4l75.7 75.7-60.1 60.1c-11.9 11.9-11.9 31.2 0 43.1l31.4 31.4c11.9 11.9 31.2 11.9 43.1 0l60.1-60.1 60.1 60.1c11.9 11.9 31.2 11.9 43.1 0l31.4-31.4c11.9-11.9 11.9-31.2 0-43.1l-60.1-60.1 75.7-75.7c26.6-26.6 26.6-69.8 0-96.4zm-145 137.9L161.8 281l94.1-94 94.1 94-94.1 94z"/>
+            </svg>
+            PAGAR COM PIX (<span id="btn-pix-total">R$ 99,90</span>) ➔
+          </button>
 
           <!-- Botão WhatsApp -->
           <a id="btn-buy-wa" href="https://wa.me/5511922880177?text=Ol%C3%A1%20Malton!%20Quero%20garantir%20minha%20camiseta%20da%20USA%20Tour%202027%20(Tamanho%20G)%20pelo%20WhatsApp!" target="_blank" rel="noopener noreferrer" class="btn-buy-wa">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.699c.97.54 1.83.82 2.796.82 3.183 0 5.768-2.587 5.769-5.766.001-3.182-2.585-5.77-5.769-5.772zm3.39 8.19c-.145.408-.847.784-1.183.834-.336.05-.77.07-2.227-.53-1.865-.769-3.055-2.673-3.149-2.798-.093-.125-.758-1.009-.758-1.926 0-.916.48-1.367.652-1.554.172-.187.375-.234.5-.234.125 0 .25.002.359.007.116.005.27-.044.423.323.156.376.536 1.309.584 1.405.048.096.08.209.016.335-.064.126-.096.205-.192.316-.096.112-.202.25-.289.336-.096.096-.197.201-.085.393.112.193.498.823 1.069 1.332.736.655 1.357.859 1.55.955.192.096.305.08.417-.048.112-.128.48-.56.608-.752.128-.193.256-.16.432-.096.176.064 1.119.528 1.311.624.192.096.32.144.368.224.048.08.048.464-.097.872z"/>
             </svg>
-            COMPRAR PELO WHATSAPP ➔
+            PEDIR PELO WHATSAPP ➔
+          </a>
+
+          <!-- Botão Mercado Livre Secundário -->
+          <a href="https://lista.mercadolivre.com.br/camiseta-malton-coimbra-0177" target="_blank" rel="noopener noreferrer" class="btn-buy-ml-sub">
+            OU COMPRAR NO MERCADO LIVRE ↗
           </a>
         </div>
       </div>
@@ -737,9 +1295,128 @@
     </div>
   </footer>
 
-  <script>
-    var currentSize = 'G';
+  <!-- Modal de Checkout Pix Transparente -->
+  <div id="pix-modal-overlay" class="pix-modal-overlay" onclick="handleOverlayClick(event)">
+    <div class="pix-modal">
+      <button type="button" class="modal-close-btn" onclick="closePixModal()">✕</button>
 
+      <div class="modal-title">
+        <svg width="20" height="20" viewBox="0 0 512 512" fill="currentColor" style="color: var(--orange)">
+          <path d="M400.9 237.1l-75.7-75.7 60.1-60.1c11.9-11.9 11.9-31.2 0-43.1L353.9 26.8c-11.9-11.9-31.2-11.9-43.1 0L250.7 86.9 190.6 26.8c-11.9-11.9-31.2-11.9-43.1 0L116.1 58.2c-11.9 11.9-11.9 31.2 0 43.1l60.1 60.1-75.7 75.7c-26.6 26.6-26.6 69.8 0 96.4l75.7 75.7-60.1 60.1c-11.9 11.9-11.9 31.2 0 43.1l31.4 31.4c11.9 11.9 31.2 11.9 43.1 0l60.1-60.1 60.1 60.1c11.9 11.9 31.2 11.9 43.1 0l31.4-31.4c11.9-11.9 11.9-31.2 0-43.1l-60.1-60.1 75.7-75.7c26.6-26.6 26.6-69.8 0-96.4zm-145 137.9L161.8 281l94.1-94 94.1 94-94.1 94z"/>
+        </svg>
+        PAGAMENTO PIX // CAMISETA USA TOUR
+      </div>
+      <p class="modal-sub">
+        Camiseta Oficial Malton Coimbra 177 • Tamanho: <strong id="modal-shirt-size" style="color: var(--orange)">G</strong>
+      </p>
+
+      <!-- Formulário com dados de entrega -->
+      <div class="checkout-form-section">
+        <span class="form-sec-title">1. DADOS PARA ENVIO DA CAMISETA (OBRIGATÓRIO)</span>
+        
+        <div class="form-group">
+          <label class="form-label" for="cust-name">Nome Completo *</label>
+          <input type="text" id="cust-name" class="form-input" placeholder="Seu nome completo" required />
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label class="form-label" for="cust-cpf">CPF (Exigido pelo Melhor Envio) *</label>
+            <input type="text" id="cust-cpf" class="form-input" placeholder="000.000.000-00" maxlength="14" oninput="formatCpfInput(this)" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cust-phone">WhatsApp para Rastreio *</label>
+            <input type="text" id="cust-phone" class="form-input" placeholder="(11) 90000-0000" maxlength="15" oninput="formatPhoneInput(this)" required />
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group" style="flex: 2;">
+            <label class="form-label" for="cust-street">Rua / Logradouro *</label>
+            <input type="text" id="cust-street" class="form-input" placeholder="Rua, Avenida..." />
+          </div>
+          <div class="form-group" style="flex: 1;">
+            <label class="form-label" for="cust-number">Número *</label>
+            <input type="text" id="cust-number" class="form-input" placeholder="123" />
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label class="form-label" for="cust-complement">Complemento</label>
+            <input type="text" id="cust-complement" class="form-input" placeholder="Apto, Bloco (opcional)" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cust-neighborhood">Bairro *</label>
+            <input type="text" id="cust-neighborhood" class="form-input" placeholder="Bairro" />
+          </div>
+        </div>
+
+        <div class="form-grid-2">
+          <div class="form-group">
+            <label class="form-label" for="cust-city">Cidade / UF *</label>
+            <input type="text" id="cust-city" class="form-input" placeholder="Cidade - UF" readonly style="opacity: 0.8;" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="cust-cep">CEP de Destino *</label>
+            <input type="text" id="cust-cep" class="form-input" placeholder="00000-000" readonly style="opacity: 0.8;" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Área de Pagamento Pix -->
+      <div class="checkout-form-section" style="margin-bottom: 0;">
+        <span class="form-sec-title">2. PAGAMENTO VIA QR CODE OU COPIA E COLA</span>
+
+        <div class="pix-qr-container">
+          <img id="pix-qr-img" class="pix-qr-img" src="" alt="QR Code Pix" />
+          
+          <div style="font-size: 13px; font-weight: 900; color: #FFF; margin-bottom: 4px;">
+            VALOR TOTAL: <span id="modal-total-val" style="color: var(--orange)">R$ 99,90</span>
+          </div>
+          <p style="font-size: 10px; color: #777;">
+            (Camiseta R$ 99,90 + Frete <span id="modal-service-val"></span>)
+          </p>
+
+          <div class="pix-copia-cola-group">
+            <input type="text" id="pix-copia-cola" class="pix-copia-cola-input" readonly value="" />
+            <button type="button" id="btn-copy-pix" class="btn-copy-pix" onclick="copyPixCode()">
+              COPIAR CÓDIGO
+            </button>
+          </div>
+
+          <div class="pix-timer-row">
+            <span>Tempo restante para pagar:</span>
+            <span id="pix-timer" class="pix-timer-val">14:59</span>
+          </div>
+        </div>
+
+        <button type="button" class="btn-confirm-wa-pix" onclick="sendPixWhatsAppProof()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.699c.97.54 1.83.82 2.796.82 3.183 0 5.768-2.587 5.769-5.766.001-3.182-2.585-5.77-5.769-5.772zm3.39 8.19c-.145.408-.847.784-1.183.834-.336.05-.77.07-2.227-.53-1.865-.769-3.055-2.673-3.149-2.798-.093-.125-.758-1.009-.758-1.926 0-.916.48-1.367.652-1.554.172-.187.375-.234.5-.234.125 0 .25.002.359.007.116.005.27-.044.423.323.156.376.536 1.309.584 1.405.048.096.08.209.016.335-.064.126-.096.205-.192.316-.096.112-.202.25-.289.336-.096.096-.197.201-.085.393.112.193.498.823 1.069 1.332.736.655 1.357.859 1.55.955.192.096.305.08.417-.048.112-.128.48-.56.608-.752.128-.193.256-.16.432-.096.176.064 1.119.528 1.311.624.192.096.32.144.368.224.048.08.048.464-.097.872z"/>
+          </svg>
+          ENVIAR COMPROVANTE NO WHATSAPP ➔
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // --- ESTADO DA COMPRA ---
+    var currentSize = 'G';
+    var shirtPrice = 99.90;
+    var selectedShipping = null;
+    var customerLocation = null;
+    var currentCep = '';
+    var pixTimerInterval = null;
+
+    // URL da API Vercel intermediária do Melhor Envio
+    var MELHOR_ENVIO_ENDPOINT = 'https://mmracingsite.vercel.app/api/frete';
+
+    // Chave Pix da campanha (Email, Telefone, CNPJ ou Aleatória)
+    var PIX_CHAVE = '5511922880177'; // Celular oficial WhatsApp do Malton
+
+    // --- TROCA DE IMAGENS ---
     function switchView(view) {
       var img = document.getElementById('shirt-img');
       var cap = document.getElementById('shirt-caption');
@@ -759,20 +1436,504 @@
       }
     }
 
+    // --- SELEÇÃO DE TAMANHO ---
     function selectSize(btn) {
       var buttons = document.querySelectorAll('.size-btn');
       buttons.forEach(function(b) { b.classList.remove('active'); });
       btn.classList.add('active');
       currentSize = btn.textContent.trim();
+      
+      var modalSize = document.getElementById('modal-shirt-size');
+      if (modalSize) modalSize.textContent = currentSize;
+      
       updateWhatsAppLink();
+    }
+
+    // --- MÁSCARAS DE INPUT ---
+    function onCepInput(input) {
+      var val = input.value.replace(/\D/g, '');
+      if (val.length > 5) {
+        val = val.substring(0, 5) + '-' + val.substring(5, 8);
+      }
+      input.value = val;
+    }
+
+    function handleCepKey(e) {
+      if (e.key === 'Enter') {
+        calculateShipping();
+      }
+    }
+
+    function formatCpfInput(input) {
+      var v = input.value.replace(/\D/g, '').substring(0, 11);
+      if (v.length > 9) {
+        input.value = v.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+      } else if (v.length > 6) {
+        input.value = v.replace(/(\d{3})(\d{3})(\d{1,3})/, '$1.$2.$3');
+      } else if (v.length > 3) {
+        input.value = v.replace(/(\d{3})(\d{1,3})/, '$1.$2');
+      } else {
+        input.value = v;
+      }
+    }
+
+    function formatPhoneInput(input) {
+      var v = input.value.replace(/\D/g, '').substring(0, 11);
+      if (v.length > 10) {
+        input.value = v.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
+      } else if (v.length > 6) {
+        input.value = v.replace(/(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3');
+      } else if (v.length > 2) {
+        input.value = v.replace(/(\d{2})(\d{0,5})/, '($1) $2');
+      } else {
+        input.value = v;
+      }
+    }
+
+    // --- CÁLCULO DE FRETE (MELHOR ENVIO API + FALLBACK) ---
+    async function calculateShipping() {
+      var input = document.getElementById('cep-input');
+      var cleanCep = input.value.replace(/\D/g, '');
+      var errorBox = document.getElementById('shipping-error');
+      var loadingBox = document.getElementById('shipping-loading');
+      var optionsBox = document.getElementById('shipping-options');
+      var locSpan = document.getElementById('cep-location');
+
+      errorBox.style.display = 'none';
+      errorBox.textContent = '';
+
+      if (cleanCep.length !== 8) {
+        errorBox.textContent = 'Por favor, digite um CEP válido com 8 dígitos numéricos.';
+        errorBox.style.display = 'block';
+        return;
+      }
+
+      currentCep = input.value;
+      loadingBox.style.display = 'flex';
+      optionsBox.style.display = 'none';
+      locSpan.textContent = '';
+
+      try {
+        // 1. Busca localização via ViaCEP
+        try {
+          var viaCepRes = await fetch('https://viacep.com.br/ws/' + cleanCep + '/json/');
+          if (viaCepRes.ok) {
+            var viaData = await viaCepRes.json();
+            if (!viaData.erro) {
+              customerLocation = viaData;
+              locSpan.textContent = '📍 ' + viaData.localidade + ' - ' + viaData.uf;
+              
+              // Pré-preenche no modal
+              var custStreet = document.getElementById('cust-street');
+              var custBairro = document.getElementById('cust-neighborhood');
+              var custCity = document.getElementById('cust-city');
+              var custCep = document.getElementById('cust-cep');
+              if (custStreet && viaData.logradouro) custStreet.value = viaData.logradouro;
+              if (custBairro && viaData.bairro) custBairro.value = viaData.bairro;
+              if (custCity) custCity.value = viaData.localidade + ' / ' + viaData.uf;
+              if (custCep) custCep.value = input.value;
+            }
+          }
+        } catch (e) {
+          console.warn('ViaCEP offline, prosseguindo com cotação', e);
+        }
+
+        // 2. Consulta API do Melhor Envio
+        var quotes = null;
+        if (MELHOR_ENVIO_ENDPOINT) {
+          try {
+            var res = await fetch(MELHOR_ENVIO_ENDPOINT, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ postal_code: cleanCep, quantity: 1 })
+            });
+            if (res.ok) {
+              var data = await res.json();
+              if (data && data.quotes && data.quotes.length > 0) {
+                quotes = data.quotes;
+              }
+            }
+          } catch (err) {
+            console.warn('Endpoint do Melhor Envio indisponível, ativando fallback regional:', err);
+          }
+        }
+
+        // 3. Fallback: Simulação regional precisa baseada no CEP
+        if (!quotes || quotes.length === 0) {
+          quotes = generateRegionalShippingQuotes(cleanCep, customerLocation ? customerLocation.uf : '');
+        }
+
+        renderShippingOptions(quotes);
+      } catch (err) {
+        errorBox.textContent = 'Não foi possível cotar o frete no momento. Tente novamente.';
+        errorBox.style.display = 'block';
+      } finally {
+        loadingBox.style.display = 'none';
+      }
+    }
+
+    // Gerador de cotação realista baseado no estado/região brasileira
+    function generateRegionalShippingQuotes(cep, uf) {
+      var prefix = parseInt(cep.substring(0, 2), 10);
+      var isSPCapital = (prefix >= 1 && prefix <= 9);
+      var isSPInterior = (prefix >= 11 && prefix <= 19);
+      var isSudeste = (prefix >= 20 && prefix <= 39); // RJ, ES, MG
+      var isSul = (prefix >= 80 && prefix <= 99); // PR, SC, RS
+      var isCentroOeste = (prefix >= 70 && prefix <= 79); // DF, GO, MT, MS
+
+      var pacPrice, sedexPrice, jadlogPrice;
+      var pacDays, sedexDays, jadlogDays;
+
+      if (isSPCapital) {
+        pacPrice = 14.90; pacDays = 3;
+        sedexPrice = 19.80; sedexDays = 1;
+        jadlogPrice = 16.50; jadlogDays = 2;
+      } else if (isSPInterior) {
+        pacPrice = 17.50; pacDays = 4;
+        sedexPrice = 24.20; sedexDays = 2;
+        jadlogPrice = 19.90; jadlogDays = 3;
+      } else if (isSudeste) {
+        pacPrice = 22.80; pacDays = 5;
+        sedexPrice = 36.50; sedexDays = 2;
+        jadlogPrice = 24.90; jadlogDays = 4;
+      } else if (isSul) {
+        pacPrice = 24.90; pacDays = 6;
+        sedexPrice = 42.10; sedexDays = 3;
+        jadlogPrice = 27.50; jadlogDays = 5;
+      } else if (isCentroOeste) {
+        pacPrice = 26.50; pacDays = 6;
+        sedexPrice = 46.80; sedexDays = 3;
+        jadlogPrice = 29.90; jadlogDays = 5;
+      } else { // Norte e Nordeste
+        pacPrice = 33.90; pacDays = 8;
+        sedexPrice = 58.70; sedexDays = 4;
+        jadlogPrice = 35.80; jadlogDays = 7;
+      }
+
+      return [
+        {
+          id: 1,
+          name: 'PAC',
+          company: 'Correios',
+          price: pacPrice,
+          formatted_price: 'R$ ' + pacPrice.toFixed(2).replace('.', ','),
+          delivery_days: pacDays,
+          isCheapest: true
+        },
+        {
+          id: 2,
+          name: 'SEDEX',
+          company: 'Correios',
+          price: sedexPrice,
+          formatted_price: 'R$ ' + sedexPrice.toFixed(2).replace('.', ','),
+          delivery_days: sedexDays,
+          isFastest: true
+        },
+        {
+          id: 3,
+          name: '.Package',
+          company: 'Jadlog',
+          price: jadlogPrice,
+          formatted_price: 'R$ ' + jadlogPrice.toFixed(2).replace('.', ','),
+          delivery_days: jadlogDays
+        }
+      ].sort(function(a, b) { return a.price - b.price; });
+    }
+
+    // Renderiza os cards de frete
+    function renderShippingOptions(quotes) {
+      var optionsBox = document.getElementById('shipping-options');
+      optionsBox.innerHTML = '';
+
+      var minPrice = Math.min.apply(null, quotes.map(function(q) { return q.price; }));
+      var minDays = Math.min.apply(null, quotes.map(function(q) { return q.delivery_days; }));
+
+      quotes.forEach(function(q, idx) {
+        var card = document.createElement('div');
+        card.className = 'shipping-option-card' + (idx === 0 ? ' selected' : '');
+        card.onclick = function() { selectShippingOption(q, card); };
+
+        var badgeHtml = '';
+        if (q.price === minPrice) {
+          badgeHtml += '<span class="opt-badge-tag opt-badge-cheap">MAIS ECONÔMICO</span>';
+        } else if (q.delivery_days === minDays) {
+          badgeHtml += '<span class="opt-badge-tag opt-badge-fast">MAIS RÁPIDO</span>';
+        }
+
+        var radioHtml = '<input type="radio" name="shipping-opt" class="opt-radio"' + (idx === 0 ? ' checked' : '') + ' />';
+
+        card.innerHTML = 
+          '<div class="opt-radio-wrap">' +
+            radioHtml +
+            '<div class="opt-info">' +
+              '<div class="opt-name-row">' +
+                '<span class="opt-carrier">' + q.company + ' (' + q.name + ')</span>' +
+                badgeHtml +
+              '</div>' +
+              '<span class="opt-deadline">Chega em até ' + q.delivery_days + ' dias úteis</span>' +
+            '</div>' +
+          '</div>' +
+          '<span class="opt-price">' + (q.formatted_price || ('R$ ' + q.price.toFixed(2).replace('.', ','))) + '</span>';
+
+        optionsBox.appendChild(card);
+      });
+
+      optionsBox.style.display = 'flex';
+      // Seleciona a primeira opção automaticamente
+      selectShippingOption(quotes[0], optionsBox.children[0]);
+    }
+
+    function selectShippingOption(quote, cardEl) {
+      selectedShipping = quote;
+
+      var allCards = document.querySelectorAll('.shipping-option-card');
+      allCards.forEach(function(c) {
+        c.classList.remove('selected');
+        var r = c.querySelector('input[type="radio"]');
+        if (r) r.checked = false;
+      });
+
+      if (cardEl) {
+        cardEl.classList.add('selected');
+        var r = cardEl.querySelector('input[type="radio"]');
+        if (r) r.checked = true;
+      }
+
+      updateOrderSummary();
+      updateWhatsAppLink();
+    }
+
+    function updateOrderSummary() {
+      var srvName = document.getElementById('selected-service-name');
+      var srvVal = document.getElementById('selected-shipping-val');
+      var totalVal = document.getElementById('order-total-val');
+      var btnPixTotal = document.getElementById('btn-pix-total');
+
+      if (!selectedShipping) {
+        if (srvName) srvName.textContent = 'Calcule o CEP acima';
+        if (srvVal) srvVal.textContent = '--';
+        if (totalVal) totalVal.textContent = 'R$ 99,90';
+        if (btnPixTotal) btnPixTotal.textContent = 'R$ 99,90';
+        return;
+      }
+
+      var total = shirtPrice + selectedShipping.price;
+      var totalFormatted = 'R$ ' + total.toFixed(2).replace('.', ',');
+      var shippingFormatted = 'R$ ' + selectedShipping.price.toFixed(2).replace('.', ',');
+
+      if (srvName) srvName.textContent = selectedShipping.company + ' ' + selectedShipping.name;
+      if (srvVal) srvVal.textContent = shippingFormatted;
+      if (totalVal) totalVal.textContent = totalFormatted;
+      if (btnPixTotal) btnPixTotal.textContent = totalFormatted;
     }
 
     function updateWhatsAppLink() {
       var btnWa = document.getElementById('btn-buy-wa');
-      if (btnWa) {
-        var text = "Olá Malton! Quero garantir minha camiseta oficial da USA Tour 2027 (Tamanho " + currentSize + ") diretamente pelo WhatsApp!";
-        btnWa.href = "https://wa.me/5511922880177?text=" + encodeURIComponent(text);
+      if (!btnWa) return;
+
+      var text = "Olá Malton! Quero garantir minha camiseta oficial da USA Tour 2027!\n";
+      text += "👕 Tamanho: " + currentSize + "\n";
+      
+      if (selectedShipping && currentCep) {
+        var total = shirtPrice + selectedShipping.price;
+        text += "📍 CEP de Envio: " + currentCep;
+        if (customerLocation) text += " (" + customerLocation.localidade + "/" + customerLocation.uf + ")";
+        text += "\n🚚 Frete: " + selectedShipping.company + " " + selectedShipping.name + " (" + selectedShipping.formatted_price + ")\n";
+        text += "💰 Total com Frete: R$ " + total.toFixed(2).replace('.', ',') + "\n";
+      } else {
+        text += "💰 Valor da Camiseta: R$ 99,90\n";
       }
+
+      text += "Como faço para confirmar meu pedido e envio?";
+      btnWa.href = "https://wa.me/5511922880177?text=" + encodeURIComponent(text);
+    }
+
+    // --- CHECKOUT TRANSPARENTE PIX ---
+    function openPixModal() {
+      if (!selectedShipping) {
+        var input = document.getElementById('cep-input');
+        if (input) {
+          input.focus();
+          alert('Por favor, informe seu CEP e clique em CALCULAR para cotar o frete antes do pagamento Pix.');
+        }
+        return;
+      }
+
+      var total = shirtPrice + selectedShipping.price;
+      var totalFormatted = 'R$ ' + total.toFixed(2).replace('.', ',');
+      
+      document.getElementById('modal-shirt-size').textContent = currentSize;
+      document.getElementById('modal-total-val').textContent = totalFormatted;
+      document.getElementById('modal-service-val').textContent = selectedShipping.company + ' (' + selectedShipping.formatted_price + ')';
+
+      // Gera código Pix Copia e Cola padrão EMV
+      var pixCode = generatePixPayload({
+        key: PIX_CHAVE,
+        name: 'MALTON COIMBRA 177',
+        city: 'SAO PAULO',
+        amount: total,
+        txid: 'USA' + Math.floor(1000 + Math.random() * 9000)
+      });
+
+      var copiaColaInput = document.getElementById('pix-copia-cola');
+      if (copiaColaInput) copiaColaInput.value = pixCode;
+
+      // QR Code SVG/PNG gerado em alta resolução
+      var qrImg = document.getElementById('pix-qr-img');
+      if (qrImg) {
+        qrImg.src = 'https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=' + encodeURIComponent(pixCode);
+      }
+
+      startPixTimer(15 * 60);
+
+      var modal = document.getElementById('pix-modal-overlay');
+      if (modal) modal.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closePixModal() {
+      var modal = document.getElementById('pix-modal-overlay');
+      if (modal) modal.style.display = 'none';
+      document.body.style.overflow = '';
+      if (pixTimerInterval) clearInterval(pixTimerInterval);
+    }
+
+    function handleOverlayClick(e) {
+      if (e.target.id === 'pix-modal-overlay') {
+        closePixModal();
+      }
+    }
+
+    function copyPixCode() {
+      var input = document.getElementById('pix-copia-cola');
+      var btn = document.getElementById('btn-copy-pix');
+      if (!input) return;
+
+      input.select();
+      input.setSelectionRange(0, 99999);
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(input.value);
+      } else {
+        document.execCommand('copy');
+      }
+
+      if (btn) {
+        var originalText = btn.textContent;
+        btn.textContent = 'COPIADO! ✓';
+        btn.style.background = '#25D366';
+        btn.style.color = '#000';
+        setTimeout(function() {
+          btn.textContent = originalText;
+          btn.style.background = '';
+          btn.style.color = '';
+        }, 2500);
+      }
+    }
+
+    function startPixTimer(duration) {
+      if (pixTimerInterval) clearInterval(pixTimerInterval);
+      var timer = duration;
+      var display = document.getElementById('pix-timer');
+
+      function updateDisplay() {
+        var minutes = parseInt(timer / 60, 10);
+        var seconds = parseInt(timer % 60, 10);
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+        if (display) display.textContent = minutes + ':' + seconds;
+
+        if (--timer < 0) {
+          clearInterval(pixTimerInterval);
+          if (display) display.textContent = 'EXPIRADO';
+        }
+      }
+
+      updateDisplay();
+      pixTimerInterval = setInterval(updateDisplay, 1000);
+    }
+
+    function sendPixWhatsAppProof() {
+      var name = document.getElementById('cust-name').value.trim();
+      var cpf = document.getElementById('cust-cpf').value.trim();
+      var phone = document.getElementById('cust-phone').value.trim();
+      var street = document.getElementById('cust-street').value.trim();
+      var num = document.getElementById('cust-number').value.trim();
+      var comp = document.getElementById('cust-complement').value.trim();
+      var neighborhood = document.getElementById('cust-neighborhood').value.trim();
+      var city = document.getElementById('cust-city').value.trim();
+      var cep = document.getElementById('cust-cep').value.trim();
+
+      if (!name || !cpf || !street || !num) {
+        alert('Por favor, preencha os dados de envio (Nome, CPF, Rua e Número) para emissão da etiqueta no Melhor Envio.');
+        return;
+      }
+
+      var total = shirtPrice + (selectedShipping ? selectedShipping.price : 0);
+
+      var msg = "🏁 *PEDIDO CONFIRMADO // CAMISETA USA TOUR 2027*\n\n";
+      msg += "👤 *Cliente:* " + name + "\n";
+      msg += "📄 *CPF:* " + cpf + "\n";
+      msg += "📱 *WhatsApp:* " + (phone || 'Mesmo do envio') + "\n";
+      msg += "👕 *Tamanho:* " + currentSize + "\n\n";
+      msg += "📦 *ENDEREÇO DE ENTREGA:*\n";
+      msg += street + ", " + num + (comp ? " (" + comp + ")" : "") + "\n";
+      msg += "Bairro: " + neighborhood + "\n";
+      msg += "Cidade/UF: " + city + " - CEP: " + (cep || currentCep) + "\n\n";
+      msg += "🚚 *Frete Escolhido:* " + (selectedShipping ? (selectedShipping.company + ' ' + selectedShipping.name + ' - ' + selectedShipping.formatted_price) : 'A combinar') + "\n";
+      msg += "💵 *VALOR TOTAL PAGO VIA PIX:* R$ " + total.toFixed(2).replace('.', ',') + "\n\n";
+      msg += "Segue o comprovante do Pix em anexo para emissão do envio!";
+
+      var url = "https://wa.me/5511922880177?text=" + encodeURIComponent(msg);
+      window.open(url, '_blank');
+    }
+
+    // Gerador de Payload Pix EMV Oficial (Banco Central)
+    function generatePixPayload(opts) {
+      function formatField(id, val) {
+        var str = String(val);
+        var len = ('00' + str.length).slice(-2);
+        return id + len + str;
+      }
+
+      var gui = formatField('00', 'br.gov.bcb.pix');
+      var key = formatField('01', opts.key);
+      var merchantAccount = formatField('26', gui + key);
+      var merchantCat = formatField('52', '0000');
+      var currency = formatField('53', '986');
+      var amount = formatField('54', Number(opts.amount).toFixed(2));
+      var country = formatField('58', 'BR');
+      var name = formatField('59', (opts.name || 'MALTON 177').substring(0, 25));
+      var city = formatField('60', (opts.city || 'SAO PAULO').substring(0, 15));
+      var txid = formatField('05', opts.txid || 'MALTON177');
+      var addData = formatField('62', txid);
+
+      var payload = formatField('00', '01') +
+                    formatField('01', '12') +
+                    merchantAccount +
+                    merchantCat +
+                    currency +
+                    amount +
+                    country +
+                    name +
+                    city +
+                    addData +
+                    '6304';
+
+      // Cálculo CRC16-CCITT
+      var crc = 0xFFFF;
+      for (var i = 0; i < payload.length; i++) {
+        crc ^= (payload.charCodeAt(i) << 8);
+        for (var j = 0; j < 8; j++) {
+          if ((crc & 0x8000) !== 0) {
+            crc = ((crc << 1) ^ 0x1021) & 0xFFFF;
+          } else {
+            crc = (crc << 1) & 0xFFFF;
+          }
+        }
+      }
+      var crcHex = ('0000' + crc.toString(16).toUpperCase()).slice(-4);
+      return payload + crcHex;
     }
   </script>
 

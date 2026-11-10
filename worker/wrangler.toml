@@ -1,0 +1,12 @@
+name = "mmracing-frete-melhorenvio"
+main = "melhor-envio-proxy.js"
+compatibility_date = "2024-01-01"
+
+[vars]
+ORIGIN_POSTAL_CODE = "13255505"
+MELHOR_ENVIO_ENV = "production"
+
+# Para definir o MELHOR_ENVIO_TOKEN com segurança no Cloudflare:
+# npx wrangler secret put MELHOR_ENVIO_TOKEN
+# Ou cole diretamente na aba 'Settings -> Variables and Secrets' no painel da Cloudflare.
+
