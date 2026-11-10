@@ -24,7 +24,7 @@ const INSTAGRAM_URL = "https://www.instagram.com/maltoncoimbra/";
 const WHATSAPP_DUVIDAS_URL = "https://wa.me/5511922880177?text=" + encodeURIComponent("Olá Malton! Vi a página da USA Tour 2027 e gostaria de saber mais sobre a camiseta oficial do Civic 177!");
 
 const SIZES = ["P", "M", "G", "GG", "G1", "G2", "G3"];
-const PIX_CHAVE = "5511922880177";
+const PIX_CHAVE = "+5511922880177";
 
 interface ShippingQuote {
     id: number;
@@ -36,25 +36,42 @@ interface ShippingQuote {
     delivery_range?: { min: number; max: number };
 }
 
-function generatePixPayload(opts: { key: string; name: string; city: string; amount: number; txid?: string }) {
+function generatePixPayload(opts: { key: string; name?: string; city?: string; amount?: number; txid?: string }) {
     function formatField(id: string, val: string) {
         const len = ('00' + val.length).slice(-2);
         return id + len + val;
     }
     const gui = formatField('00', 'br.gov.bcb.pix');
-    const key = formatField('01', opts.key);
+    let keyFormatted = opts.key.trim();
+    if (/^\d{10,11}$/.test(keyFormatted)) {
+        keyFormatted = '+55' + keyFormatted;
+    } else if (/^55\d{10,11}$/.test(keyFormatted)) {
+        keyFormatted = '+' + keyFormatted;
+    }
+    const key = formatField('01', keyFormatted);
     const merchantAccount = formatField('26', gui + key);
     const merchantCat = formatField('52', '0000');
     const currency = formatField('53', '986');
-    const amount = formatField('54', Number(opts.amount).toFixed(2));
+    const amount = opts.amount ? formatField('54', Number(opts.amount).toFixed(2)) : '';
     const country = formatField('58', 'BR');
-    const name = formatField('59', (opts.name || 'MALTON 177').substring(0, 25));
-    const city = formatField('60', (opts.city || 'SAO PAULO').substring(0, 15));
-    const txid = formatField('05', opts.txid || 'MALTON177');
+    const cleanName = (opts.name || 'MALTON COIMBRA 177')
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .substring(0, 25)
+        .toUpperCase();
+    const cleanCity = (opts.city || 'SAO PAULO')
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .substring(0, 15)
+        .toUpperCase();
+    const name = formatField('59', cleanName);
+    const city = formatField('60', cleanCity);
+    const txid = formatField('05', opts.txid || '***');
     const addData = formatField('62', txid);
 
+    // 010211 = QR Code Estático Oficial do Banco Central do Brasil
     const payload = formatField('00', '01') +
-                    formatField('01', '12') +
+                    formatField('01', '11') +
                     merchantAccount +
                     merchantCat +
                     currency +
@@ -192,28 +209,39 @@ export default function MaltonUsaPage() {
     const shirtPrice = 99.90;
     const totalOrder = shirtPrice + (selectedQuote ? selectedQuote.price : 0);
 
+    const [pixPayload, setPixPayload] = useState("");
+    const [copiedChave, setCopiedChave] = useState(false);
+
     const handleOpenPixModal = () => {
         if (!selectedQuote) {
             alert("Por favor, digite seu CEP e clique em CALCULAR FRETE antes de prosseguir com o pagamento Pix.");
             return;
         }
+        const generated = generatePixPayload({
+            key: PIX_CHAVE,
+            name: "MALTON COIMBRA 177",
+            city: "SAO PAULO",
+            amount: totalOrder,
+            txid: "***"
+        });
+        setPixPayload(generated);
         setPixTimeLeft(15 * 60);
         setIsPixModalOpen(true);
     };
-
-    const pixPayload = generatePixPayload({
-        key: PIX_CHAVE,
-        name: "MALTON COIMBRA 177",
-        city: "SAO PAULO",
-        amount: totalOrder,
-        txid: "USA" + Math.floor(1000 + Math.random() * 9000)
-    });
 
     const handleCopyPix = () => {
         if (navigator.clipboard) {
             navigator.clipboard.writeText(pixPayload);
             setCopiedPix(true);
             setTimeout(() => setCopiedPix(false), 2500);
+        }
+    };
+
+    const handleCopyChave = () => {
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(PIX_CHAVE);
+            setCopiedChave(true);
+            setTimeout(() => setCopiedChave(false), 2500);
         }
     };
 
@@ -976,17 +1004,43 @@ export default function MaltonUsaPage() {
                         {/* Pagamento Pix */}
                         <div className="border border-[#1f1f1f] bg-black p-4 text-center">
                             <span className="text-[10px] font-black text-mm-orange uppercase tracking-wider block mb-3">
-                                2. QR CODE PIX (COPIA E COLA)
+                                2. PAGAMENTO VIA QR CODE OU CHAVE PIX
                             </span>
 
-                            {/* QR Code Img */}
-                            <div className="w-48 h-48 bg-white p-2 mx-auto mb-3 border-2 border-mm-orange">
-                                <img
-                                    src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(pixPayload)}`}
-                                    alt="QR Code Pix"
-                                    className="w-full h-full object-contain"
-                                />
+                            {/* Card Chave Pix Direta */}
+                            <div className="bg-[#111] border border-[#222] p-2.5 mb-3 flex items-center justify-between text-left">
+                                <div>
+                                    <span className="text-[10px] text-gray-400 uppercase font-bold block">
+                                        Chave Pix (Telefone / WhatsApp):
+                                    </span>
+                                    <span className="text-xs font-mono font-bold text-white select-all">
+                                        {PIX_CHAVE}
+                                    </span>
+                                </div>
+                                <button
+                                    type="button"
+                                    onClick={handleCopyChave}
+                                    className={`px-2.5 py-1 text-[11px] font-bold border transition-colors flex items-center gap-1 ${
+                                        copiedChave
+                                            ? 'bg-emerald-500 text-black border-emerald-500'
+                                            : 'bg-[#1e1e1e] hover:bg-mm-orange hover:text-black text-gray-200 border-[#444]'
+                                    }`}
+                                >
+                                    {copiedChave ? <Check size={12} /> : <Copy size={12} />}
+                                    <span>{copiedChave ? 'Copiada!' : 'Copiar Chave'}</span>
+                                </button>
                             </div>
+
+                            {/* QR Code Img - Estável e Estático */}
+                            {pixPayload && (
+                                <div className="w-48 h-48 bg-white p-2 mx-auto mb-3 border-2 border-mm-orange">
+                                    <img
+                                        src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(pixPayload)}`}
+                                        alt="QR Code Pix Estático"
+                                        className="w-full h-full object-contain"
+                                    />
+                                </div>
+                            )}
 
                             <div className="text-sm font-black text-white mb-1">
                                 TOTAL: <span className="text-mm-orange">R$ {totalOrder.toFixed(2).replace('.', ',')}</span>
@@ -1012,7 +1066,7 @@ export default function MaltonUsaPage() {
                                     }`}
                                 >
                                     {copiedPix ? <Check size={14} /> : <Copy size={14} />}
-                                    <span>{copiedPix ? 'Copiado!' : 'Copiar'}</span>
+                                    <span>{copiedPix ? 'Copiado!' : 'Copiar Código'}</span>
                                 </button>
                             </div>
 

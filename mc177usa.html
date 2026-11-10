@@ -1414,7 +1414,7 @@
     var MELHOR_ENVIO_ENDPOINT = 'https://mmracingsite.vercel.app/api/frete';
 
     // Chave Pix da campanha (Email, Telefone, CNPJ ou Aleatória)
-    var PIX_CHAVE = '5511922880177'; // Celular oficial WhatsApp do Malton
+    var PIX_CHAVE = '+5511922880177'; // Celular oficial WhatsApp do Malton
 
     // --- TROCA DE IMAGENS ---
     function switchView(view) {
@@ -1766,13 +1766,13 @@
       document.getElementById('modal-total-val').textContent = totalFormatted;
       document.getElementById('modal-service-val').textContent = selectedShipping.company + ' (' + selectedShipping.formatted_price + ')';
 
-      // Gera código Pix Copia e Cola padrão EMV
+      // Gera código Pix Copia e Cola padrão EMV oficial BACEN
       var pixCode = generatePixPayload({
         key: PIX_CHAVE,
         name: 'MALTON COIMBRA 177',
         city: 'SAO PAULO',
         amount: total,
-        txid: 'USA' + Math.floor(1000 + Math.random() * 9000)
+        txid: '***'
       });
 
       var copiaColaInput = document.getElementById('pix-copia-cola');
@@ -1897,19 +1897,28 @@
       }
 
       var gui = formatField('00', 'br.gov.bcb.pix');
-      var key = formatField('01', opts.key);
+      var keyFormatted = String(opts.key).trim();
+      if (/^\d{10,11}$/.test(keyFormatted)) {
+        keyFormatted = '+55' + keyFormatted;
+      } else if (/^55\d{10,11}$/.test(keyFormatted)) {
+        keyFormatted = '+' + keyFormatted;
+      }
+      var key = formatField('01', keyFormatted);
       var merchantAccount = formatField('26', gui + key);
       var merchantCat = formatField('52', '0000');
       var currency = formatField('53', '986');
-      var amount = formatField('54', Number(opts.amount).toFixed(2));
+      var amount = opts.amount ? formatField('54', Number(opts.amount).toFixed(2)) : '';
       var country = formatField('58', 'BR');
-      var name = formatField('59', (opts.name || 'MALTON 177').substring(0, 25));
-      var city = formatField('60', (opts.city || 'SAO PAULO').substring(0, 15));
-      var txid = formatField('05', opts.txid || 'MALTON177');
+      var cleanName = (opts.name || 'MALTON COIMBRA 177').normalize('NFD').replace(/[\u0300-\u036f]/g, '').substring(0, 25).toUpperCase();
+      var cleanCity = (opts.city || 'SAO PAULO').normalize('NFD').replace(/[\u0300-\u036f]/g, '').substring(0, 15).toUpperCase();
+      var name = formatField('59', cleanName);
+      var city = formatField('60', cleanCity);
+      var txid = formatField('05', opts.txid || '***');
       var addData = formatField('62', txid);
 
+      // 010211 = QR Code Estático Oficial do Banco Central (nunca usar 12 para estático)
       var payload = formatField('00', '01') +
-                    formatField('01', '12') +
+                    formatField('01', '11') +
                     merchantAccount +
                     merchantCat +
                     currency +
