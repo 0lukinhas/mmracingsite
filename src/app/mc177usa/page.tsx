@@ -303,20 +303,20 @@ export default function MaltonUsaPage() {
             {/* ========================================================= */}
             <section className="relative min-h-screen flex flex-col justify-between overflow-hidden border-b border-[#1c1c1c] pt-8 sm:pt-12 pb-10 sm:pb-14">
                 
-                {/* Foto do Malton com o Civic no fundo - Piloto bem visível */}
+                {/* Foto limpa e original do Malton com o Civic no fundo - Rosto 100% nítido e sem recortes */}
                 <div className="absolute inset-0 z-0">
                     <Image
                         src="/malton/hero-clean-mobile.webp"
                         alt="Malton Coimbra e o Civic 177 - USA Tour 2027"
                         fill
                         priority
-                        className="object-cover object-top sm:object-[center_12%] filter contrast-110 brightness-95"
+                        className="object-cover object-[75%_top] sm:object-[center_12%] filter contrast-105 brightness-90"
                     />
 
-                    {/* Vinhetas e Degradês de alto contraste para legibilidade impecável */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black z-10" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/90 to-transparent z-10" />
-                    <div className="absolute inset-0 bg-black/40 z-10" />
+                    {/* Vinhetas laterais e inferiores para contraste impecável sem manchar o piloto */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/60 to-transparent z-10 w-full sm:w-4/5" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/85 to-transparent z-10 top-1/4" />
+                    <div className="absolute top-0 inset-x-0 h-28 bg-gradient-to-b from-black/80 to-transparent z-10" />
                 </div>
 
                 {/* Conteúdo Centralizado (Opção B - Perfeito no Mobile e Desktop) */}
@@ -328,9 +328,9 @@ export default function MaltonUsaPage() {
                             <div className="flex items-center gap-1.5 text-xs sm:text-sm font-racing font-black tracking-widest text-white uppercase">
                                 <span>🏁</span>
                                 <span>USA TOUR</span>
-                                <span className="text-mm-orange">2027</span>
+                                <span className="text-mm-orange font-black">2027</span>
                             </div>
-                            <span className="text-[10px] sm:text-xs font-tactical text-gray-400 tracking-[0.2em] block uppercase mt-0.5">
+                            <span className="text-[10px] sm:text-xs font-tactical text-gray-400 tracking-[0.25em] block uppercase mt-0.5">
                                 CARRO 177
                             </span>
                         </div>
@@ -343,31 +343,44 @@ export default function MaltonUsaPage() {
                         </div>
                     </div>
 
-                    {/* Logo & Piloto Lockup */}
+                    {/* Logo & Piloto Lockup em Tipografia Pura de Corrida */}
                     <motion.div
                         initial={{ opacity: 0, y: 15 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6 }}
                         className="mb-4"
                     >
-                        {/* Logo Artwork Oficial */}
-                        <div className="relative w-full max-w-[340px] sm:max-w-[380px]">
-                            <Image
-                                src="/malton/title-malton-177.png"
-                                alt="Malton Coimbra 177 - Built To Go Faster"
-                                width={440}
-                                height={210}
-                                priority
-                                className="w-full h-auto drop-shadow-[0_4px_25px_rgba(0,0,0,0.95)]"
-                            />
+                        {/* Lettering Brutalista de Arrancada */}
+                        <div className="inline-block">
+                            <h1 className="font-racing font-black uppercase italic leading-[0.88] tracking-tight">
+                                <span className="text-white text-5xl sm:text-6xl block drop-shadow-[0_2px_15px_rgba(0,0,0,0.95)]">
+                                    MALTON
+                                </span>
+                                <span className="text-mm-orange text-5xl sm:text-6xl block drop-shadow-[0_2px_15px_rgba(255,107,0,0.4)]">
+                                    COIMBRA
+                                </span>
+                            </h1>
+                            <div className="flex items-center gap-3 mt-1.5">
+                                <span className="font-racing font-black italic text-white text-6xl sm:text-7xl leading-none drop-shadow-[0_2px_20px_rgba(255,107,0,0.5)] [text-shadow:_0_0_20px_rgba(255,107,0,0.5)]">
+                                    177
+                                </span>
+                                <div className="flex flex-col justify-center">
+                                    <span className="font-racing font-black italic text-[11px] sm:text-xs text-gray-200 tracking-[0.2em] uppercase leading-tight border-b-2 border-mm-orange pb-0.5">
+                                        BUILT TO GO FASTER
+                                    </span>
+                                    <span className="font-tactical font-bold text-[9px] text-mm-orange tracking-widest uppercase mt-0.5">
+                                        RECORDISTA MUNDIAL
+                                    </span>
+                                </div>
+                            </div>
                         </div>
 
                         {/* World Record / All Motor Nitromethane */}
-                        <div className="mt-3">
+                        <div className="mt-4">
                             <h2 className="text-sm sm:text-base font-racing font-black text-white tracking-[0.25em] uppercase leading-none">
                                 WORLD RECORD
                             </h2>
-                            <p className="text-xs sm:text-sm font-racing font-bold text-mm-orange tracking-[0.15em] uppercase mt-0.5">
+                            <p className="text-xs sm:text-sm font-racing font-bold text-mm-orange tracking-[0.18em] uppercase mt-1">
                                 ALL MOTOR • NITROMETHANE
                             </p>
                         </div>
@@ -393,13 +406,13 @@ export default function MaltonUsaPage() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
-                        className="bg-black/85 border border-mm-orange p-4 mb-4 backdrop-blur-md tactical-notch shadow-[0_0_20px_rgba(255,107,0,0.2)]"
+                        className="bg-black/90 border border-mm-orange p-4 mb-4 backdrop-blur-md tactical-notch shadow-[0_0_25px_rgba(255,107,0,0.25)]"
                     >
-                        <div className="flex items-start justify-between gap-3 mb-2">
+                        <div className="flex items-start justify-between gap-3 mb-2.5">
                             <div className="flex items-center gap-2">
                                 <span className="text-base">🏁</span>
-                                <h3 className="font-marker text-mm-orange text-base sm:text-lg tracking-wide uppercase">
-                                    FAÇA PARTE DA USA TOUR 2027
+                                <h3 className="font-racing font-black italic text-mm-orange text-lg sm:text-xl tracking-wide uppercase leading-none">
+                                    FAÇA PARTE DA USA TOUR <span className="text-white">2027</span>
                                 </h3>
                             </div>
                             <div className="flex flex-col items-end flex-shrink-0">
