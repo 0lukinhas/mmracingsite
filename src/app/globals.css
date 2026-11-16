@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Chakra+Petch:wght@400;500;600;700&family=Permanent+Marker&family=Rajdhani:wght@500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -20,9 +21,29 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-jetbrains-mono), monospace;
+  font-family: 'Barlow Condensed', var(--font-jetbrains-mono), sans-serif;
   overflow-x: hidden;
   scroll-behavior: smooth;
+}
+
+.font-racing {
+  font-family: 'Barlow Condensed', sans-serif;
+}
+
+.font-tactical {
+  font-family: 'Chakra Petch', sans-serif;
+}
+
+.font-marker {
+  font-family: 'Permanent Marker', cursive;
+}
+
+.font-rajdhani {
+  font-family: 'Rajdhani', sans-serif;
+}
+
+.tactical-notch {
+  clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
 }
 
 /* Custom Scrollbar for premium feel */

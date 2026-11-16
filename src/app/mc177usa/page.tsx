@@ -21,10 +21,13 @@ import {
 
 const MERCADO_LIVRE_URL = "https://lista.mercadolivre.com.br/camiseta-malton-coimbra-0177";
 const INSTAGRAM_URL = "https://www.instagram.com/maltoncoimbra/";
-const WHATSAPP_DUVIDAS_URL = "https://wa.me/5511922880177?text=" + encodeURIComponent("Olá Malton! Vi a página da USA Tour 2027 e gostaria de saber mais sobre a camiseta oficial do Civic 177!");
+const CONTACT_PHONE = "(48) 99665-3706";
+const CONTACT_EMAIL = "maltoncoimbra@gmail.com";
+const WHATSAPP_RAW = "5548996653706";
+const WHATSAPP_DUVIDAS_URL = `https://wa.me/${WHATSAPP_RAW}?text=` + encodeURIComponent("Olá Malton! Vi a página da USA Tour 2027 e gostaria de saber mais sobre a camiseta oficial do Civic 177!");
 
 const SIZES = ["P", "M", "G", "GG", "G1", "G2", "G3"];
-const PIX_CHAVE = "+5511922880177";
+const PIX_CHAVE = "09144976933"; // CPF oficial informado pelo cliente
 
 interface ShippingQuote {
     id: number;
@@ -43,7 +46,10 @@ function generatePixPayload(opts: { key: string; name?: string; city?: string; a
     }
     const gui = formatField('00', 'br.gov.bcb.pix');
     let keyFormatted = opts.key.trim();
-    if (/^\d{10,11}$/.test(keyFormatted)) {
+    // CPF tem exatamente 11 dígitos numéricos - NÃO adiciona +55
+    if (/^\d{11}$/.test(keyFormatted)) {
+        keyFormatted = keyFormatted;
+    } else if (/^\d{10}$/.test(keyFormatted)) {
         keyFormatted = '+55' + keyFormatted;
     } else if (/^55\d{10,11}$/.test(keyFormatted)) {
         keyFormatted = '+' + keyFormatted;
@@ -99,7 +105,7 @@ function generatePixPayload(opts: { key: string; name?: string; city?: string; a
 
 const getWhatsAppBuyUrl = (size: string) => {
     const text = `Olá Malton! Gostaria de pedir a Camiseta Oficial USA Tour 2027 (Carro 177) no tamanho [${size}]. Como faço para confirmar meu pedido e envio?`;
-    return `https://wa.me/5511922880177?text=${encodeURIComponent(text)}`;
+    return `https://wa.me/${WHATSAPP_RAW}?text=${encodeURIComponent(text)}`;
 };
 
 export default function MaltonUsaPage() {
@@ -280,7 +286,7 @@ export default function MaltonUsaPage() {
         msg += `💵 *VALOR TOTAL PAGO VIA PIX:* R$ ${totalOrder.toFixed(2).replace('.', ',')}\n\n`;
         msg += "Segue o comprovante do Pix em anexo para emissão do envio!";
 
-        window.open(`https://wa.me/5511922880177?text=${encodeURIComponent(msg)}`, '_blank');
+        window.open(`https://wa.me/${WHATSAPP_RAW}?text=${encodeURIComponent(msg)}`, '_blank');
     };
 
     const formatTime = (seconds: number) => {
@@ -290,102 +296,183 @@ export default function MaltonUsaPage() {
     };
 
     return (
-        <div className="min-h-screen bg-black text-mm-text font-mono selection:bg-mm-orange selection:text-black overflow-x-hidden">
-
+        <div className="min-h-screen bg-black text-mm-text font-racing selection:bg-mm-orange selection:text-black overflow-x-hidden">
 
             {/* ========================================================= */}
-            {/* 2. HERO: FOCO NO MALTON, NO CARRO E NA MISSÃO             */}
+            {/* 2. HERO: SEGUINDO O DESIGN APROVADO (IMAGEM 1)           */}
             {/* ========================================================= */}
-            <section className="relative min-h-[90vh] flex items-end md:items-center overflow-hidden border-b border-[#1c1c1c]">
-                {/* Foto do Malton com o Civic */}
+            <section className="relative min-h-screen flex flex-col justify-between overflow-hidden border-b border-[#1c1c1c] pt-8 sm:pt-12 pb-10 sm:pb-14">
+                
+                {/* Foto do Malton com o Civic no fundo - Piloto bem visível */}
                 <div className="absolute inset-0 z-0">
                     <Image
-                        src="/malton/hero.jpg"
-                        alt="Malton Coimbra 177 e seu Honda Civic de arrancada"
+                        src="/malton/hero-clean-mobile.webp"
+                        alt="Malton Coimbra e o Civic 177 - USA Tour 2027"
                         fill
                         priority
-                        className="object-cover object-top md:object-center filter contrast-105"
+                        className="object-cover object-top sm:object-[center_12%] filter contrast-110 brightness-95"
                     />
 
-                    {/* Degradê preto natural e cinematográfico para leitura */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/85 to-black/30 z-10" />
-                    <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent z-10 hidden md:block" />
-                    <div className="absolute top-0 inset-x-0 h-24 bg-gradient-to-b from-black to-transparent z-10" />
+                    {/* Vinhetas e Degradês de alto contraste para legibilidade impecável */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-transparent to-black z-10" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/90 to-transparent z-10" />
+                    <div className="absolute inset-0 bg-black/40 z-10" />
                 </div>
 
-                <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20 w-full py-16 md:py-24">
-                    <div className="max-w-2xl">
-                        
-                        {/* Selo da Missão */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 15 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5 }}
-                            className="inline-flex items-center gap-2 bg-white/10 border border-white/20 px-3 py-1 mb-6 backdrop-blur-sm"
-                        >
-                            <Flag size={13} className="text-mm-orange" />
-                            <span className="text-[11px] font-bold text-white tracking-widest uppercase">
-                                USA TOUR 2027
+                {/* Conteúdo Centralizado (Opção B - Perfeito no Mobile e Desktop) */}
+                <div className="relative z-20 w-full max-w-md sm:max-w-lg mx-auto px-4 sm:px-6 flex flex-col justify-between min-h-full">
+                    
+                    {/* Top Bar da Imagem 1: USA TOUR 2027 // CARRO 177 & RACE DEVELOP IMPROVE REPEAT */}
+                    <div className="flex items-start justify-between border-b border-white/15 pb-3 mb-5">
+                        <div>
+                            <div className="flex items-center gap-1.5 text-xs sm:text-sm font-racing font-black tracking-widest text-white uppercase">
+                                <span>🏁</span>
+                                <span>USA TOUR</span>
+                                <span className="text-mm-orange">2027</span>
+                            </div>
+                            <span className="text-[10px] sm:text-xs font-tactical text-gray-400 tracking-[0.2em] block uppercase mt-0.5">
+                                CARRO 177
                             </span>
-                            <span className="text-gray-400 text-[11px] tracking-widest uppercase">
-                                {"//"} CARRO 177
-                            </span>
-                        </motion.div>
+                        </div>
 
-                        {/* Nome do Piloto */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: 0.1 }}
-                        >
-                            <h1 className="text-4xl sm:text-6xl md:text-7xl font-black text-white uppercase tracking-tight leading-[1.05] mb-3">
-                                MALTON <br />
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-mm-orange to-orange-500">
-                                    COIMBRA 177
-                                </span>
-                            </h1>
-
-                            <div className="inline-block bg-black/60 border-l-4 border-mm-orange px-3 py-1.5 mb-6">
-                                <p className="text-base sm:text-xl font-bold text-white tracking-wide">
-                                    World Record All motor Nitro!
-                                </p>
+                        <div className="text-right">
+                            <div className="text-[9px] sm:text-[10px] font-tactical font-bold text-gray-400 tracking-widest uppercase leading-tight">
+                                RACE<br />DEVELOP<br />IMPROVE<br />REPEAT
                             </div>
-
-                            <p className="text-base sm:text-lg text-gray-200 mb-8 leading-relaxed">
-                                O corredor do Honda mais rápido do mundo e o único piloto do planeta que desenvolveu e acertou um motor All Motor para andar com <strong className="text-mm-orange font-bold">+ de 90% de Nitrometano</strong>.
-                            </p>
-
-                            {/* Convite direto e sincero de apoio */}
-                            <div className="bg-black/70 border border-[#2b2b2b] p-5 mb-8 backdrop-blur-md">
-                                <p className="text-sm text-white font-medium mb-1">
-                                    🏁 <strong className="text-mm-orange">Me apoie comprando a camiseta oficial da USA Tour.</strong>
-                                </p>
-                                <p className="text-xs text-gray-400">
-                                    Toda a verba arrecadada com a venda das camisetas será revertida totalmente para a tour de levar o Honda para acelerar nos Estados Unidos.
-                                </p>
-                            </div>
-
-                            {/* Botões limpos */}
-                            <div className="flex flex-col sm:flex-row gap-4">
-                                <a
-                                    href="#camiseta"
-                                    className="bg-mm-orange text-black font-black uppercase text-xs sm:text-sm tracking-widest py-4 px-6 flex items-center justify-center gap-2 hover:bg-mm-orange-hover transition-colors shadow-[0_0_20px_rgba(255,107,0,0.4)]"
-                                >
-                                    <ShoppingBag size={18} />
-                                    <span>VER CAMISETA OFICIAL (R$ 99,90)</span>
-                                </a>
-
-                                <a
-                                    href="#historia"
-                                    className="border border-[#333] hover:border-white text-white font-bold uppercase text-xs tracking-widest py-4 px-5 flex items-center justify-center gap-2 transition-colors"
-                                >
-                                    <span>CONHECER A HISTÓRIA</span>
-                                    <ChevronDown size={16} />
-                                </a>
-                            </div>
-                        </motion.div>
-
+                            <div className="w-8 h-[2px] bg-mm-orange ml-auto mt-1" />
+                        </div>
                     </div>
+
+                    {/* Logo & Piloto Lockup */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6 }}
+                        className="mb-4"
+                    >
+                        {/* Logo Artwork Oficial */}
+                        <div className="relative w-full max-w-[340px] sm:max-w-[380px]">
+                            <Image
+                                src="/malton/title-malton-177.png"
+                                alt="Malton Coimbra 177 - Built To Go Faster"
+                                width={440}
+                                height={210}
+                                priority
+                                className="w-full h-auto drop-shadow-[0_4px_25px_rgba(0,0,0,0.95)]"
+                            />
+                        </div>
+
+                        {/* World Record / All Motor Nitromethane */}
+                        <div className="mt-3">
+                            <h2 className="text-sm sm:text-base font-racing font-black text-white tracking-[0.25em] uppercase leading-none">
+                                WORLD RECORD
+                            </h2>
+                            <p className="text-xs sm:text-sm font-racing font-bold text-mm-orange tracking-[0.15em] uppercase mt-0.5">
+                                ALL MOTOR • NITROMETHANE
+                            </p>
+                        </div>
+                    </motion.div>
+
+                    {/* Descrição Oficial */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.1 }}
+                        className="space-y-1 text-xs sm:text-sm font-racing uppercase tracking-wider text-gray-200 leading-snug mb-5"
+                    >
+                        <p className="font-bold text-white">O HONDA ALL MOTOR MAIS RÁPIDO DO MUNDO.</p>
+                        <p>PILOTADO, DESENVOLVIDO E CONSTRUÍDO POR MALTON COIMBRA.</p>
+                        <p>
+                            MAIS DE 90% DE NITROMETANO. UM PROJETO BRASILEIRO RUMO AOS{' '}
+                            <strong className="text-mm-orange font-black">7 SEGUNDOS</strong> NOS EUA.
+                        </p>
+                    </motion.div>
+
+                    {/* Caixa Tática Chanfrada: FAÇA PARTE DA USA TOUR 2027 */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                        className="bg-black/85 border border-mm-orange p-4 mb-4 backdrop-blur-md tactical-notch shadow-[0_0_20px_rgba(255,107,0,0.2)]"
+                    >
+                        <div className="flex items-start justify-between gap-3 mb-2">
+                            <div className="flex items-center gap-2">
+                                <span className="text-base">🏁</span>
+                                <h3 className="font-marker text-mm-orange text-base sm:text-lg tracking-wide uppercase">
+                                    FAÇA PARTE DA USA TOUR 2027
+                                </h3>
+                            </div>
+                            <div className="flex flex-col items-end flex-shrink-0">
+                                <span className="text-[9px] font-tactical font-bold text-gray-400 tracking-widest uppercase">
+                                    BRAZIL TO USA
+                                </span>
+                                <svg className="w-14 h-4 text-mm-orange mt-0.5" viewBox="0 0 50 16" fill="none">
+                                    <path d="M 2 13 Q 25 1 45 4" stroke="#FF6B00" strokeWidth="1.5" strokeDasharray="3 3"/>
+                                    <path d="M 44 2 L 48 4 L 44 6 Z" fill="#FF6B00"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <p className="text-[11px] sm:text-xs text-gray-300 font-racing uppercase tracking-wider leading-relaxed">
+                            COMPRE A CAMISETA OFICIAL E AJUDE A LEVAR ESTE PROJETO BRASILEIRO PARA AS PISTAS DOS ESTADOS UNIDOS.
+                        </p>
+                    </motion.div>
+
+                    {/* Botão Principal Laranja (Destacado & Impossível de não ver) */}
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.98 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.5, delay: 0.3 }}
+                    >
+                        <a
+                            href="#camiseta"
+                            className="w-full bg-mm-orange hover:bg-mm-orange-hover text-black font-racing font-black py-4 px-6 text-center transition-all transform hover:scale-[1.01] active:scale-[0.99] shadow-[0_0_30px_rgba(255,107,0,0.5)] mb-3 block group"
+                        >
+                            <div className="flex items-center justify-center gap-2 text-base sm:text-lg tracking-widest uppercase font-black">
+                                <span>VER CAMISETA OFICIAL</span>
+                                <span className="transition-transform group-hover:translate-x-1.5 font-bold">──&gt;</span>
+                            </div>
+                            <div className="text-xs sm:text-sm tracking-wider font-black text-black/90">
+                                (R$ 99,90)
+                            </div>
+                        </a>
+
+                        {/* Botão Secundário Conhecer a História */}
+                        <a
+                            href="#historia"
+                            className="w-full bg-[#0a0a0a]/90 hover:bg-[#151515] border border-[#333] hover:border-gray-400 text-white font-racing font-bold uppercase tracking-widest text-xs sm:text-sm py-3.5 px-6 flex items-center justify-center gap-2 transition-colors mb-4"
+                        >
+                            <span>CONHECER A HISTÓRIA</span>
+                            <span className="font-bold">──&gt;</span>
+                        </a>
+                    </motion.div>
+
+                    {/* Pilares: SONHO | TRABALHO | RESULTADOS */}
+                    <div className="flex items-center justify-between text-[11px] sm:text-xs font-tactical font-bold text-gray-400 uppercase tracking-widest py-3 border-y border-[#222]/80 mb-3">
+                        <div className="flex items-center gap-1.5">
+                            <span>⚙</span>
+                            <span>SONHO</span>
+                        </div>
+                        <span className="text-[#333]">|</span>
+                        <div className="flex items-center gap-1.5">
+                            <span>🔧</span>
+                            <span>TRABALHO</span>
+                        </div>
+                        <span className="text-[#333]">|</span>
+                        <div className="flex items-center gap-1.5">
+                            <span>🏆</span>
+                            <span>RESULTADOS</span>
+                        </div>
+                    </div>
+
+                    {/* Linha Final: BRASIL PARA O MUNDO */}
+                    <div className="flex items-center justify-center gap-3 text-center">
+                        <div className="h-[1px] w-8 sm:w-16 bg-mm-orange/40" />
+                        <span className="text-[10px] sm:text-xs font-racing font-bold uppercase tracking-[0.2em] text-mm-orange">
+                            BRASIL PARA O MUNDO
+                        </span>
+                        <div className="h-[1px] w-8 sm:w-16 bg-mm-orange/40" />
+                    </div>
+
                 </div>
             </section>
 
@@ -423,7 +510,7 @@ export default function MaltonUsaPage() {
                     <div className="lg:col-span-5">
                         <div className="relative h-72 sm:h-96 w-full border border-[#2b2b2b] overflow-hidden group shadow-2xl">
                             <Image
-                                src="/honda-civic.webp"
+                                src="/malton/civic-177-pista.jpg"
                                 alt="Honda Civic 177 de Malton Coimbra na pista"
                                 fill
                                 className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -486,55 +573,28 @@ export default function MaltonUsaPage() {
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
                     
-                    {/* Mockup da Camiseta (Costas) & Alternador de Visão */}
+                    {/* Mockup da Camiseta (Frente e Costas Lado a Lado - Imagem 3 Atualizada) */}
                     <div className="lg:col-span-6 flex flex-col items-center">
-                        {/* Seletor de Visão */}
-                        <div className="flex items-center gap-2 mb-3 w-full justify-center sm:justify-start">
-                            <button
-                                type="button"
-                                onClick={() => setActiveView('costas')}
-                                className={`px-3 py-1.5 text-xs font-black uppercase tracking-wider transition-all border ${
-                                    activeView === 'costas'
-                                        ? 'bg-mm-orange text-black border-mm-orange shadow-[0_0_12px_rgba(255,107,0,0.3)]'
-                                        : 'bg-[#111] text-gray-400 border-[#2b2b2b] hover:border-gray-500 hover:text-white'
-                                }`}
-                            >
-                                👕 COSTAS (MOCKUP OFICIAL)
-                            </button>
-                            <button
-                                type="button"
-                                onClick={() => setActiveView('arte')}
-                                className={`px-3 py-1.5 text-xs font-black uppercase tracking-wider transition-all border ${
-                                    activeView === 'arte'
-                                        ? 'bg-mm-orange text-black border-mm-orange shadow-[0_0_12px_rgba(255,107,0,0.3)]'
-                                        : 'bg-[#111] text-gray-400 border-[#2b2b2b] hover:border-gray-500 hover:text-white'
-                                }`}
-                            >
-                                🔍 VER ARTE DETALHADA
-                            </button>
-                        </div>
-
-                        {/* Moldura do Produto */}
                         <div className="w-full max-w-lg bg-[#0a0a0a] border border-[#262626] p-4 relative shadow-2xl group">
-                            <div className="absolute top-6 left-6 z-10 bg-black/90 border border-mm-orange px-2.5 py-1 text-[10px] font-black text-mm-orange tracking-widest uppercase backdrop-blur-sm">
-                                {activeView === 'costas' ? 'ESTAMPA DAS COSTAS // MODELAGEM STREETWEAR' : 'ARTE VETORIAL OFICIAL // ALTA DEFINIÇÃO'}
+                            <div className="absolute top-6 left-6 z-10 bg-black/90 border border-mm-orange px-2.5 py-1 text-[10px] font-black text-mm-orange tracking-widest uppercase backdrop-blur-sm font-tactical">
+                                MOCKUP OFICIAL // FRENTE & COSTAS
                             </div>
 
-                            <div className="relative aspect-square w-full overflow-hidden bg-black flex items-center justify-center border border-[#1a1a1a]">
+                            <div className="relative aspect-[859/1024] w-full overflow-hidden bg-black flex items-center justify-center border border-[#1a1a1a]">
                                 <Image
-                                    src={activeView === 'costas' ? '/malton/camiseta-costas.jpg' : '/malton/camiseta-arte.jpg'}
-                                    alt={activeView === 'costas' ? 'Camiseta preta oficial costas - USA Tour Malton Coimbra 2027' : 'Arte oficial do Honda Civic 177 USA Tour'}
+                                    src="/malton/camiseta-oficial-2027.jpg"
+                                    alt="Camiseta Oficial USA Tour 2027 - Malton Coimbra 177 - Frente e Costas"
                                     fill
                                     priority
-                                    className={activeView === 'costas' ? 'object-cover group-hover:scale-105 transition-transform duration-500' : 'object-contain group-hover:scale-105 transition-transform duration-500'}
+                                    className="object-contain group-hover:scale-105 transition-transform duration-500"
                                 />
                             </div>
 
-                            <div className="mt-3 flex items-center justify-between text-[11px] text-gray-400">
+                            <div className="mt-3 flex items-center justify-between text-[11px] text-gray-400 font-racing">
                                 <span className="uppercase tracking-wider">
-                                    {activeView === 'costas' ? 'Serigrafia Premium em Alta Definição' : 'World Record All motor Nitro // Carro 177'}
+                                    Modelagem Streetwear • Estampa Frente & Costas
                                 </span>
-                                <span className="text-mm-orange font-bold uppercase">
+                                <span className="text-mm-orange font-bold uppercase font-tactical">
                                     Edição Oficial 2027
                                 </span>
                             </div>
@@ -831,17 +891,36 @@ export default function MaltonUsaPage() {
             {/* ========================================================= */}
             {/* 7. RODAPÉ LIMPO E INDEPENDENTE                            */}
             {/* ========================================================= */}
-            <footer className="bg-[#070707] border-t border-[#1c1c1c] py-10 px-4 text-center text-xs text-gray-500">
-                <div className="max-w-xl mx-auto text-center">
-                    <span className="font-bold text-white uppercase tracking-wider block text-sm mb-1.5">
+            <footer className="bg-[#070707] border-t border-[#1c1c1c] py-12 px-4 text-center text-xs text-gray-500 font-racing">
+                <div className="max-w-xl mx-auto text-center space-y-3">
+                    <span className="font-bold text-white uppercase tracking-wider block text-base font-racing">
                         MALTON COIMBRA 177 // USA TOUR 2027
                     </span>
-                    <p className="text-[11px] text-gray-400 leading-relaxed">
+                    <p className="text-xs text-gray-400 leading-relaxed font-racing">
                         Site oficial da campanha para levar o Honda Civic recordista mundial aos Estados Unidos.
                     </p>
+                    <div className="pt-2 flex flex-wrap items-center justify-center gap-4 text-xs font-tactical text-gray-300">
+                        <a 
+                            href={`https://wa.me/${WHATSAPP_RAW}`} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="hover:text-mm-orange transition-colors flex items-center gap-1.5"
+                        >
+                            <span>📱 WhatsApp:</span>
+                            <strong className="text-white">{CONTACT_PHONE}</strong>
+                        </a>
+                        <span className="text-[#333]">|</span>
+                        <a 
+                            href={`mailto:${CONTACT_EMAIL}`} 
+                            className="hover:text-mm-orange transition-colors flex items-center gap-1.5"
+                        >
+                            <span>✉️ E-mail:</span>
+                            <strong className="text-white">{CONTACT_EMAIL}</strong>
+                        </a>
+                    </div>
                 </div>
 
-                <p className="mt-6 text-[10px] text-gray-600">
+                <p className="mt-8 text-[11px] text-gray-600 font-tactical">
                     &copy; {new Date().getFullYear()} Malton Coimbra. Todos os direitos reservados.
                 </p>
             </footer>
@@ -1011,7 +1090,7 @@ export default function MaltonUsaPage() {
                             <div className="bg-[#111] border border-[#222] p-2.5 mb-3 flex items-center justify-between text-left">
                                 <div>
                                     <span className="text-[10px] text-gray-400 uppercase font-bold block">
-                                        Chave Pix (Telefone / WhatsApp):
+                                        Chave Pix (CPF Oficial):
                                     </span>
                                     <span className="text-xs font-mono font-bold text-white select-all">
                                         {PIX_CHAVE}

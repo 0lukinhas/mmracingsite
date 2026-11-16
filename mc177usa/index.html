@@ -15,7 +15,7 @@
   <link rel="icon" type="image/x-icon" href="../src/app/favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Chakra+Petch:wght@400;500;600;700&family=Permanent+Marker&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
 
   <style>
     :root {
@@ -23,7 +23,7 @@
       --bg-card: #0c0c0c;
       --border-color: #222222;
       --orange: #FF6B00;
-      --orange-hover: #E66000;
+      --orange-hover: #FF7B1A;
       --text-muted: #9CA3AF;
       --text-white: #FFFFFF;
     }
@@ -32,7 +32,23 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-family: 'Barlow Condensed', sans-serif;
+    }
+
+    .font-tactical {
+      font-family: 'Chakra Petch', sans-serif;
+    }
+
+    .font-marker {
+      font-family: 'Permanent Marker', cursive;
+    }
+
+    .font-racing {
+      font-family: 'Barlow Condensed', sans-serif;
+    }
+
+    .tactical-notch {
+      clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
     }
 
     body {
@@ -987,50 +1003,113 @@
 <body>
 
 
-  <!-- Hero Section -->
-  <header class="hero">
-    <div class="hero-bg">
-      <img src="../public/malton/hero.jpg" alt="Malton Coimbra 177 com seu Civic All Motor" />
+  <!-- Hero Section (Seguindo rigorosamente a Imagem 1 aprovada) -->
+  <header class="hero" style="min-height: 100vh; display: flex; flex-direction: column; justify-content: space-between; padding: 40px 16px 30px; position: relative;">
+    <div class="hero-bg" style="position: absolute; inset: 0; z-index: 0;">
+      <img src="../public/malton/hero-clean-mobile.webp" alt="Malton Coimbra 177 com seu Civic All Motor" style="width: 100%; height: 100%; object-fit: cover; object-position: center 12%; filter: contrast(1.1) brightness(0.95);" />
     </div>
-    <div class="hero-gradient"></div>
+    <div class="hero-gradient" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, transparent 40%, rgba(0,0,0,0.95) 100%), rgba(0,0,0,0.35); z-index: 1;"></div>
 
-    <div class="container">
-      <div class="hero-content">
-        <div class="tag-badge">
-          🏁 USA TOUR 2027 // CARRO 177
+    <div class="container" style="max-w: 480px; width: 100%; margin: 0 auto; position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: space-between; min-height: 100%;">
+      
+      <!-- Top Bar da Imagem 1 -->
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 12px; margin-bottom: 20px;">
+        <div>
+          <div style="font-size: 13px; font-weight: 900; letter-spacing: 0.15em; text-transform: uppercase; color: #FFF;">
+            🏁 USA TOUR <span style="color: var(--orange);">2027</span>
+          </div>
+          <span class="font-tactical" style="font-size: 10px; color: #9CA3AF; letter-spacing: 0.2em; display: block; text-transform: uppercase; margin-top: 2px;">
+            CARRO 177
+          </span>
         </div>
-
-        <h1 class="hero-title">
-          MALTON <br />
-          <span>COIMBRA 177</span>
-        </h1>
-
-        <div class="world-record-pill">
-          World Record All motor Nitro!
-        </div>
-
-        <p class="hero-lead">
-          O corredor do Honda mais rápido do mundo e o único piloto do planeta que desenvolveu e acertou um motor All Motor para andar com <strong>+ de 90% de Nitrometano</strong>.
-        </p>
-
-        <div class="support-callout">
-          <p>
-            🏁 <strong>Me apoie comprando a camiseta oficial da USA TOUR.</strong>
-          </p>
-          <p class="subtext">
-            Toda a verba arrecadada com a venda das camisetas será revertida totalmente para a tour de levar o Honda para acelerar nos Estados Unidos.
-          </p>
-        </div>
-
-        <div class="hero-buttons">
-          <a href="#camiseta" class="btn-main">
-            VER CAMISETA OFICIAL (R$ 99,90) ➔
-          </a>
-          <a href="#historia" class="btn-secondary">
-            CONHECER A HISTÓRIA ↓
-          </a>
+        <div style="text-align: right;">
+          <div class="font-tactical" style="font-size: 9px; font-weight: 700; color: #9CA3AF; letter-spacing: 0.15em; text-transform: uppercase; line-height: 1.2;">
+            RACE<br />DEVELOP<br />IMPROVE<br />REPEAT
+          </div>
+          <div style="width: 32px; height: 2px; background: var(--orange); margin-left: auto; margin-top: 4px;"></div>
         </div>
       </div>
+
+      <!-- Logo & Piloto Lockup -->
+      <div style="margin-bottom: 16px;">
+        <div style="max-width: 360px; width: 100%;">
+          <img src="../public/malton/title-malton-177.png" alt="Malton Coimbra 177 - Built To Go Faster" style="width: 100%; height: auto; display: block; filter: drop-shadow(0 4px 25px rgba(0,0,0,0.95));" />
+        </div>
+        <div style="margin-top: 12px;">
+          <div style="font-size: 14px; font-weight: 900; color: #FFF; letter-spacing: 0.25em; text-transform: uppercase;">
+            WORLD RECORD
+          </div>
+          <div style="font-size: 12px; font-weight: 700; color: var(--orange); letter-spacing: 0.15em; text-transform: uppercase; margin-top: 2px;">
+            ALL MOTOR • NITROMETHANE
+          </div>
+        </div>
+      </div>
+
+      <!-- Descrição Oficial -->
+      <div style="font-size: 13px; text-transform: uppercase; letter-spacing: 0.05em; color: #E5E7EB; line-height: 1.4; margin-bottom: 20px;">
+        <p style="font-weight: 800; color: #FFF;">O HONDA ALL MOTOR MAIS RÁPIDO DO MUNDO.</p>
+        <p>PILOTADO, DESENVOLVIDO E CONSTRUÍDO POR MALTON COIMBRA.</p>
+        <p>MAIS DE 90% DE NITROMETANO. UM PROJETO BRASILEIRO RUMO AOS <strong style="color: var(--orange); font-weight: 900;">7 SEGUNDOS</strong> NOS EUA.</p>
+      </div>
+
+      <!-- Caixa Tática: FAÇA PARTE DA USA TOUR 2027 -->
+      <div class="tactical-notch" style="background: rgba(0,0,0,0.85); border: 1px solid var(--orange); padding: 16px; margin-bottom: 16px; backdrop-filter: blur(8px); box-shadow: 0 0 20px rgba(255,107,0,0.2);">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 16px;">🏁</span>
+            <h3 class="font-marker" style="color: var(--orange); font-size: 16px; text-transform: uppercase; letter-spacing: 0.05em;">
+              FAÇA PARTE DA USA TOUR 2027
+            </h3>
+          </div>
+          <div style="display: flex; flex-direction: column; align-items: flex-end; flex-shrink: 0;">
+            <span class="font-tactical" style="font-size: 9px; font-weight: 700; color: #9CA3AF; letter-spacing: 0.15em; text-transform: uppercase;">
+              BRAZIL TO USA
+            </span>
+            <svg style="width: 56px; height: 16px; color: var(--orange); margin-top: 2px;" viewBox="0 0 50 16" fill="none">
+              <path d="M 2 13 Q 25 1 45 4" stroke="#FF6B00" stroke-width="1.5" stroke-dasharray="3 3"/>
+              <path d="M 44 2 L 48 4 L 44 6 Z" fill="#FF6B00"/>
+            </svg>
+          </div>
+        </div>
+        <p style="font-size: 12px; color: #D1D5DB; text-transform: uppercase; letter-spacing: 0.05em; line-height: 1.4;">
+          COMPRE A CAMISETA OFICIAL E AJUDE A LEVAR ESTE PROJETO BRASILEIRO PARA AS PISTAS DOS ESTADOS UNIDOS.
+        </p>
+      </div>
+
+      <!-- Botões de Ação -->
+      <div style="margin-bottom: 16px;">
+        <a href="#camiseta" style="display: block; width: 100%; background: var(--orange); color: #000; font-weight: 900; text-align: center; padding: 16px 20px; text-decoration: none; text-transform: uppercase; box-shadow: 0 0 30px rgba(255,107,0,0.5); margin-bottom: 12px; transition: transform 0.2s;">
+          <div style="font-size: 16px; letter-spacing: 0.1em;">
+            VER CAMISETA OFICIAL ──&gt;
+          </div>
+          <div style="font-size: 12px; font-weight: 900; margin-top: 2px;">
+            (R$ 99,90)
+          </div>
+        </a>
+
+        <a href="#historia" style="display: block; width: 100%; background: rgba(10,10,10,0.9); color: #FFF; border: 1px solid #333; text-align: center; padding: 14px 20px; font-size: 13px; font-weight: 800; text-decoration: none; text-transform: uppercase; letter-spacing: 0.1em; transition: border-color 0.2s;">
+          CONHECER A HISTÓRIA ──&gt;
+        </a>
+      </div>
+
+      <!-- Pilares: SONHO | TRABALHO | RESULTADOS -->
+      <div class="font-tactical" style="display: flex; justify-content: space-between; align-items: center; font-size: 11px; font-weight: 700; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.15em; padding: 12px 0; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 12px;">
+        <div>⚙ SONHO</div>
+        <div style="color: #333;">|</div>
+        <div>🔧 TRABALHO</div>
+        <div style="color: #333;">|</div>
+        <div>🏆 RESULTADOS</div>
+      </div>
+
+      <!-- Linha Final: BRASIL PARA O MUNDO -->
+      <div style="display: flex; align-items: center; justify-content: center; gap: 12px; text-align: center;">
+        <div style="height: 1px; width: 32px; background: rgba(255,107,0,0.4);"></div>
+        <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.2em; color: var(--orange);">
+          BRASIL PARA O MUNDO
+        </span>
+        <div style="height: 1px; width: 32px; background: rgba(255,107,0,0.4);"></div>
+      </div>
+
     </div>
   </header>
 
@@ -1058,7 +1137,7 @@
 
         <div>
           <div class="car-card">
-            <img src="../public/honda-civic.webp" alt="Honda Civic 177 na pista de arrancada" />
+            <img src="../public/malton/civic-177-pista.jpg" alt="Honda Civic 177 acelerando na pista de arrancada" />
             <div class="car-card-footer">
               <div>
                 <span class="car-badge">HONDA CIVIC 177 // FLD</span>
@@ -1103,23 +1182,14 @@
       </div>
 
       <div class="product-grid">
-        <!-- Showcase com alternador de imagens -->
+        <!-- Showcase oficial com imagem completa (Frente e Costas Lado a Lado) -->
         <div class="product-preview">
-          <div class="tab-buttons">
-            <button type="button" class="tab-btn active" id="btn-costas" onclick="switchView('costas')">
-              👕 MOCKUP OFICIAL
-            </button>
-            <button type="button" class="tab-btn" id="btn-arte" onclick="switchView('arte')">
-              🔍 ARTE VETORIAL
-            </button>
+          <div class="product-img-wrap" style="aspect-ratio: 859/1024;">
+            <img id="shirt-img" src="../public/malton/camiseta-oficial-2027.jpg" alt="Camiseta oficial Malton Coimbra 177 USA Tour - Frente e Costas" style="width: 100%; height: 100%; object-fit: contain;" />
           </div>
 
-          <div class="product-img-wrap">
-            <img id="shirt-img" src="../public/malton/camiseta-costas.jpg" alt="Camiseta oficial Malton Coimbra 177 USA Tour" />
-          </div>
-
-          <p id="shirt-caption" style="font-size: 11px; color: #777; margin-top: 10px; text-transform: uppercase;">
-            Estampa oficial das costas com corte streetwear premium
+          <p id="shirt-caption" style="font-size: 11px; color: #9CA3AF; margin-top: 10px; text-transform: uppercase;">
+            Modelagem Streetwear • Estampa Frente & Costas Oficial
           </p>
         </div>
 
@@ -1235,7 +1305,7 @@
           </button>
 
           <!-- Botão WhatsApp -->
-          <a id="btn-buy-wa" href="https://wa.me/5511922880177?text=Ol%C3%A1%20Malton!%20Quero%20garantir%20minha%20camiseta%20da%20USA%20Tour%202027%20(Tamanho%20G)%20pelo%20WhatsApp!" target="_blank" rel="noopener noreferrer" class="btn-buy-wa">
+          <a id="btn-buy-wa" href="https://wa.me/5548996653706?text=Ol%C3%A1%20Malton!%20Quero%20garantir%20minha%20camiseta%20da%20USA%20Tour%202027%20(Tamanho%20G)%20pelo%20WhatsApp!" target="_blank" rel="noopener noreferrer" class="btn-buy-wa">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
               <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.699c.97.54 1.83.82 2.796.82 3.183 0 5.768-2.587 5.769-5.766.001-3.182-2.585-5.77-5.769-5.772zm3.39 8.19c-.145.408-.847.784-1.183.834-.336.05-.77.07-2.227-.53-1.865-.769-3.055-2.673-3.149-2.798-.093-.125-.758-1.009-.758-1.926 0-.916.48-1.367.652-1.554.172-.187.375-.234.5-.234.125 0 .25.002.359.007.116.005.27-.044.423.323.156.376.536 1.309.584 1.405.048.096.08.209.016.335-.064.126-.096.205-.192.316-.096.112-.202.25-.289.336-.096.096-.197.201-.085.393.112.193.498.823 1.069 1.332.736.655 1.357.859 1.55.955.192.096.305.08.417-.048.112-.128.48-.56.608-.752.128-.193.256-.16.432-.096.176.064 1.119.528 1.311.624.192.096.32.144.368.224.048.08.048.464-.097.872z"/>
             </svg>
@@ -1283,12 +1353,21 @@
   <!-- Footer -->
   <footer>
     <div class="container" style="max-width: 600px; text-align: center;">
-      <p style="color: #FFF; font-weight: 900; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;">
+      <p style="color: #FFF; font-weight: 900; font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase;">
         MALTON COIMBRA 177 // USA TOUR 2027
       </p>
       <p style="color: #777; font-size: 11px; margin-top: 6px; line-height: 1.5;">
         Site oficial da campanha para levar o Honda Civic recordista mundial aos Estados Unidos.
       </p>
+      <div style="margin-top: 14px; display: flex; justify-content: center; flex-wrap: wrap; gap: 16px; font-size: 11px;">
+        <a href="https://wa.me/5548996653706" target="_blank" rel="noopener noreferrer" style="color: #9CA3AF; text-decoration: none;">
+          📱 WhatsApp: <strong style="color: #FFF;">(48) 99665-3706</strong>
+        </a>
+        <span style="color: #333;">|</span>
+        <a href="mailto:maltoncoimbra@gmail.com" style="color: #9CA3AF; text-decoration: none;">
+          ✉️ E-mail: <strong style="color: #FFF;">maltoncoimbra@gmail.com</strong>
+        </a>
+      </div>
       <p style="margin-top: 18px; font-size: 10px; color: #444; letter-spacing: 0.05em;">
         &copy; 2026 Malton Coimbra. Todos os direitos reservados.
       </p>
@@ -1366,7 +1445,22 @@
 
       <!-- Área de Pagamento Pix -->
       <div class="checkout-form-section" style="margin-bottom: 0;">
-        <span class="form-sec-title">2. PAGAMENTO VIA QR CODE OU COPIA E COLA</span>
+        <span class="form-sec-title">2. PAGAMENTO VIA QR CODE OU CHAVE PIX</span>
+
+        <!-- Card Chave Pix Direta (CPF) -->
+        <div style="background: #111; border: 1px solid #222; padding: 10px 12px; margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; text-align: left;">
+          <div>
+            <span style="font-size: 10px; color: #9CA3AF; text-transform: uppercase; font-weight: bold; display: block;">
+              Chave Pix (CPF Oficial):
+            </span>
+            <span style="font-size: 13px; font-weight: bold; color: #FFF; font-family: monospace;">
+              09144976933
+            </span>
+          </div>
+          <button type="button" onclick="copyChavePix()" id="btn-copy-chave" style="padding: 6px 12px; font-size: 11px; font-weight: bold; background: #1e1e1e; color: #E5E7EB; border: 1px solid #444; cursor: pointer; text-transform: uppercase;">
+            Copiar Chave
+          </button>
+        </div>
 
         <div class="pix-qr-container">
           <img id="pix-qr-img" class="pix-qr-img" src="" alt="QR Code Pix" />
@@ -1413,8 +1507,28 @@
     // URL da API Vercel intermediária do Melhor Envio
     var MELHOR_ENVIO_ENDPOINT = 'https://mmracingsite.vercel.app/api/frete';
 
-    // Chave Pix da campanha (Email, Telefone, CNPJ ou Aleatória)
-    var PIX_CHAVE = '+5511922880177'; // Celular oficial WhatsApp do Malton
+    // Chave Pix da campanha (CPF oficial informado)
+    var PIX_CHAVE = '09144976933';
+    var CONTACT_PHONE = '(48) 99665-3706';
+    var CONTACT_EMAIL = 'maltoncoimbra@gmail.com';
+    var WHATSAPP_RAW = '5548996653706';
+
+    function copyChavePix() {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(PIX_CHAVE);
+      }
+      var btn = document.getElementById('btn-copy-chave');
+      if (btn) {
+        btn.textContent = 'COPIADA! ✓';
+        btn.style.background = '#25D366';
+        btn.style.color = '#000';
+        setTimeout(function() {
+          btn.textContent = 'COPIAR CHAVE';
+          btn.style.background = '#1e1e1e';
+          btn.style.color = '#E5E7EB';
+        }, 2000);
+      }
+    }
 
     // --- TROCA DE IMAGENS ---
     function switchView(view) {
@@ -1745,7 +1859,7 @@
       }
 
       text += "Como faço para confirmar meu pedido e envio?";
-      btnWa.href = "https://wa.me/5511922880177?text=" + encodeURIComponent(text);
+      btnWa.href = "https://wa.me/" + WHATSAPP_RAW + "?text=" + encodeURIComponent(text);
     }
 
     // --- CHECKOUT TRANSPARENTE PIX ---
@@ -1884,7 +1998,7 @@
       msg += "💵 *VALOR TOTAL PAGO VIA PIX:* R$ " + total.toFixed(2).replace('.', ',') + "\n\n";
       msg += "Segue o comprovante do Pix em anexo para emissão do envio!";
 
-      var url = "https://wa.me/5511922880177?text=" + encodeURIComponent(msg);
+      var url = "https://wa.me/" + WHATSAPP_RAW + "?text=" + encodeURIComponent(msg);
       window.open(url, '_blank');
     }
 
@@ -1898,7 +2012,10 @@
 
       var gui = formatField('00', 'br.gov.bcb.pix');
       var keyFormatted = String(opts.key).trim();
-      if (/^\d{10,11}$/.test(keyFormatted)) {
+      // CPF tem exatamente 11 dígitos - NÃO coloca +55
+      if (/^\d{11}$/.test(keyFormatted)) {
+        keyFormatted = keyFormatted;
+      } else if (/^\d{10}$/.test(keyFormatted)) {
         keyFormatted = '+55' + keyFormatted;
       } else if (/^55\d{10,11}$/.test(keyFormatted)) {
         keyFormatted = '+' + keyFormatted;
