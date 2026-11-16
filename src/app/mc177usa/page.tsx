@@ -343,7 +343,7 @@ export default function MaltonUsaPage() {
                         </div>
                     </div>
 
-                    {/* Logo & Piloto Lockup em Tipografia Pura de Corrida */}
+                    {/* Logo & Piloto Lockup em Tipografia Autêntica da Arte Aprovada */}
                     <motion.div
                         initial={{ opacity: 0, y: 15 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -351,24 +351,24 @@ export default function MaltonUsaPage() {
                         className="mb-4"
                     >
                         {/* Lettering Brutalista de Arrancada */}
-                        <div className="inline-block">
-                            <h1 className="font-racing font-black uppercase italic leading-[0.88] tracking-tight">
-                                <span className="text-white text-5xl sm:text-6xl block drop-shadow-[0_2px_15px_rgba(0,0,0,0.95)]">
+                        <div className="inline-block select-none">
+                            <h1 className="font-danger uppercase italic leading-[0.80] tracking-normal">
+                                <span className="text-white text-5xl sm:text-6xl lg:text-7xl block drop-shadow-[0_4px_25px_rgba(0,0,0,0.95)]">
                                     MALTON
                                 </span>
-                                <span className="text-mm-orange text-5xl sm:text-6xl block drop-shadow-[0_2px_15px_rgba(255,107,0,0.4)]">
+                                <span className="text-mm-orange text-5xl sm:text-6xl lg:text-7xl block drop-shadow-[0_4px_25px_rgba(255,107,0,0.5)] -mt-1 sm:-mt-2">
                                     COIMBRA
                                 </span>
                             </h1>
-                            <div className="flex items-center gap-3 mt-1.5">
-                                <span className="font-racing font-black italic text-white text-6xl sm:text-7xl leading-none drop-shadow-[0_2px_20px_rgba(255,107,0,0.5)] [text-shadow:_0_0_20px_rgba(255,107,0,0.5)]">
+                            <div className="flex items-center gap-3 mt-2">
+                                <span className="font-racing-num italic text-white text-6xl sm:text-7xl leading-none drop-shadow-[0_4px_25px_rgba(255,107,0,0.6)] [-webkit-text-stroke:2px_#000]">
                                     177
                                 </span>
                                 <div className="flex flex-col justify-center">
-                                    <span className="font-racing font-black italic text-[11px] sm:text-xs text-gray-200 tracking-[0.2em] uppercase leading-tight border-b-2 border-mm-orange pb-0.5">
+                                    <span className="font-brush italic text-xs sm:text-sm text-gray-200 tracking-wider uppercase leading-tight border-b-2 border-mm-orange pb-0.5">
                                         BUILT TO GO FASTER
                                     </span>
-                                    <span className="font-tactical font-bold text-[9px] text-mm-orange tracking-widest uppercase mt-0.5">
+                                    <span className="font-techno text-[9px] sm:text-[10px] text-mm-orange tracking-widest uppercase mt-0.5">
                                         RECORDISTA MUNDIAL
                                     </span>
                                 </div>
@@ -377,10 +377,10 @@ export default function MaltonUsaPage() {
 
                         {/* World Record / All Motor Nitromethane */}
                         <div className="mt-4">
-                            <h2 className="text-sm sm:text-base font-racing font-black text-white tracking-[0.25em] uppercase leading-none">
+                            <h2 className="text-sm sm:text-base font-techno font-bold text-white tracking-[0.25em] uppercase leading-none">
                                 WORLD RECORD
                             </h2>
-                            <p className="text-xs sm:text-sm font-racing font-bold text-mm-orange tracking-[0.18em] uppercase mt-1">
+                            <p className="text-xs sm:text-sm font-racing font-bold text-mm-orange tracking-[0.22em] uppercase mt-1">
                                 ALL MOTOR • NITROMETHANE
                             </p>
                         </div>
@@ -411,7 +411,7 @@ export default function MaltonUsaPage() {
                         <div className="flex items-start justify-between gap-3 mb-2.5">
                             <div className="flex items-center gap-2">
                                 <span className="text-base">🏁</span>
-                                <h3 className="font-racing font-black italic text-mm-orange text-lg sm:text-xl tracking-wide uppercase leading-none">
+                                <h3 className="font-roadrage text-mm-orange text-xl sm:text-2xl tracking-wide uppercase leading-none drop-shadow-[0_2px_12px_rgba(255,107,0,0.35)]">
                                     FAÇA PARTE DA USA TOUR <span className="text-white">2027</span>
                                 </h3>
                             </div>
@@ -572,12 +572,12 @@ export default function MaltonUsaPage() {
             <section id="camiseta" className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto border-b border-[#1c1c1c]">
                 
                 <div className="text-center max-w-2xl mx-auto mb-14">
-                    <span className="text-xs uppercase tracking-widest text-mm-orange font-bold block mb-2">
+                    <span className="text-sm sm:text-base font-roadrage uppercase tracking-widest text-mm-orange block mb-2">
                         EDIÇÃO OFICIAL DA CAMPANHA
                     </span>
-                    <h2 className="text-3xl sm:text-5xl font-black text-white uppercase tracking-tight mb-4">
-                        CAMISETA OFICIAL <br />
-                        <span className="text-mm-orange">USA TOUR MALTON COIMBRA 2027</span>
+                    <h2 className="text-3xl sm:text-5xl font-black text-white uppercase tracking-tight mb-4 leading-tight">
+                        <span className="font-danger block">CAMISETA OFICIAL</span>
+                        <span className="text-mm-orange font-danger block -mt-1 sm:-mt-2">USA TOUR MALTON COIMBRA 2027</span>
                     </h2>
                     <p className="text-sm sm:text-base text-gray-300">
                         Me apoie comprando uma camiseta oficial da USA TOUR. A verba será revertida totalmente para a tour.

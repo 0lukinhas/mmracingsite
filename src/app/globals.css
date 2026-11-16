@@ -1,5 +1,46 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Chakra+Petch:wght@400;500;600;700&family=Permanent+Marker&family=Rajdhani:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Chakra+Petch:wght@400;500;600;700&family=Road+Rage&family=Rajdhani:wght@500;600;700&display=swap');
 @import "tailwindcss";
+
+@font-face {
+  font-family: 'Another Danger';
+  src: url('/fonts/AnotherDangerSlanted.otf') format('opentype');
+  font-weight: normal;
+  font-style: italic, normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Road Rage';
+  src: url('/fonts/RoadRage-Regular.ttf') format('truetype'),
+       url('/fonts/RoadRage-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Race Sport';
+  src: url('/fonts/RaceSport.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Ethnocentric';
+  src: url('/fonts/Ethnocentric.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Edo SZ';
+  src: url('/fonts/EdoSZ.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 
 @theme {
   --color-mm-black: #050505;
@@ -26,6 +67,26 @@ body {
   scroll-behavior: smooth;
 }
 
+.font-danger {
+  font-family: 'Another Danger', 'Road Rage', 'Edo SZ', cursive, sans-serif;
+}
+
+.font-brush {
+  font-family: 'Road Rage', 'Another Danger', 'Edo SZ', cursive, sans-serif;
+}
+
+.font-roadrage {
+  font-family: 'Road Rage', 'Edo SZ', cursive, sans-serif;
+}
+
+.font-racing-num {
+  font-family: 'Race Sport', 'Ethnocentric', 'Barlow Condensed', sans-serif;
+}
+
+.font-techno {
+  font-family: 'Ethnocentric', 'Chakra Petch', sans-serif;
+}
+
 .font-racing {
   font-family: 'Barlow Condensed', sans-serif;
 }
@@ -35,7 +96,7 @@ body {
 }
 
 .font-marker {
-  font-family: 'Permanent Marker', cursive;
+  font-family: 'Road Rage', 'Permanent Marker', cursive;
 }
 
 .font-rajdhani {

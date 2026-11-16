@@ -15,9 +15,54 @@
   <link rel="icon" type="image/x-icon" href="../src/app/favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Chakra+Petch:wght@400;500;600;700&family=Permanent+Marker&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=Chakra+Petch:wght@400;500;600;700&family=Road+Rage&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
 
   <style>
+    @font-face {
+      font-family: 'Another Danger';
+      src: url('/fonts/AnotherDangerSlanted.otf') format('opentype'),
+           url('../public/fonts/AnotherDangerSlanted.otf') format('opentype');
+      font-weight: normal;
+      font-style: italic, normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Road Rage';
+      src: url('/fonts/RoadRage-Regular.ttf') format('truetype'),
+           url('../public/fonts/RoadRage-Regular.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Race Sport';
+      src: url('/fonts/RaceSport.ttf') format('truetype'),
+           url('../public/fonts/RaceSport.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Ethnocentric';
+      src: url('/fonts/Ethnocentric.otf') format('opentype'),
+           url('../public/fonts/Ethnocentric.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Edo SZ';
+      src: url('/fonts/EdoSZ.ttf') format('truetype'),
+           url('../public/fonts/EdoSZ.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
     :root {
       --bg-black: #000000;
       --bg-card: #0c0c0c;
@@ -35,12 +80,32 @@
       font-family: 'Barlow Condensed', sans-serif;
     }
 
+    .font-danger {
+      font-family: 'Another Danger', 'Road Rage', 'Edo SZ', cursive, sans-serif;
+    }
+
+    .font-brush {
+      font-family: 'Road Rage', 'Another Danger', 'Edo SZ', cursive, sans-serif;
+    }
+
+    .font-roadrage {
+      font-family: 'Road Rage', 'Edo SZ', cursive, sans-serif;
+    }
+
+    .font-racing-num {
+      font-family: 'Race Sport', 'Ethnocentric', 'Barlow Condensed', sans-serif;
+    }
+
+    .font-techno {
+      font-family: 'Ethnocentric', 'Chakra Petch', sans-serif;
+    }
+
     .font-tactical {
       font-family: 'Chakra Petch', sans-serif;
     }
 
     .font-marker {
-      font-family: 'Permanent Marker', cursive;
+      font-family: 'Road Rage', cursive;
     }
 
     .font-racing {
@@ -1030,26 +1095,26 @@
         </div>
       </div>
 
-      <!-- Logo & Piloto Lockup em Tipografia Pura de Corrida -->
+      <!-- Logo & Piloto Lockup em Tipografia Autêntica da Arte Aprovada -->
       <div style="margin-bottom: 16px;">
         <div style="display: inline-block;">
-          <h1 class="font-racing" style="font-weight: 900; text-transform: uppercase; font-style: italic; line-height: 0.88; letter-spacing: -0.02em;">
-            <span style="color: #FFF; font-size: 52px; display: block; filter: drop-shadow(0 2px 15px rgba(0,0,0,0.95));">
+          <h1 class="font-danger" style="text-transform: uppercase; font-style: italic; line-height: 0.80; letter-spacing: 0;">
+            <span style="color: #FFF; font-size: 56px; display: block; filter: drop-shadow(0 4px 25px rgba(0,0,0,0.95));">
               MALTON
             </span>
-            <span style="color: var(--orange); font-size: 52px; display: block; filter: drop-shadow(0 2px 15px rgba(255,107,0,0.4));">
+            <span style="color: var(--orange); font-size: 56px; display: block; filter: drop-shadow(0 4px 25px rgba(255,107,0,0.5)); margin-top: -6px;">
               COIMBRA
             </span>
           </h1>
-          <div style="display: flex; align-items: center; gap: 12px; margin-top: 6px;">
-            <span class="font-racing" style="font-weight: 900; font-style: italic; color: #FFF; font-size: 64px; line-height: 1; text-shadow: 0 0 20px rgba(255,107,0,0.5);">
+          <div style="display: flex; align-items: center; gap: 12px; margin-top: 8px;">
+            <span class="font-racing-num" style="font-style: italic; color: #FFF; font-size: 64px; line-height: 1; filter: drop-shadow(0 4px 20px rgba(255,107,0,0.6)); -webkit-text-stroke: 2px #000;">
               177
             </span>
             <div style="display: flex; flex-direction: column; justify-content: center;">
-              <span class="font-racing" style="font-weight: 900; font-style: italic; font-size: 11px; color: #E5E7EB; letter-spacing: 0.2em; text-transform: uppercase; border-bottom: 2px solid var(--orange); padding-bottom: 2px;">
+              <span class="font-brush" style="font-style: italic; font-size: 13px; color: #E5E7EB; letter-spacing: 0.05em; text-transform: uppercase; border-bottom: 2px solid var(--orange); padding-bottom: 2px;">
                 BUILT TO GO FASTER
               </span>
-              <span class="font-tactical" style="font-weight: 700; font-size: 9px; color: var(--orange); letter-spacing: 0.15em; text-transform: uppercase; margin-top: 2px;">
+              <span class="font-techno" style="font-size: 9px; color: var(--orange); letter-spacing: 0.15em; text-transform: uppercase; margin-top: 2px;">
                 RECORDISTA MUNDIAL
               </span>
             </div>
@@ -1057,10 +1122,10 @@
         </div>
 
         <div style="margin-top: 14px;">
-          <div class="font-racing" style="font-size: 14px; font-weight: 900; color: #FFF; letter-spacing: 0.25em; text-transform: uppercase;">
+          <div class="font-techno" style="font-size: 14px; font-weight: 700; color: #FFF; letter-spacing: 0.25em; text-transform: uppercase;">
             WORLD RECORD
           </div>
-          <div class="font-racing" style="font-size: 12px; font-weight: 900; color: var(--orange); letter-spacing: 0.18em; text-transform: uppercase; margin-top: 2px;">
+          <div class="font-racing" style="font-size: 12px; font-weight: 900; color: var(--orange); letter-spacing: 0.22em; text-transform: uppercase; margin-top: 2px;">
             ALL MOTOR • NITROMETHANE
           </div>
         </div>
@@ -1078,7 +1143,7 @@
         <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
           <div style="display: flex; align-items: center; gap: 8px;">
             <span style="font-size: 16px;">🏁</span>
-            <h3 class="font-racing" style="color: var(--orange); font-size: 18px; font-weight: 900; font-style: italic; text-transform: uppercase; letter-spacing: 0.05em; line-height: 1;">
+            <h3 class="font-roadrage" style="color: var(--orange); font-size: 22px; text-transform: uppercase; letter-spacing: 0.05em; line-height: 1; filter: drop-shadow(0 2px 10px rgba(255,107,0,0.35));">
               FAÇA PARTE DA USA TOUR <span style="color: #FFF;">2027</span>
             </h3>
           </div>
