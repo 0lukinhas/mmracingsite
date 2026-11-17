@@ -69,14 +69,17 @@ body {
 
 .font-danger {
   font-family: 'Another Danger', 'Road Rage', 'Edo SZ', cursive, sans-serif;
+  letter-spacing: 0.08em;
 }
 
 .font-brush {
   font-family: 'Road Rage', 'Another Danger', 'Edo SZ', cursive, sans-serif;
+  letter-spacing: 0.06em;
 }
 
 .font-roadrage {
   font-family: 'Road Rage', 'Edo SZ', cursive, sans-serif;
+  letter-spacing: 0.05em;
 }
 
 .font-racing-num {

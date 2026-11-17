@@ -19,7 +19,6 @@ import {
     Loader2
 } from 'lucide-react';
 
-const MERCADO_LIVRE_URL = "https://lista.mercadolivre.com.br/camiseta-malton-coimbra-0177";
 const INSTAGRAM_URL = "https://www.instagram.com/maltoncoimbra/";
 const CONTACT_PHONE = "(48) 99665-3706";
 const CONTACT_EMAIL = "maltoncoimbra@gmail.com";
@@ -352,20 +351,20 @@ export default function MaltonUsaPage() {
                     >
                         {/* Lettering Brutalista de Arrancada */}
                         <div className="inline-block select-none">
-                            <h1 className="font-danger uppercase italic leading-[0.80] tracking-normal">
+                            <h1 className="font-danger uppercase italic leading-[0.98] tracking-[0.08em]">
                                 <span className="text-white text-5xl sm:text-6xl lg:text-7xl block drop-shadow-[0_4px_25px_rgba(0,0,0,0.95)]">
                                     MALTON
                                 </span>
-                                <span className="text-mm-orange text-5xl sm:text-6xl lg:text-7xl block drop-shadow-[0_4px_25px_rgba(255,107,0,0.5)] -mt-1 sm:-mt-2">
+                                <span className="text-mm-orange text-5xl sm:text-6xl lg:text-7xl block drop-shadow-[0_4px_25px_rgba(255,107,0,0.5)] mt-1.5 sm:mt-2">
                                     COIMBRA
                                 </span>
                             </h1>
-                            <div className="flex items-center gap-3 mt-2">
+                            <div className="flex items-center gap-3 mt-3">
                                 <span className="font-racing-num italic text-white text-6xl sm:text-7xl leading-none drop-shadow-[0_4px_25px_rgba(255,107,0,0.6)] [-webkit-text-stroke:2px_#000]">
                                     177
                                 </span>
                                 <div className="flex flex-col justify-center">
-                                    <span className="font-brush italic text-xs sm:text-sm text-gray-200 tracking-wider uppercase leading-tight border-b-2 border-mm-orange pb-0.5">
+                                    <span className="font-brush italic text-xs sm:text-sm text-gray-200 tracking-[0.08em] uppercase leading-tight border-b-2 border-mm-orange pb-0.5">
                                         BUILT TO GO FASTER
                                     </span>
                                     <span className="font-techno text-[9px] sm:text-[10px] text-mm-orange tracking-widest uppercase mt-0.5">
@@ -411,7 +410,7 @@ export default function MaltonUsaPage() {
                         <div className="flex items-start justify-between gap-3 mb-2.5">
                             <div className="flex items-center gap-2">
                                 <span className="text-base">🏁</span>
-                                <h3 className="font-roadrage text-mm-orange text-xl sm:text-2xl tracking-wide uppercase leading-none drop-shadow-[0_2px_12px_rgba(255,107,0,0.35)]">
+                                <h3 className="font-roadrage text-mm-orange text-xl sm:text-2xl tracking-[0.06em] uppercase leading-snug drop-shadow-[0_2px_12px_rgba(255,107,0,0.35)]">
                                     FAÇA PARTE DA USA TOUR <span className="text-white">2027</span>
                                 </h3>
                             </div>
@@ -571,15 +570,15 @@ export default function MaltonUsaPage() {
             {/* ========================================================= */}
             <section id="camiseta" className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto border-b border-[#1c1c1c]">
                 
-                <div className="text-center max-w-2xl mx-auto mb-14">
-                    <span className="text-sm sm:text-base font-roadrage uppercase tracking-widest text-mm-orange block mb-2">
+                <div className="text-center max-w-3xl mx-auto mb-14">
+                    <span className="text-xs sm:text-sm font-racing font-bold uppercase tracking-[0.25em] text-mm-orange block mb-3">
                         EDIÇÃO OFICIAL DA CAMPANHA
                     </span>
-                    <h2 className="text-3xl sm:text-5xl font-black text-white uppercase tracking-tight mb-4 leading-tight">
-                        <span className="font-danger block">CAMISETA OFICIAL</span>
-                        <span className="text-mm-orange font-danger block -mt-1 sm:-mt-2">USA TOUR MALTON COIMBRA 2027</span>
+                    <h2 className="text-3xl sm:text-5xl font-racing font-black text-white uppercase tracking-wider mb-4 leading-tight">
+                        <span className="block text-white">CAMISETA OFICIAL</span>
+                        <span className="text-mm-orange block mt-1.5 tracking-wide">USA TOUR MALTON COIMBRA 2027</span>
                     </h2>
-                    <p className="text-sm sm:text-base text-gray-300">
+                    <p className="text-sm sm:text-base text-gray-300 max-w-xl mx-auto">
                         Me apoie comprando uma camiseta oficial da USA TOUR. A verba será revertida totalmente para a tour.
                     </p>
                 </div>
@@ -658,21 +657,14 @@ export default function MaltonUsaPage() {
                                         </button>
                                     ))}
                                 </div>
-                                <div className="mt-2.5 text-[11px] text-gray-400 flex items-center gap-1.5">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-mm-orange"></span>
-                                    <span>Tamanho selecionado: <strong className="text-white font-bold">{selectedSize}</strong> (já configurado no botão do WhatsApp)</span>
-                                </div>
                             </div>
 
-                            {/* Calculadora de Frete Melhor Envio */}
+                            {/* Calculadora de Frete */}
                             <div className="bg-[#080808] border border-[#222] p-4 mb-5">
                                 <div className="flex items-center justify-between mb-3">
                                     <span className="text-[11px] font-bold text-white uppercase tracking-wider flex items-center gap-2">
                                         <Truck size={15} className="text-mm-orange" />
                                         Calcular Frete e Prazo
-                                    </span>
-                                    <span className="text-[9px] font-black text-mm-orange bg-mm-orange/10 border border-mm-orange/30 px-2 py-0.5 tracking-wider">
-                                        MELHOR ENVIO API
                                     </span>
                                 </div>
 
@@ -801,7 +793,7 @@ export default function MaltonUsaPage() {
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <Check size={15} className="text-mm-orange flex-shrink-0" />
-                                    <span>Envio para todo o Brasil via Melhor Envio (com rastreio)</span>
+                                    <span>Envio para todo o Brasil com código de rastreamento</span>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <Check size={15} className="text-mm-orange flex-shrink-0" />
@@ -822,32 +814,22 @@ export default function MaltonUsaPage() {
                                     </span>
                                 </button>
 
-                                {/* Botão 2: Pedir via WhatsApp com Tamanho Vinculado */}
+                                {/* Botão 2: Pedir via WhatsApp */}
                                 <a
                                     href={getWhatsAppBuyUrl(selectedSize)}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="w-full bg-[#25D366] hover:bg-[#1EBE5D] text-black font-black uppercase text-xs tracking-wider py-3 px-5 flex items-center justify-center gap-2 transition-all duration-200 shadow-[0_0_20px_rgba(37,211,102,0.2)]"
+                                    className="w-full bg-[#25D366] hover:bg-[#1EBE5D] text-black font-black uppercase text-xs tracking-wider py-3.5 px-5 flex items-center justify-center gap-2 transition-all duration-200 shadow-[0_0_20px_rgba(37,211,102,0.2)]"
                                 >
                                     <MessageCircle size={17} className="text-black" />
                                     <span>PEDIR PELO WHATSAPP ➔</span>
-                                </a>
-
-                                {/* Botão 3: Mercado Livre */}
-                                <a
-                                    href={MERCADO_LIVRE_URL}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="block text-center w-full py-2.5 text-[11px] font-bold text-gray-400 hover:text-white uppercase tracking-wider border border-dashed border-[#262626] hover:border-[#555] transition-colors"
-                                >
-                                    OU COMPRAR NO MERCADO LIVRE ↗
                                 </a>
                             </div>
 
                             {/* Trust Signals Rodapé do Card */}
                             <div className="mt-5 pt-4 border-t border-[#1f1f1f] flex flex-wrap items-center justify-between gap-2 text-[11px] text-gray-500">
                                 <span>🔒 Compra Segura</span>
-                                <span>📦 Rastreio Correios / ML</span>
+                                <span>📦 Envio Seguro com Rastreamento</span>
                                 <span>🏁 Apoio Oficial Piloto 177</span>
                             </div>
 
@@ -968,7 +950,7 @@ export default function MaltonUsaPage() {
                         {/* Formulário de Entrega */}
                         <div className="border border-[#1f1f1f] bg-[#050505] p-4 mb-4 space-y-3">
                             <span className="text-[10px] font-black text-mm-orange uppercase tracking-wider block">
-                                1. DADOS PARA ENVIO DA CAMISETA (MELHOR ENVIO)
+                                1. DADOS DE ENTREGA DA CAMISETA
                             </span>
 
                             <div>
@@ -987,7 +969,7 @@ export default function MaltonUsaPage() {
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                                 <div>
                                     <label className="text-[10px] text-gray-400 uppercase font-bold block mb-1">
-                                        CPF (Exigido pelo Melhor Envio) *
+                                        CPF (Para emissão de envio) *
                                     </label>
                                     <input
                                         type="text"
